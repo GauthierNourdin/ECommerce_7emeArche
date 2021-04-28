@@ -168,12 +168,12 @@ public class Client extends Personne{
 	public String affichageConsultations() {
 		int nombreConsultations = this.consultations.size();
 		if (nombreConsultations > 0) {
-			String stringLignesPanier = "[";
+			String stringConsultations = "[";
 			for (int i = 0; i < nombreConsultations - 1; i++) {
-				stringLignesPanier += this.commandes.get(i).toStringWithoutLinks() + ", ";
+				stringConsultations += this.commandes.get(i).toStringWithoutLinks() + ", ";
 			}
-			stringLignesPanier += this.commandes.get(nombreConsultations - 1).toStringWithoutLinks() + "]";
-			return stringLignesPanier;
+			stringConsultations += this.commandes.get(nombreConsultations - 1).toStringWithoutLinks() + "]";
+			return stringConsultations;
 		}
 		return "[]";
 	}
@@ -182,12 +182,12 @@ public class Client extends Personne{
 	public String affichageCommandes() {	
 		int nombreCommandes = this.commandes.size();
 		if (nombreCommandes > 0) {
-			String stringLignesPanier = "[";
+			String stringCommandes = "[";
 			for (int i = 0; i < nombreCommandes - 1; i++) {
-				stringLignesPanier += this.commandes.get(i).toStringWithoutLinks() + ", ";
+				stringCommandes += this.commandes.get(i).toStringWithoutLinks() + ", ";
 			}
-			stringLignesPanier += this.commandes.get(nombreCommandes - 1).toStringWithoutLinks() + "]";
-			return stringLignesPanier;
+			stringCommandes += this.commandes.get(nombreCommandes - 1).toStringWithoutLinks() + "]";
+			return stringCommandes;
 		}
 		return "[]";
 	}

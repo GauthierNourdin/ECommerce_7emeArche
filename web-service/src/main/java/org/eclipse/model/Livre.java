@@ -12,11 +12,10 @@ public abstract class Livre extends Article {
 	private String format;
 	private String lienImage;
 	private int nombrePages;
-	private String issn;
 	private Date dateDepotLegal;
-	private ArrayList<Genre> genres;
-	private ArrayList<Auteur> auteurs;
-	private Editeur editeurs;
+	private ArrayList<Genre> genres = new ArrayList<Genre>();
+	private ArrayList<Auteur> auteurs = new ArrayList<Auteur>();
+	private Editeur editeur;
 	
 	// Constructeurs
 	public Livre() {
@@ -25,19 +24,18 @@ public abstract class Livre extends Article {
 
 	public Livre(String titre, String resume, int prixHT, int prixTTC, ArrayList<Consultation> consultations,
 			ArrayList<LigneCommande> lignesCommande, String isbn13, String titreLivre, String format, String lienImage,
-			int nombrePages, String issn, Date dateDepotLegal, ArrayList<Genre> genres, ArrayList<Auteur> auteurs,
-			Editeur editeurs) {
+			int nombrePages, Date dateDepotLegal, ArrayList<Genre> genres, ArrayList<Auteur> auteurs,
+			Editeur editeur) {
 		super(titre, resume, prixHT, prixTTC, consultations, lignesCommande);
 		this.isbn13 = isbn13;
 		this.titreLivre = titreLivre;
 		this.format = format;
 		this.lienImage = lienImage;
 		this.nombrePages = nombrePages;
-		this.issn = issn;
 		this.dateDepotLegal = dateDepotLegal;
 		this.genres = genres;
 		this.auteurs = auteurs;
-		this.editeurs = editeurs;
+		this.editeur = editeur;
 	}
 
 	// Getters et Setters
@@ -81,14 +79,6 @@ public abstract class Livre extends Article {
 		this.nombrePages = nombrePages;
 	}
 
-	public String getIssn() {
-		return this.issn;
-	}
-
-	public void setIssn(String issn) {
-		this.issn = issn;
-	}
-
 	public Date getDateDepotLegal() {
 		return this.dateDepotLegal;
 	}
@@ -113,12 +103,12 @@ public abstract class Livre extends Article {
 		this.auteurs = auteurs;
 	}
 
-	public Editeur getEditeurs() {
-		return this.editeurs;
+	public Editeur getEditeur() {
+		return this.editeur;
 	}
 
-	public void setEditeurs(Editeur editeurs) {
-		this.editeurs = editeurs;
+	public void setEditeur(Editeur editeurs) {
+		this.editeur = editeurs;
 	}
 
 	// toString
@@ -126,12 +116,44 @@ public abstract class Livre extends Article {
 	public String toString() {
 		return "Livre [titre=" + this.getTitre() + ", resume=" + this.getResume() + ", prixHT=" + this.getPrixHT() + ", prixTTC=" + this.getPrixTTC()
 				+ ", consultations=" + this.affichageConsultations() + ", lignesCommande=" + this.affichageLignesCommande() + ", isbn13=" + this.isbn13 + ", titreLivre=" + this.titreLivre + ", format=" + this.format + ", lienImage="
-				+ this.lienImage + ", nombrePages=" + this.nombrePages + ", issn=" + this.issn + ", dateDepotLegal=" + this.dateDepotLegal
-				+ ", genres=" + this.genres + ", auteurs=" + this.auteurs + ", editeurs=" + this.editeurs + "]";
+				+ this.lienImage + ", nombrePages=" + this.nombrePages + ", dateDepotLegal=" + this.dateDepotLegal
+				+ ", genres=" + this.genres + ", auteurs=" + affichageAuteurs() + ", editeurs=" + this.editeur.toStringWithoutLinks() + "]";
 	}
 
-	// toString sans information client	
+	// toString sans les autres objets
+	@Override
 	public String toStringWithoutLinks() {
-		
+		return "Livre [titre=" + this.getTitre() + ", resume=" + this.getResume() + ", prixHT=" + this.getPrixHT() + ", prixTTC=" + this.getPrixTTC()
+				+ ", isbn13=" + this.isbn13 + ", titreLivre=" + this.titreLivre + ", format=" + this.format + ", lienImage="
+				+ this.lienImage + ", nombrePages=" + this.nombrePages + ", dateDepotLegal=" + this.dateDepotLegal
+				+ ", genres=" + this.genres + "]";
+	}
+	
+	// Affichage des auteurs associés sans information sur les objets qui y sont liés
+	public String affichageAuteurs() {
+		int nombreAuteurs = this.auteurs.size();
+		if (nombreAuteurs > 0) {
+			String stringAuteurs = "[";
+			for (int i = 0; i < nombreAuteurs - 1; i++) {
+				stringAuteurs += this.auteurs.get(i).toStringWithoutLinks() + ", ";
+			}
+			stringAuteurs += this.auteurs.get(nombreAuteurs - 1).toStringWithoutLinks() + "]";
+			return stringAuteurs;
+		}
+		return "[]";
+	}
+	
+	// Affichage des genres associés sans information sur les objets qui y sont liés
+	public String affichageGenres() {
+		int nombreGenres = this.genres.size();
+		if (nombreGenres > 0) {
+			String stringGenres = "[";
+			for (int i = 0; i < nombreGenres - 1; i++) {
+				stringGenres += this.genres.get(i).toStringWithoutLinks() + ", ";
+			}
+			stringGenres += this.genres.get(nombreGenres - 1).toStringWithoutLinks() + "]";
+			return stringGenres;
+		}
+		return "[]";
 	}
 }

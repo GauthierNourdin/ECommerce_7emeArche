@@ -10,8 +10,8 @@ public abstract class Article {
 	private String resume;
 	private int prixHT;
 	private int prixTTC;
-	private ArrayList<Consultation> consultations;
-	private ArrayList<LigneCommande> lignesCommande;
+	private ArrayList<Consultation> consultations = new ArrayList<Consultation>();
+	private ArrayList<LigneCommande> lignesCommande = new ArrayList<LigneCommande>();
 	
 	// Constructeurs
 	public Article() {
@@ -95,12 +95,12 @@ public abstract class Article {
 	public String affichageConsultations() {
 		int nombreConsultations = this.consultations.size();
 		if (nombreConsultations > 0) {
-			String stringLignesPanier = "[";
+			String stringConsultations = "[";
 			for (int i = 0; i < nombreConsultations - 1; i++) {
-				stringLignesPanier += this.consultations.get(i).toStringWithoutLinks() + ", ";
+				stringConsultations += this.consultations.get(i).toStringWithoutLinks() + ", ";
 			}
-			stringLignesPanier += this.consultations.get(nombreConsultations - 1).toStringWithoutLinks() + "]";
-			return stringLignesPanier;
+			stringConsultations += this.consultations.get(nombreConsultations - 1).toStringWithoutLinks() + "]";
+			return stringConsultations;
 		}
 		return "[]";
 	}
@@ -109,14 +109,13 @@ public abstract class Article {
 	public String affichageLignesCommande() {
 		int nombreLignesCommande = this.lignesCommande.size();
 		if (nombreLignesCommande > 0) {
-			String stringLignesPanier = "[";
+			String stringLignesCommande = "[";
 			for (int i = 0; i < nombreLignesCommande - 1; i++) {
-				stringLignesPanier += this.lignesCommande.get(i).toStringWithoutLinks() + ", ";
+				stringLignesCommande += this.lignesCommande.get(i).toStringWithoutLinks() + ", ";
 			}
-			stringLignesPanier += this.lignesCommande.get(nombreLignesCommande - 1).toStringWithoutLinks() + "]";
-			return stringLignesPanier;
+			stringLignesCommande += this.lignesCommande.get(nombreLignesCommande - 1).toStringWithoutLinks() + "]";
+			return stringLignesCommande;
 		}
 		return "[]";
 	}
-	
 }
