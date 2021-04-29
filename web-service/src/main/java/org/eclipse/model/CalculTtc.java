@@ -1,7 +1,5 @@
 package org.eclipse.model;
 
-import java.util.PrimitiveIterator.OfDouble;
-
 public class CalculTtc {
 	/** Classe spécialisée pour calculer le prix TTC à partir de règles fixes pour les taxes*/
 	

@@ -5,7 +5,7 @@ public class Facture {
 
 	// Attributs
 	private String numero;
-	private Commande commande = new Commande();
+	private Commande commande = null;
 	
 	// Constructeurs
 	public Facture() {
@@ -48,7 +48,7 @@ public class Facture {
 	// toString
 	@Override
 	public String toString() {
-		return "Facture [numero=" + this.numero + ", commande=" + this.commande + "]";
+		return "Facture [numero=" + this.numero + ", commande=" + this.commande.toStringWithoutLinks() + "]";
 	}
 	
 	// toString sans les objets associés

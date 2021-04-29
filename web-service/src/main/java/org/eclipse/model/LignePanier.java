@@ -6,8 +6,8 @@ public class LignePanier {
 	// Attributs
 	private int id;
 	private int quantiteSouhaitee;
-	private Article article;
-	private Panier panier;
+	private Article article = null;
+	private Panier panier = null;
 
 	// Constructeurs
 	public LignePanier() {

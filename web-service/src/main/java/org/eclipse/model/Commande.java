@@ -11,8 +11,8 @@ public class Commande {
 	private String numero;
 	private LocalDateTime date;
 	private ArrayList<LigneCommande> lignesCommande = new ArrayList<LigneCommande>();
-	private Client client = new Client();
-	private Facture facture = new Facture();
+	private Client client = null;
+	private Facture facture = null;
 
 	// Constructeurs
 	public Commande() {
@@ -100,13 +100,15 @@ public class Commande {
 	// toString
 	@Override
 	public String toString() {
-		return "Commande [numero=" + this.numero + ", date=" + this.date + ", lignesCommande="
-				+ this.affichageLignesCommande() + ", client=" + this.client + ", facture=" + this.facture + "]";
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return "Commande [numero=" + this.numero + ", date=" + this.date.format(format) + ", lignesCommande="
+				+ this.affichageLignesCommande() + ", client=" + this.client.toStringWithoutLinks() + ", facture=" + this.facture.toStringWithoutLinks() + "]";
 	}
 
 	// toString sans les objets associés
 	public String toStringWithoutLinks() {
-		return "Commande [numero=" + this.numero + ", date=" + this.date + "]";
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return "Commande [numero=" + this.numero + ", date=" + this.date.format(format) + "]";
 	}
 
 	// Affichage des lignes de commandes associées sans information sur les objets

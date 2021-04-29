@@ -66,8 +66,7 @@ public class Genre {
 
 	// toString sans les objets associés
 	public String toStringWithoutLinks() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Genre [id=" + this.id + ", nom=" + this.nom + "]";
 	}
 
 	// Affichage des livres associés sans information sur les objets qui y sont liés

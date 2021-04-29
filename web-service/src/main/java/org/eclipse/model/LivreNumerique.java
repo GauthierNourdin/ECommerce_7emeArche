@@ -73,7 +73,7 @@ public class LivreNumerique extends Livre {
 		return "LivreNumerique [id=" + this.id + ", espace=" + this.espace + ", unite=" + this.unite + ", isbn13=" + this.getIsbn13()
 				+ ", titreLivre=" + this.getTitreLivre() + ", format=" + this.getFormat() + ", lienImage="
 				+ this.getLienImage() + ", nombrePages=" + this.getNombrePages() 
-				+ ", dateDepotLegal=" + this.getDateDepotLegal() + ", editeur=" + this.getEditeur()
+				+ ", dateDepotLegal=" + this.getDateDepotLegal() + ", editeur=" + this.getEditeur().toStringWithoutLinks()
 				+ ", auteur=" + this.affichageAuteurs() + ", genres=" + this.affichageGenres()
 				+ ", titre=" + this.getTitre() + ", resume=" + this.getResume() + ", prixHT=" + this.getPrixHT()
 				+ ", prixTTC=" + this.getPrixTTC() + ", consultations=" + this.affichageConsultations()
@@ -86,7 +86,7 @@ public class LivreNumerique extends Livre {
 		return "LivreNumerique [id=" + this.id + ", espace=" + this.espace + ", unite=" + this.unite + ", isbn13=" + this.getIsbn13()
 		+ ", titreLivre=" + this.getTitreLivre() + ", format=" + this.getFormat() + ", lienImage="
 		+ this.getLienImage() + ", nombrePages=" + this.getNombrePages() 
-		+ ", dateDepotLegal=" + this.getDateDepotLegal() + ", genres=" + this.affichageGenres()
+		+ ", dateDepotLegal=" + this.getDateDepotLegal()
 		+ ", titre=" + this.getTitre() + ", resume=" + this.getResume() + ", prixHT=" + this.getPrixHT()
 		+ ", prixTTC=" + this.getPrixTTC() + "]";
 	}

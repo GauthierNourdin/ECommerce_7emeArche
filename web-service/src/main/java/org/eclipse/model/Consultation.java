@@ -1,6 +1,7 @@
 package org.eclipse.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Consultation {
 /** Classe pour les consultations d'articles*/
@@ -8,8 +9,8 @@ public class Consultation {
 	// Attributs
 	private int id;
 	private LocalDateTime date;
-	private Client client = new Client();
-	private Article article;
+	private Client client = null;
+	private Article article = null;
 	
 	// Constructeurs
 	public Consultation() {
@@ -72,11 +73,13 @@ public class Consultation {
 	// toString
 	@Override
 	public String toString() {
-		return "Consultation [id=" + this.id + ", date=" + this.date + ", client=" + this.client + ", article=" + this.article + "]";
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return "Consultation [id=" + this.id + ", date=" + this.date.format(format) + ", client=" + this.client.toStringWithoutLinks() + ", article=" + this.article.toStringWithoutLinks() + "]";
 	}
 
 	// toString sans les objets associés
 	public String toStringWithoutLinks() {
-		return "Consultation [id=" + this.id + ", date=" + this.date + "]";
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return "Consultation [id=" + this.id + ", date=" + this.date.format(format) + "]";
 	}
 }

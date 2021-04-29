@@ -15,7 +15,7 @@ public abstract class Livre extends Article {
 	private Date dateDepotLegal;
 	private ArrayList<Genre> genres = new ArrayList<Genre>();
 	private ArrayList<Auteur> auteurs = new ArrayList<Auteur>();
-	private Editeur editeur;
+	private Editeur editeur = null;
 	
 	// Constructeurs
 	public Livre() {
@@ -117,7 +117,7 @@ public abstract class Livre extends Article {
 		return "Livre [titre=" + this.getTitre() + ", resume=" + this.getResume() + ", prixHT=" + this.getPrixHT() + ", prixTTC=" + this.getPrixTTC()
 				+ ", consultations=" + this.affichageConsultations() + ", lignesCommande=" + this.affichageLignesCommande() + ", isbn13=" + this.isbn13 + ", titreLivre=" + this.titreLivre + ", format=" + this.format + ", lienImage="
 				+ this.lienImage + ", nombrePages=" + this.nombrePages + ", dateDepotLegal=" + this.dateDepotLegal
-				+ ", genres=" + this.genres + ", auteurs=" + affichageAuteurs() + ", editeurs=" + this.editeur.toStringWithoutLinks() + "]";
+				+ ", genres=" + affichageGenres() + ", auteurs=" + affichageAuteurs() + ", editeurs=" + this.editeur.toStringWithoutLinks() + "]";
 	}
 
 	// toString sans les autres objets
@@ -126,7 +126,7 @@ public abstract class Livre extends Article {
 		return "Livre [titre=" + this.getTitre() + ", resume=" + this.getResume() + ", prixHT=" + this.getPrixHT() + ", prixTTC=" + this.getPrixTTC()
 				+ ", isbn13=" + this.isbn13 + ", titreLivre=" + this.titreLivre + ", format=" + this.format + ", lienImage="
 				+ this.lienImage + ", nombrePages=" + this.nombrePages + ", dateDepotLegal=" + this.dateDepotLegal
-				+ ", genres=" + this.genres + "]";
+				+ "]";
 	}
 	
 	// Affichage des auteurs associés sans information sur les objets qui y sont liés

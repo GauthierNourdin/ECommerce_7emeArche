@@ -8,8 +8,8 @@ public class LigneCommande {
 	private int quantiteCommandee;
 	private int prixHT;
 	private int prixTTC;
-	private Article article;
-	private Commande commande;
+	private Article article = null;
+	private Commande commande = null;
 	
 	// Constructeurs
 	public LigneCommande() {

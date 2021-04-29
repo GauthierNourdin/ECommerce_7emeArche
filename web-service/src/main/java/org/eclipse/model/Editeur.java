@@ -8,7 +8,7 @@ public class Editeur {
 	// Attributs
 	private int id;
 	private String nom;
-	private Adresse adresse = new Adresse();
+	private Adresse adresse = null;
 	private ArrayList<Livre> livres = new ArrayList<Livre>();
 	
 	// Constructeurs
@@ -72,12 +72,12 @@ public class Editeur {
 	// toString
 	@Override
 	public String toString() {
-		return "Editeur [id=" + this.id + ", nom=" + this.nom + ", adresse=" + this.adresse + ", livres=" + this.affichageLivres() + "]";
+		return "Editeur [id=" + this.id + ", nom=" + this.nom + ", adresse=" + this.adresse.toStringWithoutLinks() + ", livres=" + this.affichageLivres() + "]";
 	}
 
 	// toString sans les objets associés
 	public String toStringWithoutLinks() {
-		return "Editeur [id=" + this.id + ", nom=" + this.nom + ", adresse=" + this.adresse + "]";
+		return "Editeur [id=" + this.id + ", nom=" + this.nom + "]";
 	}
 	
 	// Affichage des livres associés sans information sur les objets qui y sont liés

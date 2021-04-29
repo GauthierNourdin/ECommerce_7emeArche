@@ -6,7 +6,7 @@ public class Panier {
 /** Classe pour représenter le panier d'un client */
 	
 	// Attributs
-	private Client client = new Client();
+	private Client client = null;
 	private ArrayList<LignePanier> lignesPanier = new ArrayList<LignePanier>();
 	
 	// Constructeurs

@@ -136,8 +136,8 @@ public class Adresse {
 
 	// toString sans les objets liés
 	public String toStringWithoutLinks() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Adresse [id=" + this.id + ", numeroRue=" + this.numeroRue + ", nomRue=" + this.nomRue + ", codePostal=" + this.codePostal
+				+ ", ville=" + this.ville + ", pays=" + this.pays + ", complement=" + this.complement + "]";
 	}
 
 	// Affichage des éditeurs associés sans information sur les objets qui y sont liés

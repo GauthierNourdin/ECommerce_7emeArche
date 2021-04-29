@@ -11,9 +11,9 @@ public class Client extends Personne{
 	private String numeroCarte;
 	private String dateDeValidite;
 	private String cvc;
-	private Adresse adresseFacturation = new Adresse();
-	private Adresse adresseLivraison = new Adresse();
-	private Panier panier = new Panier();
+	private Adresse adresseFacturation = null;
+	private Adresse adresseLivraison = null;
+	private Panier panier = null;
 	private ArrayList<Consultation> consultations = new ArrayList<Consultation>();
 	private ArrayList<Commande> commandes = new ArrayList<Commande>();
 
@@ -170,9 +170,9 @@ public class Client extends Personne{
 		if (nombreConsultations > 0) {
 			String stringConsultations = "[";
 			for (int i = 0; i < nombreConsultations - 1; i++) {
-				stringConsultations += this.commandes.get(i).toStringWithoutLinks() + ", ";
+				stringConsultations += this.consultations.get(i).toStringWithoutLinks() + ", ";
 			}
-			stringConsultations += this.commandes.get(nombreConsultations - 1).toStringWithoutLinks() + "]";
+			stringConsultations += this.consultations.get(nombreConsultations - 1).toStringWithoutLinks() + "]";
 			return stringConsultations;
 		}
 		return "[]";

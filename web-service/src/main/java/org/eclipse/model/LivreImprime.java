@@ -155,7 +155,7 @@ public class LivreImprime extends Livre {
 				+ this.uniteLongueur + ", isbn13=" + this.getIsbn13() + ", titreLivre=" + this.getTitreLivre()
 				+ ", format=" + this.getFormat() + ", lienImage=" + this.getLienImage() + ", nombrePages="
 				+ this.getNombrePages() + ", dateDepotLegal=" + this.getDateDepotLegal()
-				+ ", editeur=" + this.getEditeur() + ", auteurs=" + this.affichageAuteurs()
+				+ ", editeur=" + this.getEditeur().toStringWithoutLinks() + ", auteurs=" + this.affichageAuteurs()
 				+ ", genres=" + this.affichageGenres() + ", titre=" + this.getTitre() + ", resume="
 				+ this.getResume() + ", prixHT=" + this.getPrixHT() + ", prixTTC=" + this.getPrixTTC()
 				+ ", consultations=" + this.affichageConsultations() + ", lignesCommande="
@@ -171,7 +171,7 @@ public class LivreImprime extends Livre {
 				+ this.uniteLongueur + ", isbn13=" + this.getIsbn13() + ", titreLivre=" + this.getTitreLivre()
 				+ ", format=" + this.getFormat() + ", lienImage=" + this.getLienImage() + ", nombrePages="
 				+ this.getNombrePages() + ", dateDepotLegal=" + this.getDateDepotLegal()
-				+ ", genres=" + this.affichageGenres() + ", titre=" + this.getTitre() + ", resume="
+				+ ", titre=" + this.getTitre() + ", resume="
 				+ this.getResume() + ", prixHT=" + this.getPrixHT() + ", prixTTC=" + this.getPrixTTC()
 				+ "]";
 	}

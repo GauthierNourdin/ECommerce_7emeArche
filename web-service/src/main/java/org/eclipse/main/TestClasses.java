@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.eclipse.model.Adresse;
-import org.eclipse.model.Article;
 import org.eclipse.model.Auteur;
 import org.eclipse.model.Client;
 import org.eclipse.model.Commande;
@@ -55,8 +54,8 @@ public class TestClasses {
 		livreImprimeAuteurs.add(auteur);
 		LivreImprime livreImprime = new LivreImprime("Leviathan, 5ème Edition", "Ouvrage philosophique traitant des relations sociales", 1413, 1599, livreImprimeConsultations,
 				new ArrayList<LigneCommande>(), "2-4874-1548184-1", "Leviathan", "Poche", "image1.png",
-				198, new Date(15615641), livreImprimeGenres, livreImprimeAuteurs,
-				editeur, 1, 4, new Date(17091485), new Date(16791485), 61.5,
+				198, new Date(156156418000l), livreImprimeGenres, livreImprimeAuteurs,
+				editeur, 1, 4, new Date(170914852000l), new Date(167914854000l), 61.5,
 				"g", 19.2, 13.4, 2.8, "cm");
 		
 		ArrayList<Consultation> livreNumeriqueConsultations = new ArrayList<Consultation>();
@@ -69,7 +68,7 @@ public class TestClasses {
 		livreNumeriqueAuteurs.add(auteur);
 		LivreNumerique livreNumerique = new LivreNumerique("Notes diverses de Thomas Hobbes", "Notes écrites de la main de Thomas Hobbes. Originaux stockées à la grande bibliothèque nationale de Londres", 2613, 2999, livreNumeriqueConsultations,
 				livreNumeriqueLignesCommande, "3-15-787151572-6", "Notes de Thomax Hobbes 2", "Scans de documents originaux", "image2.png",
-				301, new Date(20457550), livreNumeriqueGenres, livreNumeriqueAuteurs,
+				301, new Date(204575502000l), livreNumeriqueGenres, livreNumeriqueAuteurs,
 				editeur, 2, 193.24, "Mo");
 		
 		ArrayList<LignePanier> panierLignesPanier = new ArrayList<LignePanier>();
@@ -134,9 +133,7 @@ public class TestClasses {
 		System.out.println("ligneCommande :" + ligneCommande);
 		System.out.println("lignePanier :" + lignePanier);
 		System.out.println("livreImprime :" + livreImprime);
-		System.out.println("lignePanier :" + lignePanier);
+		System.out.println("ligneNumerique :" + livreNumerique);
 		System.out.println("panier :" + panier);
-		
 	}
-
 }
