@@ -5,6 +5,7 @@ public class Facture {
 
 	// Attributs
 	private String numero;
+	private String status;
 	private Commande commande = null;
 	
 	// Constructeurs
@@ -17,14 +18,16 @@ public class Facture {
 		this.numero = numero;
 	}
 	
-	public Facture(Commande commande) {
+	public Facture(String status, Commande commande) {
 		super();
+		this.status = status;
 		this.commande = commande;
 	}
 	
-	public Facture(String numero, Commande commande) {
+	public Facture(String numero, String status, Commande commande) {
 		super();
 		this.numero = numero;
+		this.status = status;
 		this.commande = commande;
 	}
 
@@ -35,6 +38,14 @@ public class Facture {
 
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Commande getCommande() {
@@ -48,11 +59,11 @@ public class Facture {
 	// toString
 	@Override
 	public String toString() {
-		return "Facture [numero=" + this.numero + ", commande=" + this.commande.toStringWithoutLinks() + "]";
+		return "Facture [numero=" + this.numero + ", status=" + this.status + ", commande=" + this.commande.toStringWithoutLinks() + "]";
 	}
 	
 	// toString sans les objets associés
 	public String toStringWithoutLinks() {
-		return "Facture [numero=" + this.numero + "]";
+		return "Facture [numero=" + this.numero + ", status=" + this.status + "]";
 	}
 }

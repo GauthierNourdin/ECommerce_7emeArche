@@ -9,6 +9,7 @@ public class Commande {
 
 	// Attributs
 	private String numero;
+	private String status;
 	private LocalDateTime date;
 	private ArrayList<LigneCommande> lignesCommande = new ArrayList<LigneCommande>();
 	private Client client = null;
@@ -24,18 +25,20 @@ public class Commande {
 		this.numero = numero;
 	}
 
-	public Commande(LocalDateTime date, ArrayList<LigneCommande> lignesCommande, Client client, Facture facture) {
+	public Commande(String status, LocalDateTime date, ArrayList<LigneCommande> lignesCommande, Client client, Facture facture) {
 		super();
+		this.status = status;
 		this.date = date;
 		this.lignesCommande = lignesCommande;
 		this.client = client;
 		this.facture = facture;
 	}
 
-	public Commande(String numero, LocalDateTime date, ArrayList<LigneCommande> lignesCommande, Client client,
+	public Commande(String numero, String status, LocalDateTime date, ArrayList<LigneCommande> lignesCommande, Client client,
 			Facture facture) {
 		super();
 		this.numero = numero;
+		this.status = status;
 		this.date = date;
 		this.lignesCommande = lignesCommande;
 		this.client = client;
@@ -49,6 +52,14 @@ public class Commande {
 
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public LocalDateTime getDate() {
@@ -101,14 +112,14 @@ public class Commande {
 	@Override
 	public String toString() {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		return "Commande [numero=" + this.numero + ", date=" + this.date.format(format) + ", lignesCommande="
+		return "Commande [numero=" + this.numero + ", status=" + this.status + ", date=" + this.date.format(format) + ", lignesCommande="
 				+ this.affichageLignesCommande() + ", client=" + this.client.toStringWithoutLinks() + ", facture=" + this.facture.toStringWithoutLinks() + "]";
 	}
 
 	// toString sans les objets associés
 	public String toStringWithoutLinks() {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		return "Commande [numero=" + this.numero + ", date=" + this.date.format(format) + "]";
+		return "Commande [numero=" + this.numero + ", status=" + this.status + ", date=" + this.date.format(format) + "]";
 	}
 
 	// Affichage des lignes de commandes associées sans information sur les objets
