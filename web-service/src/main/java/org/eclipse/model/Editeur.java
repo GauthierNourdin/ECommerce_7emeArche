@@ -3,14 +3,14 @@ package org.eclipse.model;
 import java.util.ArrayList;
 
 public class Editeur {
-/** Classe pour les éditeurs*/
+	/** Classe pour les éditeurs */
 
 	// Attributs
 	private int id;
 	private String nom;
 	private Adresse adresse = null;
 	private ArrayList<Livre> livres = new ArrayList<Livre>();
-	
+
 	// Constructeurs
 	public Editeur() {
 		super();
@@ -68,18 +68,19 @@ public class Editeur {
 	public void setLivres(ArrayList<Livre> livres) {
 		this.livres = livres;
 	}
-	
+
 	// toString
 	@Override
 	public String toString() {
-		return "Editeur [id=" + this.id + ", nom=" + this.nom + ", adresse=" + this.adresse.toStringWithoutLinks() + ", livres=" + this.affichageLivres() + "]";
+		return "Editeur [id=" + this.id + ", nom=" + this.nom + ", adresse=" + this.adresse
+				+ ", livres=" + this.affichageLivres() + "]";
 	}
 
 	// toString sans les objets associés
 	public String toStringWithoutLinks() {
 		return "Editeur [id=" + this.id + ", nom=" + this.nom + "]";
 	}
-	
+
 	// Affichage des livres associés sans information sur les objets qui y sont liés
 	public String affichageLivres() {
 		int nombreLivres = this.livres.size();

@@ -1,7 +1,7 @@
 package org.eclipse.model;
 
 public class LignePanier {
-	/** Classe pour les lignes de panier*/
+	/** Classe pour les lignes de panier */
 
 	// Attributs
 	private int id;
@@ -67,11 +67,11 @@ public class LignePanier {
 		this.panier = panier;
 	}
 
-	// toString	
+	// toString
 	@Override
 	public String toString() {
-		return "LignePanier [id=" + this.id + ", quantiteSouhaitee=" + this.quantiteSouhaitee + ", article=" + this.article.toStringWithoutLinks()
-				+ "]";
+		return "LignePanier [id=" + this.id + ", quantiteSouhaitee=" + this.quantiteSouhaitee + ", article="
+				+ this.article.toStringWithoutLinks() + "]";
 	}
 
 	// toString sans les objets associés

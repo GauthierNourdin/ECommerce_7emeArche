@@ -4,14 +4,14 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class LivreNumerique extends Livre {
-/** Classe pour les livres numériques*/ 
+	/** Classe pour les livres numériques */
 
 	// Attributs
 	private int id;
 	private double espace;
 	private String unite;
-	
-	// Constructeurs	
+
+	// Constructeurs
 	public LivreNumerique() {
 		super();
 	}
@@ -23,8 +23,8 @@ public class LivreNumerique extends Livre {
 
 	public LivreNumerique(String titre, String resume, int prixHT, int prixTTC, ArrayList<Consultation> consultations,
 			ArrayList<LigneCommande> lignesCommande, String isbn13, String titreLivre, String format, String lienImage,
-			int nombrePages, Date dateDepotLegal, ArrayList<Genre> genres, ArrayList<Auteur> auteurs,
-			Editeur editeur, double espace, String unite) {
+			int nombrePages, Date dateDepotLegal, ArrayList<Genre> genres, ArrayList<Auteur> auteurs, Editeur editeur,
+			double espace, String unite) {
 		super(titre, resume, prixHT, prixTTC, consultations, lignesCommande, isbn13, titreLivre, format, lienImage,
 				nombrePages, dateDepotLegal, genres, auteurs, editeur);
 		this.espace = espace;
@@ -33,8 +33,8 @@ public class LivreNumerique extends Livre {
 
 	public LivreNumerique(String titre, String resume, int prixHT, int prixTTC, ArrayList<Consultation> consultations,
 			ArrayList<LigneCommande> lignesCommande, String isbn13, String titreLivre, String format, String lienImage,
-			int nombrePages, Date dateDepotLegal, ArrayList<Genre> genres, ArrayList<Auteur> auteurs,
-			Editeur editeur, int id, double espace, String unite) {
+			int nombrePages, Date dateDepotLegal, ArrayList<Genre> genres, ArrayList<Auteur> auteurs, Editeur editeur,
+			int id, double espace, String unite) {
 		super(titre, resume, prixHT, prixTTC, consultations, lignesCommande, isbn13, titreLivre, format, lienImage,
 				nombrePages, dateDepotLegal, genres, auteurs, editeur);
 		this.id = id;
@@ -70,24 +70,23 @@ public class LivreNumerique extends Livre {
 	// toString
 	@Override
 	public String toString() {
-		return "LivreNumerique [id=" + this.id + ", espace=" + this.espace + ", unite=" + this.unite + ", isbn13=" + this.getIsbn13()
-				+ ", titreLivre=" + this.getTitreLivre() + ", format=" + this.getFormat() + ", lienImage="
-				+ this.getLienImage() + ", nombrePages=" + this.getNombrePages() 
-				+ ", dateDepotLegal=" + this.getDateDepotLegal() + ", editeur=" + this.getEditeur().toStringWithoutLinks()
-				+ ", auteur=" + this.affichageAuteurs() + ", genres=" + this.affichageGenres()
-				+ ", titre=" + this.getTitre() + ", resume=" + this.getResume() + ", prixHT=" + this.getPrixHT()
-				+ ", prixTTC=" + this.getPrixTTC() + ", consultations=" + this.affichageConsultations()
-				+ ", lignesCommande=" + this.affichageLignesCommande() + "]";
+		return "LivreNumerique [id=" + this.id + ", espace=" + this.espace + ", unite=" + this.unite + ", isbn13="
+				+ this.getIsbn13() + ", titreLivre=" + this.getTitreLivre() + ", format=" + this.getFormat()
+				+ ", lienImage=" + this.getLienImage() + ", nombrePages=" + this.getNombrePages() + ", dateDepotLegal="
+				+ this.getDateDepotLegal() + ", editeur=" + this.getEditeur().toStringWithoutLinks() + ", auteur="
+				+ this.affichageAuteurs() + ", genres=" + this.affichageGenres() + ", titre=" + this.getTitre()
+				+ ", resume=" + this.getResume() + ", prixHT=" + this.getPrixHT() + ", prixTTC=" + this.getPrixTTC()
+				+ ", consultations=" + this.affichageConsultations() + ", lignesCommande="
+				+ this.affichageLignesCommande() + "]";
 	}
-	
+
 	@Override
 	// toString sans les objets associés
 	public String toStringWithoutLinks() {
-		return "LivreNumerique [id=" + this.id + ", espace=" + this.espace + ", unite=" + this.unite + ", isbn13=" + this.getIsbn13()
-		+ ", titreLivre=" + this.getTitreLivre() + ", format=" + this.getFormat() + ", lienImage="
-		+ this.getLienImage() + ", nombrePages=" + this.getNombrePages() 
-		+ ", dateDepotLegal=" + this.getDateDepotLegal()
-		+ ", titre=" + this.getTitre() + ", resume=" + this.getResume() + ", prixHT=" + this.getPrixHT()
-		+ ", prixTTC=" + this.getPrixTTC() + "]";
+		return "LivreNumerique [id=" + this.id + ", espace=" + this.espace + ", unite=" + this.unite + ", isbn13="
+				+ this.getIsbn13() + ", titreLivre=" + this.getTitreLivre() + ", format=" + this.getFormat()
+				+ ", lienImage=" + this.getLienImage() + ", nombrePages=" + this.getNombrePages() + ", dateDepotLegal="
+				+ this.getDateDepotLegal() + ", titre=" + this.getTitre() + ", resume=" + this.getResume() + ", prixHT="
+				+ this.getPrixHT() + ", prixTTC=" + this.getPrixTTC() + "]";
 	}
 }

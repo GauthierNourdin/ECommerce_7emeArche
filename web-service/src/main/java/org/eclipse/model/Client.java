@@ -2,7 +2,7 @@ package org.eclipse.model;
 
 import java.util.ArrayList;
 
-public class Client extends Personne{
+public class Client extends Personne {
 
 	// Attributs
 	private int id;
@@ -21,7 +21,7 @@ public class Client extends Personne{
 	public Client() {
 		super();
 	}
-	
+
 	public Client(int id) {
 		super();
 		this.id = id;
@@ -152,18 +152,21 @@ public class Client extends Personne{
 	// toString
 	@Override
 	public String toString() {
-		return "Client [id=" + this.id + ", prenom=" + this.getPrenom() + ", nom=" + this.getNom() + ", email=" + this.email + ", motDePasse=" + this.motDePasse + ", numeroCarte=" + this.numeroCarte
-				+ ", dateDeValidite=" + this.dateDeValidite + ", cvc=" + this.cvc + ", adresseFacturation=" + this.adresseFacturation.toStringWithoutLinks() 
-				+ ", adresseLivraison=" + this.adresseLivraison.toStringWithoutLinks() + ", panier=" + this.panier.toStringWithoutClient() + ", consultations=" + this.affichageConsultations()
-				+ ", commandes=" + this.affichageCommandes() + "]";
+		return "Client [id=" + this.id + ", prenom=" + this.getPrenom() + ", nom=" + this.getNom() + ", email="
+				+ this.email + ", motDePasse=" + this.motDePasse + ", numeroCarte=" + this.numeroCarte
+				+ ", dateDeValidite=" + this.dateDeValidite + ", cvc=" + this.cvc + ", adresseFacturation="
+				+ this.adresseFacturation + ", adresseLivraison="
+				+ this.adresseLivraison + ", panier=" + this.panier.toStringWithoutClient()
+				+ ", consultations=" + this.affichageConsultations() + ", commandes=" + this.affichageCommandes() + "]";
 	}
 
 	// toString sans les autres objets
 	public String toStringWithoutLinks() {
-		return "Client [id=" + this.id + ", prenom=" + this.getPrenom() + ", nom=" + this.getNom() + ", email=" + this.email + ", motDePasse=" + this.motDePasse + ", numeroCarte=" + this.numeroCarte
+		return "Client [id=" + this.id + ", prenom=" + this.getPrenom() + ", nom=" + this.getNom() + ", email="
+				+ this.email + ", motDePasse=" + this.motDePasse + ", numeroCarte=" + this.numeroCarte
 				+ ", dateDeValidite=" + this.dateDeValidite + ", cvc=" + this.cvc + "]";
 	}
-	
+
 	// Affichage des consultations sans information sur les objets qui y sont liés
 	public String affichageConsultations() {
 		int nombreConsultations = this.consultations.size();
@@ -177,9 +180,9 @@ public class Client extends Personne{
 		}
 		return "[]";
 	}
-	
+
 	// Affichage des commandes sans information sur les objets qui y sont liés
-	public String affichageCommandes() {	
+	public String affichageCommandes() {
 		int nombreCommandes = this.commandes.size();
 		if (nombreCommandes > 0) {
 			String stringCommandes = "[";

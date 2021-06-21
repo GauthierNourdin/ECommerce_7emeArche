@@ -3,7 +3,7 @@ package org.eclipse.model;
 import java.util.ArrayList;
 
 public abstract class Article {
-/** Classe abstraite servent de base à tous les types d'articles*/
+	/** Classe abstraite servent de base à tous les types d'articles */
 
 	// Attributs
 	private String titre;
@@ -12,12 +12,12 @@ public abstract class Article {
 	private int prixTTC;
 	private ArrayList<Consultation> consultations = new ArrayList<Consultation>();
 	private ArrayList<LigneCommande> lignesCommande = new ArrayList<LigneCommande>();
-	
+
 	// Constructeurs
 	public Article() {
 		super();
 	}
-	
+
 	public Article(String titre, String resume, int prixHT, int prixTTC, ArrayList<Consultation> consultations,
 			ArrayList<LigneCommande> lignesCommande) {
 		super();
@@ -81,16 +81,17 @@ public abstract class Article {
 	// toString
 	@Override
 	public String toString() {
-		return "Article [titre=" + this.titre + ", resume=" + this.resume + ", prixHT=" + this.prixHT + ", prixTTC=" + this.prixTTC
-				+ ", consultations=" + affichageConsultations() + ", lignesCommande=" + affichageLignesCommande() + "]";
+		return "Article [titre=" + this.titre + ", resume=" + this.resume + ", prixHT=" + this.prixHT + ", prixTTC="
+				+ this.prixTTC + ", consultations=" + affichageConsultations() + ", lignesCommande="
+				+ affichageLignesCommande() + "]";
 	}
-	
+
 	// toString sans les autres objets
 	public String toStringWithoutLinks() {
-		return "Article [titre=" + this.titre + ", resume=" + this.resume + ", prixHT=" + this.prixHT + ", prixTTC=" + this.prixTTC
-				+ "]";
+		return "Article [titre=" + this.titre + ", resume=" + this.resume + ", prixHT=" + this.prixHT + ", prixTTC="
+				+ this.prixTTC + "]";
 	}
-	
+
 	// Affichage des consultations sans information sur les objets qui y sont liés
 	public String affichageConsultations() {
 		int nombreConsultations = this.consultations.size();
@@ -104,8 +105,9 @@ public abstract class Article {
 		}
 		return "[]";
 	}
-	
-	// Affichage des lignes de commandes associées sans information sur les objets qui y sont liés
+
+	// Affichage des lignes de commandes associées sans information sur les objets
+	// qui y sont liés
 	public String affichageLignesCommande() {
 		int nombreLignesCommande = this.lignesCommande.size();
 		if (nombreLignesCommande > 0) {

@@ -1,8 +1,8 @@
 package org.eclipse.model;
 
 public class LigneCommande {
-/** Classe pour les lignes de commande*/
-	
+	/** Classe pour les lignes de commande */
+
 	// Attributs
 	private int id;
 	private int quantiteCommandee;
@@ -10,12 +10,12 @@ public class LigneCommande {
 	private int prixTTC;
 	private Article article = null;
 	private Commande commande = null;
-	
+
 	// Constructeurs
 	public LigneCommande() {
 		super();
 	}
-	
+
 	public LigneCommande(int id) {
 		super();
 		this.id = id;
@@ -92,13 +92,14 @@ public class LigneCommande {
 	// toString
 	@Override
 	public String toString() {
-		return "LigneCommande [id=" + this.id + ", quantiteCommandee=" + this.quantiteCommandee + ", prixHT=" + this.prixHT
-				+ ", prixTTC=" + this.prixTTC + ", article=" + this.article.toStringWithoutLinks() + ", commande=" + this.commande.toStringWithoutLinks() + "]";
+		return "LigneCommande [id=" + this.id + ", quantiteCommandee=" + this.quantiteCommandee + ", prixHT="
+				+ this.prixHT + ", prixTTC=" + this.prixTTC + ", article=" + this.article.toStringWithoutLinks()
+				+ ", commande=" + this.commande.toStringWithoutLinks() + "]";
 	}
 
 	// toString sans les objets associés
 	public String toStringWithoutLinks() {
-		return "LigneCommande [id=" + this.id + ", quantiteCommandee=" + this.quantiteCommandee + ", prixHT=" + this.prixHT
-				+ ", prixTTC=" + this.prixTTC + "]";
+		return "LigneCommande [id=" + this.id + ", quantiteCommandee=" + this.quantiteCommandee + ", prixHT="
+				+ this.prixHT + ", prixTTC=" + this.prixTTC + "]";
 	}
 }

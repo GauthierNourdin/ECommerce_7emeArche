@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Consultation {
-/** Classe pour les consultations d'articles*/
-	
+	/** Classe pour les consultations d'articles */
+
 	// Attributs
 	private int id;
 	private LocalDateTime date;
 	private Client client = null;
 	private Article article = null;
-	
+
 	// Constructeurs
 	public Consultation() {
 		super();
@@ -36,7 +36,7 @@ public class Consultation {
 		this.client = client;
 		this.article = article;
 	}
-	
+
 	// Getters et Setters
 	public int getId() {
 		return this.id;
@@ -74,7 +74,8 @@ public class Consultation {
 	@Override
 	public String toString() {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		return "Consultation [id=" + this.id + ", date=" + this.date.format(format) + ", client=" + this.client.toStringWithoutLinks() + ", article=" + this.article.toStringWithoutLinks() + "]";
+		return "Consultation [id=" + this.id + ", date=" + this.date.format(format) + ", client="
+				+ this.client.toStringWithoutLinks() + ", article=" + this.article.toStringWithoutLinks() + "]";
 	}
 
 	// toString sans les objets associés

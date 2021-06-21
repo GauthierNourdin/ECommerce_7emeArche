@@ -1,12 +1,12 @@
 package org.eclipse.model;
 
 public abstract class Personne {
-/** Classe abstraite servent de base aux classes Client et Auteur */
-	
+	/** Classe abstraite servent de base aux classes Client et Auteur */
+
 	// Attributs
 	private String nom;
 	private String prenom;
-	
+
 	// Constructeurs
 	public Personne() {
 		super();

@@ -25,7 +25,8 @@ public class Commande {
 		this.numero = numero;
 	}
 
-	public Commande(String status, LocalDateTime date, ArrayList<LigneCommande> lignesCommande, Client client, Facture facture) {
+	public Commande(String status, LocalDateTime date, ArrayList<LigneCommande> lignesCommande, Client client,
+			Facture facture) {
 		super();
 		this.status = status;
 		this.date = date;
@@ -34,8 +35,8 @@ public class Commande {
 		this.facture = facture;
 	}
 
-	public Commande(String numero, String status, LocalDateTime date, ArrayList<LigneCommande> lignesCommande, Client client,
-			Facture facture) {
+	public Commande(String numero, String status, LocalDateTime date, ArrayList<LigneCommande> lignesCommande,
+			Client client, Facture facture) {
 		super();
 		this.numero = numero;
 		this.status = status;
@@ -112,14 +113,16 @@ public class Commande {
 	@Override
 	public String toString() {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		return "Commande [numero=" + this.numero + ", status=" + this.status + ", date=" + this.date.format(format) + ", lignesCommande="
-				+ this.affichageLignesCommande() + ", client=" + this.client.toStringWithoutLinks() + ", facture=" + this.facture.toStringWithoutLinks() + "]";
+		return "Commande [numero=" + this.numero + ", status=" + this.status + ", date=" + this.date.format(format)
+				+ ", lignesCommande=" + this.affichageLignesCommande() + ", client="
+				+ this.client.toStringWithoutLinks() + ", facture=" + this.facture.toStringWithoutLinks() + "]";
 	}
 
 	// toString sans les objets associés
 	public String toStringWithoutLinks() {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		return "Commande [numero=" + this.numero + ", status=" + this.status + ", date=" + this.date.format(format) + "]";
+		return "Commande [numero=" + this.numero + ", status=" + this.status + ", date=" + this.date.format(format)
+				+ "]";
 	}
 
 	// Affichage des lignes de commandes associées sans information sur les objets

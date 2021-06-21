@@ -3,12 +3,12 @@ package org.eclipse.model;
 import java.util.ArrayList;
 
 public class Auteur extends Personne {
-/** Classe pour les auteurs*/
+	/** Classe pour les auteurs */
 
 	// Attributs
 	private int id;
 	private ArrayList<Livre> livres = new ArrayList<Livre>();
-	
+
 	// Constructeurs
 	public Auteur() {
 		super();
@@ -50,15 +50,15 @@ public class Auteur extends Personne {
 	// toString
 	@Override
 	public String toString() {
-		return "Auteur [id=" + this.id + ", livres=" + this.affichageLivres() + ", nom=" + this.getNom() + ", prenom=" + this.getPrenom()
-				+ "]";
+		return "Auteur [id=" + this.id + ", livres=" + this.affichageLivres() + ", nom=" + this.getNom() + ", prenom="
+				+ this.getPrenom() + "]";
 	}
 
 	// toString sans les objets associés
 	public String toStringWithoutLinks() {
 		return "Auteur [id=" + this.id + ", nom=" + this.getNom() + ", prenom=" + this.getPrenom() + "]";
 	}
-	
+
 	// Affichage des livres associés sans information sur les objets qui y sont liés
 	public String affichageLivres() {
 		int nombreLivres = this.livres.size();

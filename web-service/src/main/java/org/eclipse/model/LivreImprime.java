@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class LivreImprime extends Livre {
-/** Classe pour les livres imprimés*/ 
+	/** Classe pour les livres imprimés */
 
 	// Attributs
 	private int id;
@@ -30,9 +30,9 @@ public class LivreImprime extends Livre {
 
 	public LivreImprime(String titre, String resume, int prixHT, int prixTTC, ArrayList<Consultation> consultations,
 			ArrayList<LigneCommande> lignesCommande, String isbn13, String titreLivre, String format, String lienImage,
-			int nombrePages, Date dateDepotLegal, ArrayList<Genre> genres, ArrayList<Auteur> auteurs,
-			Editeur editeurs, int quantiteStock, Date dateFinTirage, Date dateReimpression, double poids,
-			String unitePoids, double longueur, double largeur, double epaisseur, String uniteLongueur) {
+			int nombrePages, Date dateDepotLegal, ArrayList<Genre> genres, ArrayList<Auteur> auteurs, Editeur editeurs,
+			int quantiteStock, Date dateFinTirage, Date dateReimpression, double poids, String unitePoids,
+			double longueur, double largeur, double epaisseur, String uniteLongueur) {
 		super(titre, resume, prixHT, prixTTC, consultations, lignesCommande, isbn13, titreLivre, format, lienImage,
 				nombrePages, dateDepotLegal, genres, auteurs, editeurs);
 		this.quantiteStock = quantiteStock;
@@ -48,9 +48,9 @@ public class LivreImprime extends Livre {
 
 	public LivreImprime(String titre, String resume, int prixHT, int prixTTC, ArrayList<Consultation> consultations,
 			ArrayList<LigneCommande> lignesCommande, String isbn13, String titreLivre, String format, String lienImage,
-			int nombrePages, Date dateDepotLegal, ArrayList<Genre> genres, ArrayList<Auteur> auteurs,
-			Editeur editeurs, int id, int quantiteStock, Date dateFinTirage, Date dateReimpression, double poids,
-			String unitePoids, double longueur, double largeur, double epaisseur, String uniteLongueur) {
+			int nombrePages, Date dateDepotLegal, ArrayList<Genre> genres, ArrayList<Auteur> auteurs, Editeur editeurs,
+			int id, int quantiteStock, Date dateFinTirage, Date dateReimpression, double poids, String unitePoids,
+			double longueur, double largeur, double epaisseur, String uniteLongueur) {
 		super(titre, resume, prixHT, prixTTC, consultations, lignesCommande, isbn13, titreLivre, format, lienImage,
 				nombrePages, dateDepotLegal, genres, auteurs, editeurs);
 		this.id = id;
@@ -149,31 +149,30 @@ public class LivreImprime extends Livre {
 	// toString
 	@Override
 	public String toString() {
-		return "LivreImprime [id=" + this.id + ", quantiteStock=" + this.quantiteStock + ", dateFinTirage=" + this.dateFinTirage
-				+ ", dateReimpression=" + this.dateReimpression + ", poids=" + this.poids + ", unitePoids=" + this.unitePoids
-				+ ", longueur=" + this.longueur + ", largeur=" + this.largeur + ", epaisseur=" + this.epaisseur + ", uniteLongueur="
-				+ this.uniteLongueur + ", isbn13=" + this.getIsbn13() + ", titreLivre=" + this.getTitreLivre()
-				+ ", format=" + this.getFormat() + ", lienImage=" + this.getLienImage() + ", nombrePages="
-				+ this.getNombrePages() + ", dateDepotLegal=" + this.getDateDepotLegal()
-				+ ", editeur=" + this.getEditeur().toStringWithoutLinks() + ", auteurs=" + this.affichageAuteurs()
-				+ ", genres=" + this.affichageGenres() + ", titre=" + this.getTitre() + ", resume="
-				+ this.getResume() + ", prixHT=" + this.getPrixHT() + ", prixTTC=" + this.getPrixTTC()
+		return "LivreImprime [id=" + this.id + ", quantiteStock=" + this.quantiteStock + ", dateFinTirage="
+				+ this.dateFinTirage + ", dateReimpression=" + this.dateReimpression + ", poids=" + this.poids
+				+ ", unitePoids=" + this.unitePoids + ", longueur=" + this.longueur + ", largeur=" + this.largeur
+				+ ", epaisseur=" + this.epaisseur + ", uniteLongueur=" + this.uniteLongueur + ", isbn13="
+				+ this.getIsbn13() + ", titreLivre=" + this.getTitreLivre() + ", format=" + this.getFormat()
+				+ ", lienImage=" + this.getLienImage() + ", nombrePages=" + this.getNombrePages() + ", dateDepotLegal="
+				+ this.getDateDepotLegal() + ", editeur=" + this.getEditeur().toStringWithoutLinks() + ", auteurs="
+				+ this.affichageAuteurs() + ", genres=" + this.affichageGenres() + ", titre=" + this.getTitre()
+				+ ", resume=" + this.getResume() + ", prixHT=" + this.getPrixHT() + ", prixTTC=" + this.getPrixTTC()
 				+ ", consultations=" + this.affichageConsultations() + ", lignesCommande="
 				+ this.affichageLignesCommande() + "]";
 	}
-	
+
 	// toString sans les objets associés
 	@Override
 	public String toStringWithoutLinks() {
-		return "LivreImprime [id=" + this.id + ", quantiteStock=" + this.quantiteStock + ", dateFinTirage=" + this.dateFinTirage
-				+ ", dateReimpression=" + this.dateReimpression + ", poids=" + this.poids + ", unitePoids=" + this.unitePoids
-				+ ", longueur=" + this.longueur + ", largeur=" + this.largeur + ", epaisseur=" + this.epaisseur + ", uniteLongueur="
-				+ this.uniteLongueur + ", isbn13=" + this.getIsbn13() + ", titreLivre=" + this.getTitreLivre()
-				+ ", format=" + this.getFormat() + ", lienImage=" + this.getLienImage() + ", nombrePages="
-				+ this.getNombrePages() + ", dateDepotLegal=" + this.getDateDepotLegal()
-				+ ", titre=" + this.getTitre() + ", resume="
-				+ this.getResume() + ", prixHT=" + this.getPrixHT() + ", prixTTC=" + this.getPrixTTC()
-				+ "]";
+		return "LivreImprime [id=" + this.id + ", quantiteStock=" + this.quantiteStock + ", dateFinTirage="
+				+ this.dateFinTirage + ", dateReimpression=" + this.dateReimpression + ", poids=" + this.poids
+				+ ", unitePoids=" + this.unitePoids + ", longueur=" + this.longueur + ", largeur=" + this.largeur
+				+ ", epaisseur=" + this.epaisseur + ", uniteLongueur=" + this.uniteLongueur + ", isbn13="
+				+ this.getIsbn13() + ", titreLivre=" + this.getTitreLivre() + ", format=" + this.getFormat()
+				+ ", lienImage=" + this.getLienImage() + ", nombrePages=" + this.getNombrePages() + ", dateDepotLegal="
+				+ this.getDateDepotLegal() + ", titre=" + this.getTitre() + ", resume=" + this.getResume() + ", prixHT="
+				+ this.getPrixHT() + ", prixTTC=" + this.getPrixTTC() + "]";
 	}
-	
+
 }

@@ -3,29 +3,29 @@ package org.eclipse.model;
 import java.util.ArrayList;
 
 public class Genre {
-/** Classe pour sauvegarder le genre des livres*/
-	
+	/** Classe pour sauvegarder le genre des livres */
+
 	// Attributs
 	private int id;
 	private String nom;
 	private ArrayList<Livre> livres = new ArrayList<Livre>();
-	
+
 	// Constructeurs
 	public Genre() {
 		super();
 	}
-	
+
 	public Genre(int id) {
 		super();
 		this.id = id;
 	}
-	
+
 	public Genre(String nom, ArrayList<Livre> livres) {
 		super();
 		this.nom = nom;
 		this.livres = livres;
 	}
-	
+
 	public Genre(int id, String nom, ArrayList<Livre> livres) {
 		super();
 		this.id = id;
@@ -49,7 +49,7 @@ public class Genre {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
+
 	public ArrayList<Livre> getLivres() {
 		return livres;
 	}
@@ -82,6 +82,5 @@ public class Genre {
 		}
 		return "[]";
 	}
-	
-}
 
+}
