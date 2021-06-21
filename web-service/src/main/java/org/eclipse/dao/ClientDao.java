@@ -18,7 +18,7 @@ import org.eclipse.model.Panier;
  * Classe permet d'interagir avec les clients sauvegardés dans la base de données.
  * @author Gauthier NOURDIN
  */
-public class ClientDao implements TemplateDao<Client> {
+public class ClientDao implements TemplateClientDao<Client> {
 
 	/**
 	 * Fonction classique de sauvegarde de client

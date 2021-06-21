@@ -17,7 +17,7 @@ import org.eclipse.model.Adresse;
  * 
  * @author Gauthier NOURDIN
  */
-public class AdresseDao implements TemplateDao<Adresse> {
+public class AdresseDao implements TemplateAdresseDao<Adresse> {
 
 	/**
 	 * Fonction classique de sauvegarde d'adresse

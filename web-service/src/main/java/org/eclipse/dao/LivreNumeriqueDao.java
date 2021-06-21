@@ -17,7 +17,7 @@ import org.eclipse.model.LivreNumerique;
  * Classe permet d'interagir avec les livres numériques sauvegardés dans la base de données.
  * @author Gauthier NOURDIN
  */
-public class LivreNumeriqueDao implements TemplateDao<LivreNumerique> {
+public class LivreNumeriqueDao implements TemplateLivreDao<LivreNumerique> {
 
 	/**
 	 * Fonction pour supprimer un livre imprimé de la base de données, la suppression dans les tables de jointure est incluse

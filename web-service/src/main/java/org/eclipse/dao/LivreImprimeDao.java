@@ -18,7 +18,7 @@ import org.eclipse.model.LivreNumerique;
  * Classe permet d'interagir avec les livres imprimés sauvegardés dans la base de données.
  * @author Gauthier NOURDIN
  */
-public class LivreImprimeDao implements TemplateDao<LivreImprime> {
+public class LivreImprimeDao implements TemplateLivreDao<LivreImprime> {
 
 	/**
 	 * Fonction de sauvegarde de livre imprimé, la sauvegarde dans les tables de jointure est incluse
