@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.config.MyConnection;
+import org.eclipse.model.Adresse;
+import org.eclipse.model.Client;
 import org.eclipse.model.Commande;
+import org.eclipse.model.Consultation;
+import org.eclipse.model.Panier;
 
 /**
  * Classe permet d'interagir avec les commandes sauvegardées dans la base de données.
@@ -22,6 +26,44 @@ public class CommandeDao implements TemplateDao<Commande> {
 	 */
 	@Override
 	public Commande save(Commande commande) {
+Connection c = MyConnection.getConnection();
+		
+		if (c != null) {
+			try {
+				PreparedStatement ps = c.prepareStatement(
+						"INSERT INTO Personne (nom,prenom) VALUES (?,?);",
+						PreparedStatement.RETURN_GENERATED_KEYS);
+				ps.setString(1, client.getNom());
+				ps.setString(2, client.getPrenom());			
+				ps.executeUpdate();
+				
+				ResultSet resultat = ps.getGeneratedKeys();
+				if (resultat.next()) {
+					int personneId = resultat.getInt(1);
+					
+					ps = c.prepareStatement(
+							"INSERT INTO Client (personne_id,email,mot_de_passe,numero_carte,date_validite,cvc,adresse_facturation_id,adresse_livraison_id) VALUES (?,?,?,?,?,?,?,?);",
+							PreparedStatement.RETURN_GENERATED_KEYS);
+					ps.setInt(1, personneId);
+					ps.setString(2, client.getEmail());
+					ps.setString(3, client.getMotDePasse());
+					ps.setString(4, client.getNumeroCarte());
+					ps.setString(5, client.getDateDeValidite());
+					ps.setString(6, client.getCvc());
+					ps.setInt(7, client.getAdresseFacturation().getId());
+					ps.setInt(8, client.getAdresseLivraison().getId());
+					ps.executeUpdate();
+					
+					resultat = ps.getGeneratedKeys();
+					if (resultat.next()) {
+						client.setId(resultat.getInt(1));
+						return client;
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return null;
 	}
 
@@ -30,7 +72,37 @@ public class CommandeDao implements TemplateDao<Commande> {
 	 */
 	@Override
 	public void remove(Commande commande) {
+		Connection c = MyConnection.getConnection();
 		
+		if (c != null) {
+			try {
+				PreparedStatement ps = c.prepareStatement("SELECT personne_id FROM Client WHERE id=?;");
+				ps.setInt(1, client.getId());
+				
+				ResultSet resultat = ps.executeQuery();
+				if (resultat.next()) {
+					
+					int personneId = resultat.getInt("personne_id");
+					ps = c.prepareStatement("DELETE FROM Client WHERE id=?;");
+					ps.setInt(1, client.getId());
+					
+					int nbr = ps.executeUpdate();
+					if (nbr != 1) {
+						System.err.println("Erreur : Absence de suppression");
+					} else {
+						ps = c.prepareStatement("DELETE FROM Personne WHERE id=?;");
+						ps.setInt(1, personneId);
+						
+						nbr = ps.executeUpdate();
+						if (nbr != 1) {
+							System.err.println("Erreur : Absence de suppression");
+						}
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/** 
@@ -38,6 +110,41 @@ public class CommandeDao implements TemplateDao<Commande> {
 	 */
 	@Override
 	public Commande update(Commande commande) {
+Connection c = MyConnection.getConnection();
+		
+		if (c != null) {
+			try {
+				PreparedStatement ps = c.prepareStatement("SELECT personne_id FROM Client WHERE id=?;");
+				ps.setInt(1, client.getId());
+				
+				ResultSet resultat = ps.executeQuery();
+				if (resultat.next()) {
+					int personneId = resultat.getInt("personne_id");
+					
+					ps = c.prepareStatement("UPDATE Personne SET nom=?, prenom=? WHERE id=?;");
+					ps.setString(1, client.getNom());
+					ps.setString(2, client.getPrenom());
+					ps.setInt(3, personneId);
+					
+					int nbr = ps.executeUpdate();
+					if (nbr == 1) {
+						ps = c.prepareStatement("UPDATE Client SET email=?, mot_de_passe=?, numero_carte=?, date_validite=?, cvc=?;");
+						ps.setString(1, client.getEmail());
+						ps.setString(2, client.getMotDePasse());
+						ps.setString(3, client.getNumeroCarte());
+						ps.setString(4, client.getDateDeValidite());
+						ps.setString(5, client.getCvc());
+						
+						nbr = ps.executeUpdate();
+						if (nbr == 1) {
+							return client;
+						}
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return null;
 	}
 
@@ -46,6 +153,71 @@ public class CommandeDao implements TemplateDao<Commande> {
 	 */
 	@Override
 	public Commande findById(int id) {
+		Connection c = MyConnection.getConnection();
+		if (c != null) {
+			try {
+				ArrayList<Consultation> consultations = new ArrayList<Consultation>();
+				ArrayList<Commande> commandes = new ArrayList<Commande>();
+							
+				PreparedStatement ps = c.prepareStatement("SELECT id FROM Consultation WHERE client_id=?;");
+				ps.setInt(1, id);
+				
+				ResultSet resultat = ps.executeQuery();
+				while (resultat.next()) {
+					int ConsultationId = resultat.getInt("id");
+					
+					Consultation consultation = new Consultation(ConsultationId);
+					consultations.add(consultation);
+				}
+				
+				ps = c.prepareStatement("SELECT numero FROM Commande WHERE client_id=?;");
+				ps.setInt(1, id);
+				
+				resultat = ps.executeQuery();
+				while (resultat.next()) {
+					String commandeNumero = resultat.getString("numero");
+					
+					Commande commande = new Commande(commandeNumero);
+					commandes.add(commande);
+				}
+				
+				ps = c.prepareStatement("SELECT personne_id, email, mot_de_passe, numero_carte, date_validite, cvc, adresse_facturation_id, adresse_livraison_id FROM Client WHERE id=?;");
+				ps.setInt(1, id);
+				
+				resultat = ps.executeQuery();
+				if (resultat.next()) {
+					int personneId = resultat.getInt("personne_id");
+					String email = resultat.getString("email");
+					String motDePasse = resultat.getString("mot_de_passe");
+					String numeroCarte = resultat.getString("numero_carte");
+					String dateDeValidite = resultat.getString("date_validite");
+					String cvc = resultat.getString("cvc");
+					int adresseFacturationId = resultat.getInt("adresse_facturation_id");
+					int adresseLivraisonId = resultat.getInt("adresse_livraison_id");
+					
+					Adresse adresseFacturation = new Adresse(adresseFacturationId);
+					Adresse adresseLivraison = new Adresse(adresseLivraisonId);
+					
+					Panier panier = new Panier();
+					
+					ps = c.prepareStatement("SELECT nom, prenom FROM Personne WHERE id=?;");
+					ps.setInt(1, personneId);
+					
+					resultat = ps.executeQuery();
+					if (resultat.next()) {
+						String nom = resultat.getString("nom");
+						String prenom = resultat.getString("prenom");
+						
+						Client client = new Client(nom, prenom, id, email, motDePasse, numeroCarte, dateDeValidite, cvc, adresseFacturation, adresseLivraison, panier, consultations, commandes);
+						client.getPanier().setClient(client);
+							
+						return client;
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return null;
 	}
 
@@ -54,6 +226,75 @@ public class CommandeDao implements TemplateDao<Commande> {
 	 */
 	@Override
 	public List<Commande> findAll() {
+		Connection c = MyConnection.getConnection();
+		if (c != null) {
+			try {
+				ArrayList<Client> clients = new ArrayList<Client>();
+				
+				PreparedStatement ps = c.prepareStatement("SELECT id, personne_id, email, mot_de_passe, numero_carte, date_validite, cvc, adresse_facturation_id, adresse_livraison_id FROM Client");
+				
+				ResultSet resultat = ps.executeQuery();
+				while (resultat.next()) {
+					ArrayList<Consultation> consultations = new ArrayList<Consultation>();
+					ArrayList<Commande> commandes = new ArrayList<Commande>();
+					
+					int id = resultat.getInt("id");
+					int personneId = resultat.getInt("personne_id");
+					String email = resultat.getString("email");
+					String motDePasse = resultat.getString("mot_de_passe");
+					String numeroCarte = resultat.getString("numero_carte");
+					String dateDeValidite = resultat.getString("date_validite");
+					String cvc = resultat.getString("cvc");
+					int adresseFacturationId = resultat.getInt("adresse_facturation_id");
+					int adresseLivraisonId = resultat.getInt("adresse_livraison_id");
+					
+					Adresse adresseFacturation = new Adresse(adresseFacturationId);
+					Adresse adresseLivraison = new Adresse(adresseLivraisonId);
+					
+					Panier panier = new Panier();
+					
+					ps = c.prepareStatement("SELECT id FROM Consultation WHERE client_id=?;");
+					ps.setInt(1, id);
+					
+					ResultSet resultat2 = ps.executeQuery();
+					while (resultat2.next()) {
+						int ConsultationId = resultat2.getInt("id");
+						
+						Consultation consultation = new Consultation(ConsultationId);
+						consultations.add(consultation);
+					}
+					
+					ps = c.prepareStatement("SELECT numero FROM Commande WHERE client_id=?;");
+					ps.setInt(1, id);
+					
+					resultat2 = ps.executeQuery();
+					while (resultat2.next()) {
+						String commandeNumero = resultat2.getString("numero");
+						
+						Commande commande = new Commande(commandeNumero);
+						commandes.add(commande);
+					}
+					
+					ps = c.prepareStatement("SELECT nom, prenom FROM Personne WHERE id=?;");
+					ps.setInt(1, personneId);
+					
+					resultat2 = ps.executeQuery();
+					if (resultat2.next()) {
+						String nom = resultat2.getString("nom");
+						String prenom = resultat2.getString("prenom");
+						
+						Client client = new Client(nom, prenom, id, email, motDePasse, numeroCarte, dateDeValidite, cvc, adresseFacturation, adresseLivraison, panier, consultations, commandes);
+						client.getPanier().setClient(client);
+							
+						clients.add(client);
+					}
+					
+				}
+				return clients;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return null;
 	}
 

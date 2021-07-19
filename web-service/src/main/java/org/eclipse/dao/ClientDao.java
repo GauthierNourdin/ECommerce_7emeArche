@@ -71,7 +71,7 @@ public class ClientDao implements TemplateClientDao<Client> {
 	 */
 	@Override
 	public void remove(Client client) {
-Connection c = MyConnection.getConnection();
+		Connection c = MyConnection.getConnection();
 		
 		if (c != null) {
 			try {

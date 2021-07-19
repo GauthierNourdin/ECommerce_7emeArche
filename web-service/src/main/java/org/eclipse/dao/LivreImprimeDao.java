@@ -63,42 +63,42 @@ public class LivreImprimeDao implements TemplateLivreDao<LivreImprime> {
 	/**
 	 * Fonction pour ajouter un auteur existant à un livre imprimé dans la base de données
 	 */
-	public LivreNumerique ajouterAuteur (LivreNumerique livreNumerique, Auteur auteur) {
+	public LivreImprime ajouterAuteur (LivreImprime livreImprime, Auteur auteur) {
 		return null;
 	}
 	
 	/**
 	 * Fonction pour ajouter un genre existant à un livre imprimé dans la base de données
 	 */
-	public LivreNumerique ajouterGenre (LivreNumerique livreNumerique, Genre genre) {
+	public LivreImprime ajouterGenre (LivreImprime livreImprime, Genre genre) {
 		return null;
 	}
 	
 	/**
 	 * Fonction pour retirer un auteur existant à un livre imprimé dans la base de données
 	 */
-	public LivreNumerique retirerAuteur (LivreNumerique livreNumerique, Auteur auteur) {
+	public LivreImprime retirerAuteur (LivreImprime livreImprime, Auteur auteur) {
 		return null;
 	}
 	
 	/**
 	 * Fonction pour retirer un genre existant à un livre imprimé dans la base de données
 	 */
-	public LivreNumerique retirerGenre (LivreNumerique livreNumerique, Genre genre) {
+	public LivreImprime retirerGenre (LivreImprime livreImprime, Genre genre) {
 		return null;
 	}
 	
 	/**
 	 * Fonction pour trouver dans la base de données les livres imprimés associés à un auteur
 	 */
-	public List<LivreNumerique> trouverParAuteur (LivreNumerique livreNumerique, Auteur auteur) {
+	public List<LivreImprime> trouverParAuteur (LivreImprime livreImprime, Auteur auteur) {
 		return null;
 	}
 	
 	/**
 	 * Fonction pour trouver dans la base de données les livres imprimés associés à un genre
 	 */
-	public List<LivreNumerique> trouverParGenre (LivreNumerique livreNumerique, Genre genre) {
+	public List<LivreImprime> trouverParGenre (LivreImprime livreImprime, Genre genre) {
 		return null;
 	}
 	
