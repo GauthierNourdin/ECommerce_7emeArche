@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,11 +39,11 @@ public class Consultation {
 	@NonNull
 	LocalDateTime date = LocalDateTime.now();
 	@JsonIgnore
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
-	Client client = null;
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	Client client;
 	@NonNull
 	@JsonIgnoreProperties( "consultations" )
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
-	Article article = null;
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	Article article;
 
 }

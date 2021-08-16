@@ -4,7 +4,7 @@ package fr.pythie.webservice.exception;
 public class LectureBaseDonneesException extends Exception {
 
 	/**
-	 * Just to keep Eclipse silent...
+	 * On crée un numéro de série pour l'exception. 
 	 */
 	private static final long serialVersionUID = -56024359763114934L;
 

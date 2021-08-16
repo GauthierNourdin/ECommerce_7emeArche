@@ -1,10 +1,10 @@
 package fr.pythie.webservice.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
+import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -29,6 +29,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @ToString(of = { "isbn13", "titreLivre", "format", "lienImage", "nombrePages", "dateDepotLegal" })
 @EqualsAndHashCode(callSuper = true)
+@Entity
 public abstract class Livre extends Article {
 	/** Classe abstraite servent de base à tous les livres */
 
@@ -44,15 +45,15 @@ public abstract class Livre extends Article {
 	LocalDate dateDepotLegal = LocalDate.now();
 	@NonNull
 	@JsonIgnoreProperties( "livres" )
-	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
-	ArrayList<Genre> genres = new ArrayList<Genre>();
+	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	List<Genre> genres;
 	@NonNull
 	@JsonIgnoreProperties( "livres" )
-	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
-	ArrayList<Auteur> auteurs = new ArrayList<Auteur>();
+	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	List<Auteur> auteurs;
 	@NonNull
 	@JsonIgnoreProperties( "livres" )
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Editeur editeur = new Editeur();
 
 }

@@ -1,13 +1,10 @@
 package fr.pythie.webservice.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -30,14 +27,11 @@ import lombok.experimental.FieldDefaults;
 @RequiredArgsConstructor
 @Setter
 @Getter
-@ToString(of = { "id", "email", "motDePasse", "numeroCarte", "dateDeValidite", "cvc" })
+@ToString(of = { "email", "motDePasse", "numeroCarte", "dateDeValidite", "cvc" })
 @EqualsAndHashCode(callSuper = true)
 @Entity
 public class Client extends Personne {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
 	@NonNull
 	String email;
 	@NonNull
@@ -46,18 +40,18 @@ public class Client extends Personne {
 	String dateDeValidite;
 	String cvc;
 	@NonNull
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Adresse adresseFacturation = new Adresse();
 	@NonNull
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Adresse adresseLivraison = new Adresse();
+//	@JsonIgnoreProperties( "client" )
+//	Panier panier = new Panier();
 	@JsonIgnoreProperties( "client" )
-	Panier panier = new Panier();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+	List<Consultation> consultations;
 	@JsonIgnoreProperties( "client" )
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
-	ArrayList<Consultation> consultations = new ArrayList<Consultation>();
-	@JsonIgnoreProperties( "client" )
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
-	ArrayList<Commande> commandes = new ArrayList<Commande>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+	List<Commande> commandes;
 
 }

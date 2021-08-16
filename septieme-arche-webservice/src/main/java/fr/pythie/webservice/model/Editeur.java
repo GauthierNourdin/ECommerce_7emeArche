@@ -1,6 +1,6 @@
 package fr.pythie.webservice.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -42,10 +42,10 @@ public class Editeur {
 	@NonNull
 	String nom;
 	@NonNull
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Adresse adresse = new Adresse();
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "editeur")
-	ArrayList<Livre> livres = new ArrayList<Livre>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "editeur")
+	List<Livre> livres;
 
 }
