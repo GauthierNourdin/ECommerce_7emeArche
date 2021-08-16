@@ -25,6 +25,7 @@ import lombok.experimental.FieldDefaults;
 public class LivreImprime extends Livre {
 	/** Classe pour les livres imprimés */
 
+
 	int quantiteStock;
 	@NonNull
 	LocalDate dateFinTirage = LocalDate.now();

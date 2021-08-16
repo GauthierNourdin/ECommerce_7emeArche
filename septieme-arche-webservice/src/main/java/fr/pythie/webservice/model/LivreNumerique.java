@@ -23,6 +23,7 @@ import lombok.experimental.FieldDefaults;
 public class LivreNumerique extends Livre {
 	/** Classe pour les livres numériques */
 
+
 	@NonNull
 	String format;
 	double espace;
