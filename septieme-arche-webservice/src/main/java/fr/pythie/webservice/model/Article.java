@@ -1,8 +1,12 @@
 package fr.pythie.webservice.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,11 +28,14 @@ import lombok.experimental.FieldDefaults;
 @RequiredArgsConstructor
 @Setter
 @Getter
-@ToString(of = { "titre", "resume", "prixHT", "prixTTC" })
+@ToString(of = { "id", "titre", "resume", "prixHT", "prixTTC" })
 @EqualsAndHashCode
+@Entity
 public abstract class Article {
 	/** Classe abstraite servent de base à tous les types d'articles */
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	long id;
 	@NonNull
 	String titre;
 	@NonNull
@@ -36,10 +43,10 @@ public abstract class Article {
 	int prixHT;
 	int prixTTC;
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "article")
-	ArrayList<Consultation> consultations = new ArrayList<Consultation>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
+	List<Consultation> consultations;
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "article")
-	ArrayList<LigneCommande> lignesCommande = new ArrayList<LigneCommande>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
+	List<LigneCommande> lignesCommande;
 
 }

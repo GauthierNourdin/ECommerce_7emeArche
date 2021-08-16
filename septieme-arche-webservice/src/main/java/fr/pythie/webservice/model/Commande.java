@@ -2,7 +2,7 @@ package fr.pythie.webservice.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -48,15 +48,15 @@ public class Commande {
 	@NonNull
 	LocalDateTime date = LocalDateTime.now();
 	@JsonIgnoreProperties( "commande" )
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "commande")
-	ArrayList<LigneCommande> lignesCommande = new ArrayList<LigneCommande>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commande")
+	List<LigneCommande> lignesCommande;
 	@NonNull
 	@JsonIgnore
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Client client = new Client();
 	@JsonIgnoreProperties( "commande" )
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "commande")
-	ArrayList<Facture> factures = new ArrayList<Facture>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commande")
+	List<Facture> factures;
 
 	/*
 	 * Méthode pour construire le numéro de commande à partir des autres

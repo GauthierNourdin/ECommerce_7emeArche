@@ -1,11 +1,6 @@
 package fr.pythie.webservice.model;
 
-
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,15 +17,13 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString(of = { "id", "espace", "unite" }) 
+@ToString(of = { "espace", "unite" }) 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 public class LivreNumerique extends Livre {
 	/** Classe pour les livres numériques */
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+
 	@NonNull
 	String format;
 	double espace;

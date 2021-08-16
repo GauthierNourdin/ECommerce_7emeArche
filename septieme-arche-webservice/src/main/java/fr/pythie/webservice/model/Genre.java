@@ -1,6 +1,6 @@
 package fr.pythie.webservice.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,7 +40,7 @@ public class Genre {
 	@NonNull
 	String nom;
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "genres")
-	ArrayList<Livre> livres = new ArrayList<Livre>();
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "genres")
+	List<Livre> livres;
 
 }
