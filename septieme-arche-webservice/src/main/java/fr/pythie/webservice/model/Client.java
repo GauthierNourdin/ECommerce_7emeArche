@@ -54,4 +54,48 @@ public class Client extends Personne {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
 	List<Commande> commandes;
 
+	// Constructeur complet mis à part l'ID
+	public Client(String civilite, @NonNull String nom, String prenom, @NonNull String email,
+			@NonNull String motDePasse, String numeroCarte, String dateDeValidite, String cvc,
+			@NonNull Adresse adresseFacturation, @NonNull Adresse adresseLivraison, List<Consultation> consultations,
+			List<Commande> commandes) {
+		super(civilite, nom, prenom);
+		this.email = email;
+		this.motDePasse = motDePasse;
+		this.numeroCarte = numeroCarte;
+		this.dateDeValidite = dateDeValidite;
+		this.cvc = cvc;
+		this.adresseFacturation = adresseFacturation;
+		this.adresseLivraison = adresseLivraison;
+		this.consultations = consultations;
+		this.commandes = commandes;
+	}
+
+	// Constructeur complet
+	public Client(long id, String civilite, @NonNull String nom, String prenom, @NonNull String email,
+			@NonNull String motDePasse, String numeroCarte, String dateDeValidite, String cvc,
+			@NonNull Adresse adresseFacturation, @NonNull Adresse adresseLivraison, List<Consultation> consultations,
+			List<Commande> commandes) {
+		super(id, civilite, nom, prenom);
+		this.email = email;
+		this.motDePasse = motDePasse;
+		this.numeroCarte = numeroCarte;
+		this.dateDeValidite = dateDeValidite;
+		this.cvc = cvc;
+		this.adresseFacturation = adresseFacturation;
+		this.adresseLivraison = adresseLivraison;
+		this.consultations = consultations;
+		this.commandes = commandes;
+	}
+	
+	// Constructeur avec tous les paramètres obligatoires
+	public Client(@NonNull String nom, @NonNull String email, @NonNull String motDePasse,
+			@NonNull Adresse adresseFacturation, @NonNull Adresse adresseLivraison) {
+		super(nom);
+		this.email = email;
+		this.motDePasse = motDePasse;
+		this.adresseFacturation = adresseFacturation;
+		this.adresseLivraison = adresseLivraison;
+	}
+	
 }

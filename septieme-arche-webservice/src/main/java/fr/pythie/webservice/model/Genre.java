@@ -43,4 +43,11 @@ public class Genre {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "genres")
 	List<Livre> livres;
 
+	// Constructeur complet mis à part l'ID
+	public Genre(@NonNull String nom, List<Livre> livres) {
+		super();
+		this.nom = nom;
+		this.livres = livres;
+	}
+	
 }

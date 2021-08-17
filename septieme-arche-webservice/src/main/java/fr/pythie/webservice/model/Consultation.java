@@ -46,4 +46,12 @@ public class Consultation {
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Article article;
 
+	// Constructeur complet mis à part l'ID
+	public Consultation(@NonNull LocalDateTime date, Client client, @NonNull Article article) {
+		super();
+		this.date = date;
+		this.client = client;
+		this.article = article;
+	}
+	
 }

@@ -46,4 +46,15 @@ public class LigneCommande {
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Commande commande = new Commande();
 
+	// Constructeur complet mis à part l'ID
+	public LigneCommande(int quantiteCommandee, int prixHT, int prixTTC, @NonNull Article article,
+			@NonNull Commande commande) {
+		super();
+		this.quantiteCommandee = quantiteCommandee;
+		this.prixHT = prixHT;
+		this.prixTTC = prixTTC;
+		this.article = article;
+		this.commande = commande;
+	}
+	
 }

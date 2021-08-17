@@ -1,4 +1,4 @@
-INSERT INTO `ecommerce_7emearche`.`article` (titre,resume,prix_ht) VALUES
+﻿INSERT INTO `ecommerce_7emearche`.`article` (titre,resume,prix_ht) VALUES
 ("Archives du musée du cinéma de Los Angeles : Charlie Chaplin", "Recueil de photographies, de témoignages et de notes, autour du parcours de Charlie Chaplin en tant qu'acteur et réalisateur.", 1895),
 ("Musée des Arts et Métiers, Livre d'exposition : Les premiers pas du cinéma", "Livre de l'exposition temporaire début 2015 du musée des Arts et Métiers. Sujet centré sur le matériel et les techniques de tournage et de projection au début du cinéma à 1920", 1421),
 ("Bollywood, simple copie de l'Occident ? Avec préface de l'auteur", "Analyse complète du cinéma bollywoodien contemporain et comparaison avec le cinéma américain et européen.", 2179),
@@ -26,7 +26,7 @@ INSERT INTO `ecommerce_7emearche`.`editeur` (nom,adresse_id) VALUES
 
 INSERT INTO `ecommerce_7emearche`.`livre` (isbn13,titre_livre,format,lien_image,nb_pages,date_depot_legal,article_id,editeur_id) VALUES
 ("978-2-15857-713-5","Charlie Chaplin",".pdf","Charlie_Chaplin_Ed7emeArt.png",98,DATE("2014-10-18"),1,1),
-("978-2-15857-804-2","Les premiers pas du cinéma",".pdf","Les_premiers_pas_du_cinzma_Ed7emeArt.png",74,DATE("2015-01-24"),2,1),
+("978-2-15857-804-2","Les premiers pas du cinéma",".pdf","Les_premiers_pas_du_cinema_Ed7emeArt.png",74,DATE("2015-01-24"),2,1),
 ("978-2-17172-074-0","Bollywood, simple copie de l'Occident ?",".pdf","Bollywood_simple_copie_de_l_Occident_EdPhiloEtArt.png",388,DATE("2019-06-04"),3,2),
 ("978-2-32724-014-8","1914-1918 : reportages de guerre",".pdf","1914_1918_reportages_de_guerre_Historicae.png",254,DATE("2008-11-11"),4,4),
 ("978-2-15857-954-7","Dans les coulises du tournage de Mission Impossible","Grand carré à couverture rigide","Dans_les_coulises_du_tournage_de_Mission Impossible_Ed7emeArt.png",186,DATE("2020-08-02"),5,1),

@@ -1,0 +1,317 @@
+package fr.pythie.webservice.configuration;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+import fr.pythie.webservice.model.Adresse;
+import fr.pythie.webservice.model.Auteur;
+import fr.pythie.webservice.model.Client;
+import fr.pythie.webservice.model.Commande;
+import fr.pythie.webservice.model.Consultation;
+import fr.pythie.webservice.model.Editeur;
+import fr.pythie.webservice.model.Genre;
+import fr.pythie.webservice.model.LigneCommande;
+import fr.pythie.webservice.model.Livre;
+import fr.pythie.webservice.model.LivreImprime;
+import fr.pythie.webservice.model.LivreNumerique;
+
+public class DonneesInitiales {
+
+	public static void InjectionDonneesInitiales() {
+		/** 
+		 * Classe spéciale permettant l'injection des données initiales dans la base de donnée (ou leur mise à jour)
+		 */
+		
+		// DONNEES INITIALES
+		
+		// Adresses initiales
+		Adresse adresse1 = new Adresse("24 bis", "Rue D'Indochine", "35200", "Rennes", "France", "");
+		Adresse adresse2 = new Adresse("18", "Avenue des Frères Lumière", "69003", "Lyon", "France", "");
+		Adresse adresse3 = new Adresse("374", "Rue du Maréchal Foch", "59160", "Lille", "France", "3e étage");
+		Adresse adresse4 = new Adresse("14", "Stirling Street", "EH10", "Edinburgh", "Ecosse", "");
+		Adresse adresse5 = new Adresse("4 ter", "Allée du 7ème Art", "33400", "Talence", "France", "Appartement 326");
+		Adresse adresse6 = new Adresse("117", "Avenue de Stalingrad", "75013", "Paris", "France", "");
+		Adresse adresse7 = new Adresse("280", "Grand place", "1050", "Bruxelles", "Belgique", "");
+		Adresse adresse8 = new Adresse("68", "Avenue du Général de Gaulle", "67000", "Strasbourg", "France", "");
+		
+		// Editeurs sans les livres
+		Editeur editeur1 = new Editeur("Editions 7ème Art", adresse1, new ArrayList<Livre>());
+		Editeur editeur2 = new Editeur("Editions Philosophie et Arts", adresse2, new ArrayList<Livre>());
+		Editeur editeur3 = new Editeur("Groupe Argonaute", adresse2, new ArrayList<Livre>());
+		Editeur editeur4 = new Editeur("Historicae", adresse3, new ArrayList<Livre>());
+		
+		// Clients sans les consultations ni les commandes
+		Client client1 = new Client("M", "Finan","Didier","didier.finan@gmail.com","SpyFilmsAreTheBest","1565-4961-1787-1857","08/22","975", adresse4,adresse4, new ArrayList<Consultation>(), new ArrayList<Commande>());
+		Client client2 = new Client("M", "Hillfort","William E.","william.hillfort@protonmail.com","AlainDelon","1765-8273-2745-5818","04/23","170",adresse1,adresse5, new ArrayList<Consultation>(), new ArrayList<Commande>());
+		Client client3 = new Client("Mme", "Lamour","Mathilde","mathile@lamour.com","LeCinemaCestLaVie","","","",adresse6,adresse6, new ArrayList<Consultation>(), new ArrayList<Commande>());
+		Client client4 = new Client("Mme", "Renard","Marguerite","marg.renard@gmail.com","ViveLe7eArt","4354-1961-9711-0489","01/21","178",adresse8,adresse7, new ArrayList<Consultation>(), new ArrayList<Commande>());
+		
+		// Auteurs sans les livres
+		Auteur auteur1 = new Auteur("M", "Picard", "Bernard", new ArrayList<Livre>());
+		Auteur auteur2 = new Auteur("M", "Shoeffer", "Edouard", new ArrayList<Livre>());
+		Auteur auteur3 = new Auteur("M", "Kurkov", "Alexey", new ArrayList<Livre>());
+		Auteur auteur4 = new Auteur("M", "Ryan", "Lyrol", new ArrayList<Livre>());
+		Auteur auteur5 = new Auteur("M", "Labbe", "Antoine", new ArrayList<Livre>());
+		Auteur auteur6 = new Auteur("Mme", "Sancta", "Maria", new ArrayList<Livre>());
+		
+		// Genres sans les livres
+		Genre genre1 = new Genre("Cinéma américain", new ArrayList<Livre>());
+		Genre genre2 = new Genre("Biographie", new ArrayList<Livre>());
+		Genre genre3 = new Genre("Livre d'exposition", new ArrayList<Livre>());
+		Genre genre4 = new Genre("Historique", new ArrayList<Livre>());
+		Genre genre5 = new Genre("Cinéma asiatique", new ArrayList<Livre>());
+		Genre genre6 = new Genre("Analyse", new ArrayList<Livre>());
+		Genre genre7 = new Genre("Documentaire", new ArrayList<Livre>());
+		
+		// Livres numériques sans les consultations ni les lignes de commandes
+		ArrayList<Genre> genresLivreNum1 = new ArrayList<Genre>();
+		ArrayList<Genre> genresLivreNum2 = new ArrayList<Genre>();
+		ArrayList<Genre> genresLivreNum3 = new ArrayList<Genre>();
+		ArrayList<Genre> genresLivreNum4 = new ArrayList<Genre>();
+		
+		genresLivreNum1.add(genre1);
+		genresLivreNum1.add(genre2);
+		genresLivreNum2.add(genre3);
+		genresLivreNum2.add(genre4);
+		genresLivreNum3.add(genre5);
+		genresLivreNum3.add(genre6);
+		genresLivreNum4.add(genre4);
+		genresLivreNum4.add(genre7);
+		
+		ArrayList<Auteur> auteursLivreNum1 = new ArrayList<Auteur>();
+		ArrayList<Auteur> auteursLivreNum2 = new ArrayList<Auteur>();
+		ArrayList<Auteur> auteursLivreNum3 = new ArrayList<Auteur>();
+		ArrayList<Auteur> auteursLivreNum4 = new ArrayList<Auteur>();
+				
+		auteursLivreNum1.add(auteur1);
+		auteursLivreNum2.add(auteur2);
+		auteursLivreNum3.add(auteur3);
+		auteursLivreNum4.add(auteur3);
+		
+		LivreNumerique livreNumerique1 = new LivreNumerique("Archives du musée du cinéma de Los Angeles : Charlie Chaplin", "Recueil de photographies, de témoignages et de notes, autour du parcours de Charlie Chaplin en tant qu'acteur et réalisateur.", 1895, 1999, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-15857-713-5", "Charlie Chaplin", ".pdf", "Charlie_Chaplin_Ed7emeArt.png", 98, LocalDate.parse("2014-10-18"), genresLivreNum1, auteursLivreNum1, editeur1, 275.4, "Mo");
+		LivreNumerique livreNumerique2 = new LivreNumerique("Musée des Arts et Métiers, Livre d'exposition : Les premiers pas du cinéma", "Livre de l'exposition temporaire début 2015 du musée des Arts et Métiers. Sujet centré sur le matériel et les techniques de tournage et de projection au début du cinéma à 1920", 1421, 1499, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-15857-804-2", "Les premiers pas du cinéma", ".pdf", "Les_premiers_pas_du_cinema_Ed7emeArt.png", 74, LocalDate.parse("2015-01-24"), genresLivreNum2, auteursLivreNum2, editeur1, 115.8, "Mo");
+		LivreNumerique livreNumerique3 = new LivreNumerique("Bollywood, simple copie de l'Occident ? Avec préface de l'auteur", "Analyse complète du cinéma bollywoodien contemporain et comparaison avec le cinéma américain et européen.", 2179, 2299, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-17172-074-0", "Bollywood, simple copie de l'Occident ?", ".pdf", "Bollywood_simple_copie_de_l_Occident_EdPhiloEtArt.png", 388, LocalDate.parse("2019-06-04"), genresLivreNum3, auteursLivreNum3, editeur2, 44.2, "Mo");
+		LivreNumerique livreNumerique4 = new LivreNumerique("Archives publiques, 1914-1918 : reportages de guerre", "Recueil d'extraits de pellicules tournés sur les théâtres d'opérations de la première guerre modiale avec notes associées et commentaires.", 2843, 2999, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-32724-014-8", "1914-1918 : reportages de guerre", ".pdf", "1914_1918_reportages_de_guerre_Historicae.png", 254, LocalDate.parse("2008-11-11"), genresLivreNum4, auteursLivreNum4, editeur4, 872.5, "Mo");
+		
+		// Livres imprimés sans les consultations ni les lignes de commandes
+		ArrayList<Genre> genresLivreImp1 = new ArrayList<Genre>();
+		ArrayList<Genre> genresLivreImp2 = new ArrayList<Genre>();
+		ArrayList<Genre> genresLivreImp3 = new ArrayList<Genre>();
+		ArrayList<Genre> genresLivreImp4 = new ArrayList<Genre>();
+		
+		genresLivreImp1.add(genre1);
+		genresLivreImp1.add(genre7);
+		genresLivreImp2.add(genre1);
+		genresLivreImp2.add(genre2);
+		genresLivreImp2.add(genre7);
+		genresLivreImp3.add(genre6);
+		genresLivreImp4.add(genre4);
+		genresLivreImp4.add(genre7);
+		
+		ArrayList<Auteur> auteursLivreImp1 = new ArrayList<Auteur>();
+		ArrayList<Auteur> auteursLivreImp2 = new ArrayList<Auteur>();
+		ArrayList<Auteur> auteursLivreImp3 = new ArrayList<Auteur>();
+		ArrayList<Auteur> auteursLivreImp4 = new ArrayList<Auteur>();
+		
+		auteursLivreImp1.add(auteur1);
+		auteursLivreImp1.add(auteur6);
+		auteursLivreImp2.add(auteur1);
+		auteursLivreImp2.add(auteur2);
+		auteursLivreImp3.add(auteur4);
+		auteursLivreImp4.add(auteur5);
+		auteursLivreImp4.add(auteur6);
+		
+		LivreImprime livreImprime1 = new LivreImprime("Dans les coulises du tournage de Mission Impossible, 2e édition", "Recueil de photographies et de témoignages autour des différents tournages de la série de films Mission Impossible.", 3222, 3399, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-15857-954-7", "Dans les coulises du tournage de Mission Impossible", "Grand carré à couverture rigide", "Dans_les_coulises_du_tournage_de_Mission Impossible_Ed7emeArt.png", 186, LocalDate.parse("2020-08-02"), genresLivreImp1, auteursLivreImp1, editeur1, 4, LocalDate.parse("2020-08-05"), LocalDate.parse("2020-12-28"), 359.4, "g", 21.0, 21.0, 1.63, "cm");
+		LivreImprime livreImprime2 = new LivreImprime("Georges Lucas et Star Wars, derrière la saga, édition de luxe", "Bibliographie illustrée de Georges Lucas avec une interview autour de son travail autour de Star Wars.", 3791, 3999, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-27508-154-7", "Georges Lucas et Star Wars, derrière la saga", "A4 à couverture rigide", "Georges_Lucas_et_Star_Wars_derriere_la_saga_GpArgo.png", 238, LocalDate.parse("2016-11-13"), genresLivreImp2, auteursLivreImp2, editeur3, 1, LocalDate.parse("2016-11-28"), LocalDate.parse("2018-04-30"), 645.5, "g", 29.7, 21.0, 2.07, "cm");
+		LivreImprime livreImprime3 = new LivreImprime("1944-2019 : soixante-quinze ans de films de super-héros, 1ère édition", "Analyse de l'évolution des films de super-héros depuis 1944. Résumés et illustrations d'une cinquante de films représentatifs.", 3032, 3199, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-27508-207-3", "1944-2019 : soixante-quinze ans de films de super-héros", "A5 à couverture rigide", "1944_2019_soixante_quinze_ans_de_films_de_super_heros_GpArgo.png", 314, LocalDate.parse("2020-03-17"), genresLivreImp3, auteursLivreImp3, editeur3, 3, LocalDate.parse("2020-04-17"), null, 422.7, "g", 21.0, 14.8, 2.72, "cm");
+		LivreImprime livreImprime4 = new LivreImprime("Films de guerre : raconter l'histoire des soldats, 4e édition", "Analyse de films de guerre de différentes époques et pays avec un regard particulier sur les personnages de soldat.", 2369, 2499, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-32724-089-9", "Films de guerre : raconter l'histoire des soldats", "Poche à dos carré collé", "Films_de_guerre_raconter_l_histoire_des_soldats_Historicae.png", 360, LocalDate.parse("2017-06-15"), genresLivreImp4, auteursLivreImp4, editeur4, 5, LocalDate.parse("2017-06-18"), LocalDate.parse("2019-02-14"), 290.8, "g", 17.0, 11.0, 3.11, "cm");
+		
+		// Ajout des livres numériques et imprimés aux éditeurs 
+		ArrayList<Livre> livresEditeur1 = new ArrayList<Livre>();
+		ArrayList<Livre> livresEditeur2 = new ArrayList<Livre>();
+		ArrayList<Livre> livresEditeur3 = new ArrayList<Livre>();
+		ArrayList<Livre> livresEditeur4 = new ArrayList<Livre>();
+		
+		livresEditeur1.add(livreNumerique1);
+		livresEditeur1.add(livreNumerique2);
+		livresEditeur1.add(livreImprime1);
+		livresEditeur2.add(livreNumerique3);
+		livresEditeur3.add(livreImprime2);
+		livresEditeur3.add(livreImprime3);
+		livresEditeur4.add(livreNumerique4);
+		livresEditeur4.add(livreImprime4);
+		
+		editeur1.setLivres(livresEditeur1);
+		editeur2.setLivres(livresEditeur2);
+		editeur3.setLivres(livresEditeur3);
+		editeur4.setLivres(livresEditeur4);
+		
+		// Ajout des livres numériques et imprimés aux auteurs
+		ArrayList<Livre> livresAuteur1 = new ArrayList<Livre>();
+		ArrayList<Livre> livresAuteur2 = new ArrayList<Livre>();
+		ArrayList<Livre> livresAuteur3 = new ArrayList<Livre>();
+		ArrayList<Livre> livresAuteur4 = new ArrayList<Livre>();
+		ArrayList<Livre> livresAuteur5 = new ArrayList<Livre>();
+		ArrayList<Livre> livresAuteur6 = new ArrayList<Livre>();
+		
+		livresAuteur1.add(livreNumerique1);
+		livresAuteur1.add(livreImprime1);
+		livresAuteur1.add(livreImprime2);
+		livresAuteur2.add(livreNumerique2);
+		livresAuteur2.add(livreImprime2);
+		livresAuteur3.add(livreNumerique3);
+		livresAuteur3.add(livreNumerique4);
+		livresAuteur4.add(livreImprime3);
+		livresAuteur5.add(livreImprime4);
+		livresAuteur6.add(livreImprime1);
+		livresAuteur6.add(livreImprime4);
+		
+		auteur1.setLivres(livresAuteur1);
+		auteur2.setLivres(livresAuteur2);
+		auteur3.setLivres(livresAuteur3);
+		auteur4.setLivres(livresAuteur4);
+		auteur5.setLivres(livresAuteur5);
+		auteur6.setLivres(livresAuteur6);
+		
+		// Ajout des livres numériques et imprimés aux genres
+		ArrayList<Livre> livresGenre1 = new ArrayList<Livre>();
+		ArrayList<Livre> livresGenre2 = new ArrayList<Livre>();
+		ArrayList<Livre> livresGenre3 = new ArrayList<Livre>();
+		ArrayList<Livre> livresGenre4 = new ArrayList<Livre>();
+		ArrayList<Livre> livresGenre5 = new ArrayList<Livre>();
+		ArrayList<Livre> livresGenre6 = new ArrayList<Livre>();
+		ArrayList<Livre> livresGenre7 = new ArrayList<Livre>();
+		
+		livresGenre1.add(livreNumerique1);
+		livresGenre1.add(livreImprime1);
+		livresGenre1.add(livreImprime2);
+		livresGenre2.add(livreNumerique1);
+		livresGenre2.add(livreImprime2);
+		livresGenre3.add(livreNumerique2);
+		livresGenre4.add(livreNumerique2);
+		livresGenre4.add(livreNumerique4);
+		livresGenre4.add(livreImprime4);
+		livresGenre5.add(livreNumerique3);
+		livresGenre6.add(livreNumerique3);
+		livresGenre6.add(livreImprime3);
+		livresGenre7.add(livreNumerique4);
+		livresGenre7.add(livreImprime1);
+		livresGenre7.add(livreImprime2);
+		livresGenre7.add(livreImprime4);
+		
+		genre1.setLivres(livresGenre1);
+		genre2.setLivres(livresGenre2);
+		genre3.setLivres(livresGenre3);
+		genre4.setLivres(livresGenre4);
+		genre5.setLivres(livresGenre5);
+		genre6.setLivres(livresGenre6);
+		genre7.setLivres(livresGenre7);
+		
+		// Consultations
+		Consultation consultation1 = new Consultation(LocalDateTime.of(2021, 4, 22, 17, 24, 5), client1, livreNumerique1);
+		Consultation consultation2 = new Consultation(LocalDateTime.of(2021, 4, 22, 17, 26, 41), client1, livreNumerique3);
+		Consultation consultation3 = new Consultation(LocalDateTime.of(2021, 4, 22, 17, 29, 4), client1, livreImprime2);
+		Consultation consultation4 = new Consultation(LocalDateTime.of(2021, 4, 22, 17, 32, 17), client1, livreNumerique3);
+		Consultation consultation5 = new Consultation(LocalDateTime.of(2021, 5, 2, 6, 55, 5), client1, livreNumerique2);
+		Consultation consultation6 = new Consultation(LocalDateTime.of(2021, 5, 2, 7, 9, 37), client1, livreImprime4);
+		Consultation consultation7 = new Consultation(LocalDateTime.of(2021, 5, 5, 13, 49, 37), client2, livreImprime1);
+		Consultation consultation8 = new Consultation(LocalDateTime.of(2021, 5, 5, 13, 52, 7), client2, livreNumerique4);
+		Consultation consultation9 = new Consultation(LocalDateTime.of(2021, 5, 5, 13, 56, 50), client2, livreImprime3);
+		Consultation consultation10 = new Consultation(LocalDateTime.of(2021, 5, 9, 22, 07, 34), client3, livreImprime1);
+		Consultation consultation11 = new Consultation(LocalDateTime.of(2021, 5, 10, 5, 18, 56), null, livreImprime1);
+		Consultation consultation12 = new Consultation(LocalDateTime.of(2021, 5, 10, 12, 24, 14), null, livreImprime2);
+		
+		// Ajout des consultations aux clients
+		ArrayList<Consultation> consultationsClient1 = new ArrayList<Consultation>();
+		ArrayList<Consultation> consultationsClient2 = new ArrayList<Consultation>();
+		ArrayList<Consultation> consultationsClient3 = new ArrayList<Consultation>();
+		
+		consultationsClient1.add(consultation1);
+		consultationsClient1.add(consultation2);
+		consultationsClient1.add(consultation3);
+		consultationsClient1.add(consultation4);
+		consultationsClient1.add(consultation5);
+		consultationsClient1.add(consultation6);
+		consultationsClient2.add(consultation7);
+		consultationsClient2.add(consultation8);
+		consultationsClient2.add(consultation9);
+		consultationsClient3.add(consultation10);
+		
+		client1.setConsultations(consultationsClient1);
+		client1.setConsultations(consultationsClient2);
+		client1.setConsultations(consultationsClient3);
+		
+		// Ajout des consultations aux livres numériques et imprimés
+		ArrayList<Consultation> consultationsLivreNum1 = new ArrayList<Consultation>();
+		ArrayList<Consultation> consultationsLivreNum2 = new ArrayList<Consultation>();
+		ArrayList<Consultation> consultationsLivreNum3 = new ArrayList<Consultation>();
+		ArrayList<Consultation> consultationsLivreNum4 = new ArrayList<Consultation>();
+		ArrayList<Consultation> consultationsLivreImp1 = new ArrayList<Consultation>();
+		ArrayList<Consultation> consultationsLivreImp2 = new ArrayList<Consultation>();
+		ArrayList<Consultation> consultationsLivreImp3 = new ArrayList<Consultation>();
+		ArrayList<Consultation> consultationsLivreImp4 = new ArrayList<Consultation>();
+		
+		consultationsLivreNum1.add(consultation1);
+		consultationsLivreNum2.add(consultation5);
+		consultationsLivreNum3.add(consultation2);
+		consultationsLivreNum3.add(consultation4);
+		consultationsLivreNum4.add(consultation8);
+		consultationsLivreImp1.add(consultation7);
+		consultationsLivreImp1.add(consultation10);
+		consultationsLivreImp1.add(consultation11);
+		consultationsLivreImp2.add(consultation3);
+		consultationsLivreImp2.add(consultation12);
+		consultationsLivreImp3.add(consultation9);
+		consultationsLivreImp4.add(consultation6);
+		
+		livreNumerique1.setConsultations(consultationsLivreNum1);
+		livreNumerique2.setConsultations(consultationsLivreNum2);
+		livreNumerique3.setConsultations(consultationsLivreNum3);
+		livreNumerique4.setConsultations(consultationsLivreNum4);
+		livreImprime1.setConsultations(consultationsLivreImp1);
+		livreImprime1.setConsultations(consultationsLivreImp2);
+		livreImprime1.setConsultations(consultationsLivreImp3);
+		livreImprime1.setConsultations(consultationsLivreImp4);
+		
+		// Commandes sans lignes de commande ni factures
+		
+		// Ajout des commandes aux clients
+		
+		// Lignes de commandes
+		
+		// Ajout des lignes de commandes aux commandes
+		
+		// Ajout des lignes de commandes aux livres numériques et imprimés
+		
+		// Factures
+		
+		// Ajout des factures aux commandes
+		
+		
+		// INJECTION DES DONNEES INITIALES DANS LA BASE DE DONNEES
+		
+		// Sauvegarde des adresses
+		
+		// Sauvegarde des éditeurs
+		
+		// Sauvegarde des clients
+		
+		// Sauvegarde des auteurs
+		
+		// Sauvegarde des genres
+		
+		// Sauvegarde des livres numériques
+		
+		// Sauvegarde des livres imprimés
+		
+		// Sauvegarde des consultations
+		
+		// Sauvegarde des commandes
+		
+		// Sauvegarde des lignes de commande
+		
+		// Sauvegarde des factures
+	}
+	
+}

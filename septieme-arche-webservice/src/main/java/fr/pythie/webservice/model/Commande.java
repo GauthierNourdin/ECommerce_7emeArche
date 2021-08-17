@@ -73,4 +73,16 @@ public class Commande {
 		this.setNumero(stringNumero);
 	}
 
+	// Constructeur complet mis à part l'ID
+	public Commande(String numero, @NonNull String status, @NonNull LocalDateTime date,
+			List<LigneCommande> lignesCommande, @NonNull Client client, List<Facture> factures) {
+		super();
+		this.numero = numero;
+		this.status = status;
+		this.date = date;
+		this.lignesCommande = lignesCommande;
+		this.client = client;
+		this.factures = factures;
+	}
+	
 }

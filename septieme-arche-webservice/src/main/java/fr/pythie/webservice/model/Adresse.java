@@ -41,5 +41,17 @@ public class Adresse {
 	String ville;
 	String pays;
 	String complement;
+	
+	// Constructeur complet mis à part l'ID
+	public Adresse(@NonNull String numeroRue, @NonNull String nomRue, @NonNull String codePostal, @NonNull String ville,
+			String pays, String complement) {
+		super();
+		this.numeroRue = numeroRue;
+		this.nomRue = nomRue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.pays = pays;
+		this.complement = complement;
+	}
 
 }

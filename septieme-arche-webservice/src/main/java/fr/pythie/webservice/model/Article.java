@@ -49,4 +49,16 @@ public abstract class Article {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
 	List<LigneCommande> lignesCommande;
 
+	// Constructeur complet mis à part l'ID
+	public Article(@NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
+			List<Consultation> consultations, List<LigneCommande> lignesCommande) {
+		super();
+		this.titre = titre;
+		this.resume = resume;
+		this.prixHT = prixHT;
+		this.prixTTC = prixTTC;
+		this.consultations = consultations;
+		this.lignesCommande = lignesCommande;
+	}
+	
 }

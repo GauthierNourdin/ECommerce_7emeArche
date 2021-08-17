@@ -48,4 +48,12 @@ public class Editeur {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "editeur")
 	List<Livre> livres;
 
+	// Constructeur complet mis à part l'ID
+	public Editeur(@NonNull String nom, @NonNull Adresse adresse, List<Livre> livres) {
+		super();
+		this.nom = nom;
+		this.adresse = adresse;
+		this.livres = livres;
+	}
+	
 }

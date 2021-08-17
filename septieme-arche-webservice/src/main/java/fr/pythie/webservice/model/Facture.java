@@ -57,5 +57,13 @@ public class Facture {
 				+ String.format("%2s", String.valueOf(commande.getFactures().size())).replace(' ', '0');
 		this.setNumero(stringNumero);
 	}
+
+	// Constructeur complet mis à part l'ID
+	public Facture(String numero, @NonNull String status, @NonNull Commande commande) {
+		super();
+		this.numero = numero;
+		this.status = status;
+		this.commande = commande;
+	}
 	
 }

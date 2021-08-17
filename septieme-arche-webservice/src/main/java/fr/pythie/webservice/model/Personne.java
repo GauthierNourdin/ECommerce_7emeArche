@@ -11,6 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
@@ -18,6 +19,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Setter
 @Getter
 @ToString(of = { "id", "civilite", "nom", "prenom" }) 
@@ -34,4 +36,12 @@ public abstract class Personne {
 	String nom;
 	String prenom;
 
+	// Constructeur complet mis à part l'ID
+	public Personne(String civilite, @NonNull String nom, String prenom) {
+		super();
+		this.civilite = civilite;
+		this.nom = nom;
+		this.prenom = prenom;
+	}
+	
 }

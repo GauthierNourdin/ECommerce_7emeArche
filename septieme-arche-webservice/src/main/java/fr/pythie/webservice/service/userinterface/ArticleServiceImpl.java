@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fr.pythie.webservice.dao.CommandeRepository;
-import fr.pythie.webservice.dao.LivreRepository;
 import fr.pythie.webservice.exception.ClientInconnuException;
 import fr.pythie.webservice.exception.ConsultationNonAnonymeException;
 import fr.pythie.webservice.exception.EcritureBaseDonneesException;
@@ -24,12 +23,14 @@ import fr.pythie.webservice.model.Livre;
 
 @Component
 public class ArticleServiceImpl implements ArticleService {
+	/**
+	 * Classe service implémentant les méthodes demandées par ArticleService afin de
+	 * traîter les demandes concernant les articles faites par l'interface
+	 * utilisateur
+	 */
 
 	@Autowired
 	private CommandeRepository commandeRepository;
-	
-	@Autowired
-	private LivreRepository livreRepository;
 
 	@Override
 	public List<Article> obtenirListeArticleParDefaut() throws LectureBaseDonneesException {
@@ -104,24 +105,27 @@ public class ArticleServiceImpl implements ArticleService {
 
 		/*
 		 * À partir de la liste de lignes de commandes résultats il faut maintenant
-		 * faire le tri par le volume de vente (via un comparateur anonyme). L'ordre est décroissant
+		 * faire le tri par le volume de vente (via un comparateur anonyme). L'ordre est
+		 * décroissant
 		 */
 		Collections.sort(lignesCommandesResultat, new Comparator<LigneCommande>() {
-		    public int compare(LigneCommande ligneCommande1, LigneCommande ligneCommande2) {
-		    	return ligneCommande2.getQuantiteCommandee() - ligneCommande1.getQuantiteCommandee();
-		    }
+			public int compare(LigneCommande ligneCommande1, LigneCommande ligneCommande2) {
+				return ligneCommande2.getQuantiteCommandee() - ligneCommande1.getQuantiteCommandee();
+			}
 		});
-		
-		// Reste à récupérer les 50 premiers résultats, si leur nombre est suffisant, ou la totalité
+
+		// Reste à récupérer les 50 premiers résultats, si leur nombre est suffisant, ou
+		// la totalité
 		if (lignesCommandesResultat.size() > 50) {
 			lignesCommandesResultat = (ArrayList<LigneCommande>) lignesCommandesResultat.subList(0, 49);
 		}
-		
-		// Dès lors il faut extraire les articles correspondant à ces lignes et préparer la liste de retour
+
+		// Dès lors il faut extraire les articles correspondant à ces lignes et préparer
+		// la liste de retour
 		for (LigneCommande ligneCommRes : lignesCommandesResultat) {
 			listeArticleParDefaut.add(ligneCommRes.getArticle());
 		}
-		
+
 		return listeArticleParDefaut;
 	}
 

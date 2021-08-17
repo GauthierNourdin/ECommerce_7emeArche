@@ -42,6 +42,7 @@ public abstract class Livre extends Article {
 	@NonNull
 	String lienImage;
 	int nombrePages;
+	@NonNull
 	LocalDate dateDepotLegal = LocalDate.now();
 	@NonNull
 	@JsonIgnoreProperties( "livres" )
@@ -56,4 +57,55 @@ public abstract class Livre extends Article {
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Editeur editeur = new Editeur();
 
+	// Constructeur complet mis à part l'ID
+	public Livre(@NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
+			List<Consultation> consultations, List<LigneCommande> lignesCommande, @NonNull String isbn13,
+			@NonNull String titreLivre, @NonNull String format, @NonNull String lienImage, int nombrePages,
+			LocalDate dateDepotLegal, @NonNull List<Genre> genres, @NonNull List<Auteur> auteurs,
+			@NonNull Editeur editeur) {
+		super(titre, resume, prixHT, prixTTC, consultations, lignesCommande);
+		this.isbn13 = isbn13;
+		this.titreLivre = titreLivre;
+		this.format = format;
+		this.lienImage = lienImage;
+		this.nombrePages = nombrePages;
+		this.dateDepotLegal = dateDepotLegal;
+		this.genres = genres;
+		this.auteurs = auteurs;
+		this.editeur = editeur;
+	}
+
+	// Constructeur complet
+	public Livre(long id, @NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
+			List<Consultation> consultations, List<LigneCommande> lignesCommande, @NonNull String isbn13,
+			@NonNull String titreLivre, @NonNull String format, @NonNull String lienImage, int nombrePages,
+			@NonNull LocalDate dateDepotLegal, @NonNull List<Genre> genres, @NonNull List<Auteur> auteurs,
+			@NonNull Editeur editeur) {
+		super(id, titre, resume, prixHT, prixTTC, consultations, lignesCommande);
+		this.isbn13 = isbn13;
+		this.titreLivre = titreLivre;
+		this.format = format;
+		this.lienImage = lienImage;
+		this.nombrePages = nombrePages;
+		this.dateDepotLegal = dateDepotLegal;
+		this.genres = genres;
+		this.auteurs = auteurs;
+		this.editeur = editeur;
+	}
+
+	// Constructeur avec tous les paramètres obligatoires
+	public Livre(@NonNull String titre, @NonNull String resume, @NonNull String isbn13, @NonNull String titreLivre,
+			@NonNull String format, @NonNull String lienImage, @NonNull LocalDate dateDepotLegal,
+			@NonNull List<Genre> genres, @NonNull List<Auteur> auteurs, @NonNull Editeur editeur) {
+		super(titre, resume);
+		this.isbn13 = isbn13;
+		this.titreLivre = titreLivre;
+		this.format = format;
+		this.lienImage = lienImage;
+		this.dateDepotLegal = dateDepotLegal;
+		this.genres = genres;
+		this.auteurs = auteurs;
+		this.editeur = editeur;
+	}
+	
 }
