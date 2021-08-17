@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fr.pythie.webservice.dao.CommandeRepository;
-import fr.pythie.webservice.dao.LivreImprimeRepository;
 import fr.pythie.webservice.dao.LivreRepository;
 import fr.pythie.webservice.exception.ClientInconnuException;
 import fr.pythie.webservice.exception.ConsultationNonAnonymeException;
