@@ -1,4 +1,4 @@
-﻿INSERT INTO `ecommerce_7emearche`.`article` (titre,resume,prix_ht) VALUES
+adresse﻿INSERT INTO `ecommerce_7emearche`.`article` (titre,resume,prix_ht) VALUES
 ("Archives du musée du cinéma de Los Angeles : Charlie Chaplin", "Recueil de photographies, de témoignages et de notes, autour du parcours de Charlie Chaplin en tant qu'acteur et réalisateur.", 1895),
 ("Musée des Arts et Métiers, Livre d'exposition : Les premiers pas du cinéma", "Livre de l'exposition temporaire début 2015 du musée des Arts et Métiers. Sujet centré sur le matériel et les techniques de tournage et de projection au début du cinéma à 1920", 1421),
 ("Bollywood, simple copie de l'Occident ? Avec préface de l'auteur", "Analyse complète du cinéma bollywoodien contemporain et comparaison avec le cinéma américain et européen.", 2179),

@@ -16,10 +16,10 @@ public class PaiementServiceImpl implements PaiementService {
 	 * utilisateur
 	 */
 	
-	@Override
+
 	public Client informationsBancaires(Client clientAvecInformationsBancaires)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ClientInconnuException {
-		// TODO Auto-generated method stub
+		// A faire avant la page de panier Angular
 		return null;
 	}
 

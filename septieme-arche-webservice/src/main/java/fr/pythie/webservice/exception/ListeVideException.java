@@ -1,8 +1,8 @@
 package fr.pythie.webservice.exception;
 
-public class ListeResultatVideException extends Exception {
+public class ListeVideException extends Exception {
 	/**
-	 * Classe d'exception permettant de traîter le cas où une liste de résultats est vide.
+	 * Classe d'exception permettant de traîter le cas où une liste est vide.
 	 */
 	
 	// On crée un numéro de série pour l'exception.

@@ -18,8 +18,9 @@ import fr.pythie.webservice.exception.ClientInconnuException;
 import fr.pythie.webservice.exception.ConsultationInconnueException;
 import fr.pythie.webservice.exception.ConsultationNonAnonymeException;
 import fr.pythie.webservice.exception.EcritureBaseDonneesException;
+import fr.pythie.webservice.exception.IdInvalideException;
 import fr.pythie.webservice.exception.LectureBaseDonneesException;
-import fr.pythie.webservice.exception.ListeResultatVideException;
+import fr.pythie.webservice.exception.ListeVideException;
 import fr.pythie.webservice.interfaces.service.userinterface.ArticleService;
 import fr.pythie.webservice.model.Article;
 import fr.pythie.webservice.model.Consultation;
@@ -79,7 +80,7 @@ public class ArticleController {
 			// En cas d'erreur lors de la lecture de la base de données (pour collecter les
 			// livres) on envoie un status HTTP 503
 			throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Les données sont inaccessibles.");
-		} catch (ListeResultatVideException exception) {
+		} catch (ListeVideException exception) {
 			// Dans le cas où la liste de résultat est vide, on envoie un status HTTP 204
 			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Pas de résultats.");
 		} catch (Exception exception) {
@@ -215,10 +216,14 @@ public class ArticleController {
 			// la disponibilité des livres imprimés) on envoie un status HTTP 503
 			throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,
 					"Les données sont inaccessibles.");
-		} catch (ListeResultatVideException exception) {
+		} catch (ListeVideException exception) {
 			// Dans le cas où la liste d'ID est vide on envoie un status HTTP 400
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
 					"La liste d'ID est vide.");
+		} catch (IdInvalideException exception) {
+			// Dans le cas où un ID de la liste est invalide, on envoie un status HTTP 400
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+					"Un ou plusieurs ID sont invalides");
 		} catch (Exception exception) {
 			// En cas d'erreur inattendue on envoie un status HTTP 501
 			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");

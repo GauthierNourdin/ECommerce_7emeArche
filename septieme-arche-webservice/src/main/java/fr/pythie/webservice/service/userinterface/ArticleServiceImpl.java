@@ -10,16 +10,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fr.pythie.webservice.dao.CommandeRepository;
+import fr.pythie.webservice.dao.LivreImprimeRepository;
+import fr.pythie.webservice.dao.LivreRepository;
 import fr.pythie.webservice.exception.ClientInconnuException;
 import fr.pythie.webservice.exception.ConsultationNonAnonymeException;
 import fr.pythie.webservice.exception.EcritureBaseDonneesException;
+import fr.pythie.webservice.exception.IdInvalideException;
 import fr.pythie.webservice.exception.LectureBaseDonneesException;
+import fr.pythie.webservice.exception.ListeVideException;
 import fr.pythie.webservice.interfaces.service.userinterface.ArticleService;
 import fr.pythie.webservice.model.Article;
+import fr.pythie.webservice.model.Auteur;
 import fr.pythie.webservice.model.Commande;
 import fr.pythie.webservice.model.Consultation;
 import fr.pythie.webservice.model.LigneCommande;
 import fr.pythie.webservice.model.Livre;
+import fr.pythie.webservice.model.LivreImprime;
 
 @Component
 public class ArticleServiceImpl implements ArticleService {
@@ -32,7 +38,12 @@ public class ArticleServiceImpl implements ArticleService {
 	@Autowired
 	private CommandeRepository commandeRepository;
 
-	@Override
+	@Autowired
+	private LivreRepository livreRepository;
+
+	@Autowired
+	private LivreImprimeRepository livreImprimeRepository;
+
 	public List<Article> obtenirListeArticleParDefaut() throws LectureBaseDonneesException {
 		// On détermine d'abord la date servant à trier les lignes de commandes (quatre
 		// semaines)
@@ -129,39 +140,143 @@ public class ArticleServiceImpl implements ArticleService {
 		return listeArticleParDefaut;
 	}
 
-	@Override
-	public List<Livre> obtenirListeLivresParAuteurOuTitre(String auteurOuTitre) throws LectureBaseDonneesException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Livre> obtenirListeLivresParAuteurOuTitre(String auteurOuTitre)
+			throws LectureBaseDonneesException, ListeVideException {
+		// On prépare la liste de résultats
+		ArrayList<Livre> livresCorrespondants = new ArrayList<Livre>();
+
+		/*
+		 * On recherche les livres pour lesquels le prénom de l'auteur, ou son nom, ou
+		 * son prenom + nom, ou le titre contient la chaîne de caractère souhaitée On ne
+		 * peut pas faire de requête SQL directe (trop compliqué et peu fiable). On doit
+		 * à la place extraire l'ensemble des livres et faire une recherche en Java.
+		 */
+
+		// Tout d'abord on doit extraire l'ensemble des livres.
+		ArrayList<Livre> livresEnregistrees = new ArrayList<Livre>();
+
+		try {
+			livresEnregistrees = (ArrayList<Livre>) livreRepository.findAll();
+		} catch (Exception e) {
+			// En cas d'erreur on lève une exception indicant le problème de lecture
+			throw new LectureBaseDonneesException();
+		}
+
+		/*
+		 * Maintenant il faut faire un traitement sur chaque livre. Il faut faire une
+		 * série de tests entre les données du livre et la chaîne de caractère
+		 * recherchée. A chaque test, si le résultat est positif on enregistre le livre
+		 * dans la liste résultat et on n'effectue pas les tests suivants. Les tests
+		 * consiste à vérifier la présence de la chaîne de caractère recherchée (sans
+		 * tenir compte de la casse, mais aucune différence permise). Les informations
+		 * testées sont le titre du livre, le nom de l'auteur, le prénom de l'auteur et
+		 * l'assemblage (prénom + nom de l'auteur). Dans le cas de plusieurs auteurs il
+		 * faut établir une correspondance avec au moins un auteur.
+		 */
+
+		// Boucle sur les livres enregistrés
+		for (Livre livre : livresEnregistrees) {
+
+			boolean correspondance = false;
+
+			// Test sur le titre du livre
+			if (livre.getTitreLivre().toLowerCase().contains(auteurOuTitre.toLowerCase())) {
+				correspondance = true;
+			}
+
+			// Boucle sur les auteurs du livre
+			for (Auteur auteur : livre.getAuteurs()) {
+
+				// Test sur le prénom de l'auteur
+				if (!correspondance && (auteur.getPrenom().toLowerCase().contains(auteurOuTitre.toLowerCase()))) {
+					correspondance = true;
+				}
+
+				// Test sur le nom de l'auteur
+				if (!correspondance && (auteur.getNom().toLowerCase().contains(auteurOuTitre.toLowerCase()))) {
+					correspondance = true;
+				}
+
+				// Test sur le prénom + nom de l'auteur
+				if (!correspondance && ((auteur.getPrenom() + ' ' + auteur.getNom()).toLowerCase()
+						.contains(auteurOuTitre.toLowerCase()))) {
+					correspondance = true;
+				}
+
+			}
+
+			// Si l'un des tests est positif on ajoute le livre testé à la liste des
+			// résultats
+			if (correspondance) {
+				livresCorrespondants.add(livre);
+			}
+
+		}
+
+		// Avant de retourner le résultat, on vérifie que la liste n'est pas vide sinon
+		// on lève une exception
+		if (livresCorrespondants.isEmpty()) {
+			throw new ListeVideException();
+		}
+
+		return livresCorrespondants;
 	}
 
-	@Override
 	public Consultation ajoutConsultationAnonyme(Consultation consultationAnonyme)
 			throws EcritureBaseDonneesException, ConsultationNonAnonymeException {
-		// TODO Auto-generated method stub
+		// A faire avant la page article Angular
 		return null;
 	}
 
-	@Override
 	public Consultation ajoutConsultationClient(Consultation consultationClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ClientInconnuException {
-		// TODO Auto-generated method stub
+		// A faire avant la page article Angular
 		return null;
 	}
 
-	@Override
 	public Consultation ajoutClientAConsultation(Consultation consultationAvecClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ConsultationNonAnonymeException,
 			ClientInconnuException {
-		// TODO Auto-generated method stub
+		// A faire avant le popup de connexion Angular
 		return null;
 	}
 
-	@Override
 	public ArrayList<Integer> consulterDisponibiliteLivresImprimes(List<Long> listeIdLivresImprimes)
-			throws LectureBaseDonneesException {
-		// TODO Auto-generated method stub
-		return null;
+			throws LectureBaseDonneesException, ListeVideException, IdInvalideException {
+		// On prépare la liste de résultats
+		ArrayList<Integer> disponibiliteLivresImprime = new ArrayList<Integer>();
+
+		// On vérifie que la liste d'ID contienne au moins un élément. Sinon on lève une
+		// exception.
+		if (listeIdLivresImprimes == null || listeIdLivresImprimes.isEmpty()) {
+			throw new ListeVideException();
+		}
+
+		// Boucle sur les id de livres imprimés dont on veut connaitre le stock.
+		for (Long idLivreImprime : listeIdLivresImprimes) {
+
+			LivreImprime livreImprime;
+
+			// On recherche le livre imprimé correspondant à l'ID demandé
+			try {
+				livreImprime = livreImprimeRepository.findById(idLivreImprime).orElse(null);
+			} catch (Exception e) {
+				// En cas d'erreur on lève une exception indicant le problème de lecture
+				throw new LectureBaseDonneesException();
+			}
+
+			// On doit vérifier que l'on a obtenu un livre valide. Sinon on a reçu un
+			// mauvais ID et on doit l'indiquer par une exception.
+			if (livreImprime == null || livreImprime.getId() == 0) {
+				throw new IdInvalideException();
+			}
+
+			// Enfin on peut extraire la quantité en stock.
+			disponibiliteLivresImprime.add(livreImprime.getQuantiteStock());
+
+		}
+
+		return disponibiliteLivresImprime;
 	}
 
 }

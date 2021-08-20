@@ -16,23 +16,23 @@ public class ClientServiceImpl implements ClientService {
 	 * utilisateur
 	 */
 
-	@Override
+
 	public Client creationCompteClient(Client nouveauClient) throws EcritureBaseDonneesException {
-		// TODO Auto-generated method stub
+		// A faire avant la page d'inscription client Angular
 		return null;
 	}
 
-	@Override
+
 	public Client authentificationClient(String email, String motDePasse)
 			throws LectureBaseDonneesException, ClientInconnuException {
-		// TODO Auto-generated method stub
+		// A faire avant le popup de connexion Angular
 		return null;
 	}
 
-	@Override
+
 	public Client modificationCompteClient(Client clientAModifier)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ClientInconnuException {
-		// TODO Auto-generated method stub
+		// A faire avant la page d'informations personnelles
 		return null;
 	}
 

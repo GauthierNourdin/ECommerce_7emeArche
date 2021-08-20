@@ -16,10 +16,10 @@ public class CommandeServiceImpl implements CommandeService {
 	 * utilisateur
 	 */
 	
-	@Override
+
 	public Commande enregistrementCommande(Commande commande)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, StockInsuffisantException {
-		// TODO Auto-generated method stub
+		// A faire avant la page de panier Angular
 		return null;
 	}
 
