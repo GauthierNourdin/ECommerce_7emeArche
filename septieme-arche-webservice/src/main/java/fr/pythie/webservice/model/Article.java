@@ -10,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import fr.pythie.webservice.communication.ArticleDeserializer;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -31,6 +33,7 @@ import lombok.experimental.FieldDefaults;
 @ToString(of = { "id", "titre", "resume", "prixHT", "prixTTC" })
 @EqualsAndHashCode
 @Entity
+@JsonDeserialize(using = ArticleDeserializer.class)
 public abstract class Article {
 	/** Classe abstraite servent de base à tous les types d'articles */
 	@Id

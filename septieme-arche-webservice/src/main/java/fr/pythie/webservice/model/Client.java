@@ -45,8 +45,6 @@ public class Client extends Personne {
 	@NonNull
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Adresse adresseLivraison = new Adresse();
-//	@JsonIgnoreProperties( "client" )
-//	Panier panier = new Panier();
 	@JsonIgnoreProperties( "client" )
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
 	List<Consultation> consultations;

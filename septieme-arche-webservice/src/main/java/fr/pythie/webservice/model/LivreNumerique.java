@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -23,6 +25,7 @@ import lombok.experimental.FieldDefaults;
 @ToString(of = { "espace", "unite" }) 
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@JsonDeserialize(as = LivreNumerique.class)
 public class LivreNumerique extends Livre {
 	/** Classe pour les livres numériques */
 

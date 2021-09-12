@@ -9,7 +9,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import fr.pythie.webservice.communication.LivreDeserializer;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -30,6 +32,7 @@ import lombok.experimental.FieldDefaults;
 @ToString(of = { "isbn13", "titreLivre", "format", "lienImage", "nombrePages", "dateDepotLegal" })
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@JsonDeserialize(using = LivreDeserializer.class)
 public abstract class Livre extends Article {
 	/** Classe abstraite servent de base à tous les livres */
 

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -23,6 +25,7 @@ import lombok.experimental.FieldDefaults;
 @ToString(of = { "quantiteStock", "dateFinTirage", "dateReimpression", "poids", "unitePoids", "longueur", "largeur", "epaisseur", "uniteLongueur" }) 
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@JsonDeserialize(as = LivreImprime.class)
 public class LivreImprime extends Livre {
 	/** Classe pour les livres imprimés */
 

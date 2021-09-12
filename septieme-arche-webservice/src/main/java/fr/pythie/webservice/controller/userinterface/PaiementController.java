@@ -2,18 +2,18 @@ package fr.pythie.webservice.controller.userinterface;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import fr.pythie.webservice.communication.InformationsPaiement;
 import fr.pythie.webservice.exception.ClientInconnuException;
 import fr.pythie.webservice.exception.EcritureBaseDonneesException;
 import fr.pythie.webservice.exception.LectureBaseDonneesException;
 import fr.pythie.webservice.interfaces.service.userinterface.PaiementService;
-import fr.pythie.webservice.model.Client;
 
 @RestController
 @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
@@ -29,18 +29,16 @@ public class PaiementController {
 	@Autowired
 	PaiementService paiementService;
 	
-	
 	// Enregistre les informations bancaires d'un client
-	// Vérifie et enregistre la commande
-	@PutMapping("/enregistrementInformationsBancaires")
+	@PostMapping("/enregistrementInformationsBancaires")
 	@ResponseStatus(HttpStatus.OK)
-	public Client enregistrementInformationsBancaires(@RequestBody Client clientAvecInformationsBancaires) {
+	public InformationsPaiement enregistrementInformationsBancaires(@RequestBody InformationsPaiement informationsPaiement) {
 
-		Client clientModifie;
+		InformationsPaiement paiement;
 
 		// On essaie d'exécuter le service pour vérifier et enregistrer une commande
 		try {
-			clientModifie = paiementService.informationsBancaires(clientAvecInformationsBancaires);
+			paiement = paiementService.informationsBancaires(informationsPaiement);
 		} catch (LectureBaseDonneesException exception) {
 			// En cas d'erreur lors de la lecture de la base de données (pour vérifier
 			// la présence du client) on envoie un status HTTP 503
@@ -60,7 +58,7 @@ public class PaiementController {
 			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");
 		}
 
-		return clientModifie;
+		return paiement;
 	}
 	
 	

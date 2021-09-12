@@ -2,6 +2,7 @@ package fr.pythie.webservice.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,14 +42,13 @@ public class LigneCommande {
 	@JsonIgnoreProperties( { "consultations", "lignesCommande" } )
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Article article;
-	@NonNull
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Commande commande = new Commande();
 
 	// Constructeur complet mis à part l'ID
 	public LigneCommande(int quantiteCommandee, int prixHT, int prixTTC, @NonNull Article article,
-			@NonNull Commande commande) {
+			Commande commande) {
 		super();
 		this.quantiteCommandee = quantiteCommandee;
 		this.prixHT = prixHT;

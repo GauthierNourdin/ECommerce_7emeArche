@@ -9,23 +9,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import fr.pythie.webservice.communication.ConsultationAvecIdClient;
+import fr.pythie.webservice.communication.IdentifiantEtTypeArticle;
+import fr.pythie.webservice.dao.ClientRepository;
 import fr.pythie.webservice.dao.CommandeRepository;
+import fr.pythie.webservice.dao.ConsultationRepository;
 import fr.pythie.webservice.dao.LivreImprimeRepository;
+import fr.pythie.webservice.dao.LivreNumeriqueRepository;
 import fr.pythie.webservice.dao.LivreRepository;
 import fr.pythie.webservice.exception.ClientInconnuException;
+import fr.pythie.webservice.exception.ConsultationInconnueException;
 import fr.pythie.webservice.exception.ConsultationNonAnonymeException;
 import fr.pythie.webservice.exception.EcritureBaseDonneesException;
 import fr.pythie.webservice.exception.IdInvalideException;
 import fr.pythie.webservice.exception.LectureBaseDonneesException;
 import fr.pythie.webservice.exception.ListeVideException;
 import fr.pythie.webservice.interfaces.service.userinterface.ArticleService;
-import fr.pythie.webservice.model.Article;
 import fr.pythie.webservice.model.Auteur;
+import fr.pythie.webservice.model.Client;
 import fr.pythie.webservice.model.Commande;
 import fr.pythie.webservice.model.Consultation;
 import fr.pythie.webservice.model.LigneCommande;
 import fr.pythie.webservice.model.Livre;
 import fr.pythie.webservice.model.LivreImprime;
+import fr.pythie.webservice.model.LivreNumerique;
 
 @Component
 public class ArticleServiceImpl implements ArticleService {
@@ -36,6 +43,12 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 
 	@Autowired
+	private ClientRepository clientRepository;
+	
+	@Autowired
+	private ConsultationRepository consultationRepository;
+
+	@Autowired
 	private CommandeRepository commandeRepository;
 
 	@Autowired
@@ -44,12 +57,17 @@ public class ArticleServiceImpl implements ArticleService {
 	@Autowired
 	private LivreImprimeRepository livreImprimeRepository;
 
-	public List<Article> obtenirListeArticleParDefaut() throws LectureBaseDonneesException {
+	@Autowired
+	private LivreNumeriqueRepository livreNumeriqueRepository;
+
+	// Retourne la liste par défaut des articles sous la forme d'une liste de paires
+	// identifiant / type d'article
+	public List<IdentifiantEtTypeArticle> obtenirListeArticleParDefaut() throws LectureBaseDonneesException {
 		// On détermine d'abord la date servant à trier les lignes de commandes (quatre
 		// semaines)
 		LocalDateTime dateDepartRecherche = LocalDateTime.now().minusDays(28);
 
-		ArrayList<Article> listeArticleParDefaut = new ArrayList<Article>();
+		ArrayList<IdentifiantEtTypeArticle> listeArticleParDefaut = new ArrayList<IdentifiantEtTypeArticle>();
 		ArrayList<Commande> commandesMois = new ArrayList<Commande>();
 
 		// On récupère les données des commandes de la base de données. On lève une
@@ -134,16 +152,99 @@ public class ArticleServiceImpl implements ArticleService {
 		// Dès lors il faut extraire les articles correspondant à ces lignes et préparer
 		// la liste de retour
 		for (LigneCommande ligneCommRes : lignesCommandesResultat) {
-			listeArticleParDefaut.add(ligneCommRes.getArticle());
+			// Si l'article est de type livreImprime
+			if (ligneCommRes.getArticle() instanceof LivreImprime) {
+				listeArticleParDefaut
+						.add(new IdentifiantEtTypeArticle(ligneCommRes.getArticle().getId(), "LivreImprime"));
+			} else {
+				// Sinon il est de type livreNumerique
+				listeArticleParDefaut
+						.add(new IdentifiantEtTypeArticle(ligneCommRes.getArticle().getId(), "LivreNumerique"));
+			}
 		}
 
 		return listeArticleParDefaut;
 	}
 
-	public List<Livre> obtenirListeLivresParAuteurOuTitre(String auteurOuTitre)
+	// Retourne une liste de livres imprimés à partir d'une liste d'identifiants;
+	public ArrayList<LivreImprime> obtenirListeLivresImprimes(List<Long> listeIdLivresImprimes)
+			throws LectureBaseDonneesException, ListeVideException, IdInvalideException {
+
+		ArrayList<LivreImprime> livresImprimes = new ArrayList<LivreImprime>();
+
+		// On doit vérifier que la liste d'identifiants n'est pas vide, sinon on lève
+		// une exception;
+		if (listeIdLivresImprimes == null || listeIdLivresImprimes.isEmpty()) {
+			throw new ListeVideException();
+		}
+
+		// Ensuite on doit pour chaque identifiant obtenir le livre imprimé
+		// correspondant;
+		for (long idLivreImprime : listeIdLivresImprimes) {
+
+			LivreImprime livreImprime;
+
+			try {
+				livreImprime = livreImprimeRepository.findById(idLivreImprime).orElse(null);
+			} catch (Exception exception) {
+				// En cas d'erreur de lecture on lève une exception;
+				throw new LectureBaseDonneesException();
+			}
+
+			// Si l'identifiant est invalide est doit lever une exception.
+			if (livreImprime == null) {
+				throw new IdInvalideException();
+			}
+
+		}
+
+		return livresImprimes;
+
+	}
+
+	// Retourne une liste de livres numériques à partir d'une liste d'identifiants.
+	public ArrayList<LivreNumerique> obtenirListeLivresNumeriques(List<Long> listeIdLivresNumeriques)
+			throws LectureBaseDonneesException, ListeVideException, IdInvalideException {
+
+		ArrayList<LivreNumerique> livresNumeriques = new ArrayList<LivreNumerique>();
+
+		// On doit vérifier que la liste d'identifiants n'est pas vide, sinon on lève
+		// une exception;
+		if (listeIdLivresNumeriques == null || listeIdLivresNumeriques.isEmpty()) {
+			throw new ListeVideException();
+		}
+
+		// Ensuite on doit pour chaque identifiant obtenir le livre imprimé
+		// correspondant;
+		for (long idLivreNumerique : listeIdLivresNumeriques) {
+
+			LivreNumerique livreNumerique;
+
+			try {
+				livreNumerique = livreNumeriqueRepository.findById(idLivreNumerique).orElse(null);
+			} catch (Exception exception) {
+				// En cas d'erreur de lecture on lève une exception;
+				throw new LectureBaseDonneesException();
+			}
+
+			// Si l'identifiant est invalide est doit lever une exception.
+			if (livreNumerique == null) {
+				throw new IdInvalideException();
+			}
+
+		}
+
+		return livresNumeriques;
+	}
+
+	// Retourne une liste de livres, sous la forme d'une liste de paires
+	// identifiant / type d'article, dont l'un des auteurs ou le titre correspond à
+	// la chaîne
+	// de caractère en entrée.
+	public List<IdentifiantEtTypeArticle> obtenirListeLivresParAuteurOuTitre(String auteurOuTitre)
 			throws LectureBaseDonneesException, ListeVideException {
 		// On prépare la liste de résultats
-		ArrayList<Livre> livresCorrespondants = new ArrayList<Livre>();
+		ArrayList<IdentifiantEtTypeArticle> livresCorrespondants = new ArrayList<IdentifiantEtTypeArticle>();
 
 		/*
 		 * On recherche les livres pour lesquels le prénom de l'auteur, ou son nom, ou
@@ -198,7 +299,13 @@ public class ArticleServiceImpl implements ArticleService {
 				}
 
 				// Test sur le prénom + nom de l'auteur
-				if (!correspondance && ((auteur.getPrenom() + ' ' + auteur.getNom()).toLowerCase()
+				if (!correspondance && ((auteur.getPrenom().toLowerCase() + ' ' + auteur.getNom()).toLowerCase()
+						.contains(auteurOuTitre.toLowerCase()))) {
+					correspondance = true;
+				}
+
+				// Test sur le nom + prénom de l'auteur
+				if (!correspondance && ((auteur.getNom().toLowerCase() + ' ' + auteur.getPrenom()).toLowerCase()
 						.contains(auteurOuTitre.toLowerCase()))) {
 					correspondance = true;
 				}
@@ -208,7 +315,15 @@ public class ArticleServiceImpl implements ArticleService {
 			// Si l'un des tests est positif on ajoute le livre testé à la liste des
 			// résultats
 			if (correspondance) {
-				livresCorrespondants.add(livre);
+
+				// Si le livre est de type livreImprime
+				if (livre instanceof LivreImprime) {
+					livresCorrespondants.add(new IdentifiantEtTypeArticle(livre.getId(), "LivreImprime"));
+				} else {
+					// Sinon il est de type livreNumerique
+					livresCorrespondants.add(new IdentifiantEtTypeArticle(livre.getId(), "LivreNumerique"));
+				}
+
 			}
 
 		}
@@ -222,25 +337,151 @@ public class ArticleServiceImpl implements ArticleService {
 		return livresCorrespondants;
 	}
 
+	// Enregistre une consultation anonyme
 	public Consultation ajoutConsultationAnonyme(Consultation consultationAnonyme)
 			throws EcritureBaseDonneesException, ConsultationNonAnonymeException {
-		// A faire avant la page article Angular
-		return null;
+
+		// On doit vérifier que la consultation transmise ne contienne pas d'information client, sinon on lève une exception.
+		if (consultationAnonyme.getClient() != null) {
+			throw new ConsultationNonAnonymeException();
+		}
+		
+		Consultation nouvelleConsultation; 
+		
+		try { 
+			nouvelleConsultation = consultationRepository.save(consultationAnonyme);
+		} catch (Exception exception) {
+			// En cas d'erreur à l'écriture on lève une exception.
+			throw new EcritureBaseDonneesException();
+		}
+		
+		return nouvelleConsultation;
 	}
 
-	public Consultation ajoutConsultationClient(Consultation consultationClient)
+	// Enregistre une consultation d'un client identifié.
+	public ConsultationAvecIdClient ajoutConsultationClient(ConsultationAvecIdClient consultationAvecIdClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ClientInconnuException {
-		// A faire avant la page article Angular
-		return null;
+			
+		// On vérifie que l'identifiant client correspond à un utilisateur enregistré.
+		Client client;
+		
+		try {
+			client = clientRepository.findById(consultationAvecIdClient.getIdClient()).orElse(null);
+		} catch (Exception exception) {
+			// En cas d'erreur de lecture on lève une exception.
+			throw new LectureBaseDonneesException();
+		}
+		
+		// Si l'identifiant client n'est pas reconnu, on lève une exception.
+		if (client == null) {
+			throw new ClientInconnuException();
+		}
+		
+		// On ajoute le client à la consultation.
+		consultationAvecIdClient.getConsultation().setClient(client);
+		
+		// On ajoute la consultation au client.
+		ArrayList<Consultation> consultationsClient = (ArrayList<Consultation>) client.getConsultations(); 
+		consultationsClient.add(consultationAvecIdClient.getConsultation());
+		client.setConsultations(consultationsClient);
+		
+		// On enregistre la consultation.
+		Consultation consultationEnregistree;
+		
+		try {
+			consultationEnregistree = consultationRepository.save(consultationAvecIdClient.getConsultation());
+		} catch (Exception exception) {
+			// En cas d'erreur d'écriture on lève une exception.
+			throw new EcritureBaseDonneesException();
+		}
+			
+		// On enregistre les modifications sur le client.
+		Client clientModifie;
+		
+		try {
+			clientModifie = clientRepository.save(client);
+		} catch (Exception exception) {	
+			// En cas d'erreur d'écriture on lève une exception.
+			throw new EcritureBaseDonneesException();
+		}
+		
+		return new ConsultationAvecIdClient(consultationEnregistree, clientModifie.getId());
 	}
 
-	public Consultation ajoutClientAConsultation(Consultation consultationAvecClient)
+	// Ajoute un client à une consultation anonyme
+	public ConsultationAvecIdClient ajoutClientAConsultation(ConsultationAvecIdClient consultationAvecIdClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ConsultationNonAnonymeException,
-			ClientInconnuException {
-		// A faire avant le popup de connexion Angular
-		return null;
+			ClientInconnuException, ConsultationInconnueException {
+
+		// On vérifie que l'identifiant client correspond à un utilisateur enregistré.
+		Client client;
+		
+		try {
+			client = clientRepository.findById(consultationAvecIdClient.getIdClient()).orElse(null);
+		} catch (Exception exception) {
+			// En cas d'erreur de lecture on lève une exception.
+			throw new LectureBaseDonneesException();
+		}
+		
+		// Si l'identifiant client n'est pas reconnu, on lève une exception.
+		if (client == null) {
+			throw new ClientInconnuException();
+		}
+		
+		// On vérifie que la consultation corresponde à une consultation enregistrée.
+		Consultation consultationAncienne;
+		
+		try {
+			consultationAncienne = consultationRepository.findById(consultationAvecIdClient.getConsultation().getId()).orElse(null);
+		} catch (Exception exception) {
+			// En cas d'erreur de lecture on lève une exception.
+			throw new LectureBaseDonneesException();
+		}
+		
+		// Si la consultation est inconnue, on lève une exception.
+		if (consultationAncienne == null) {
+			throw new ConsultationInconnueException();
+		}
+		
+		// On vérifie que cette consultation était anonyme sinon on lève une exception.
+		if (consultationAncienne.getClient() != null) {
+			throw new ConsultationNonAnonymeException();
+		}
+		
+		// On ajoute le client à la consultation.
+		consultationAncienne.setClient(client);
+		
+		// On ajoute la consultation au client.
+		ArrayList<Consultation> consultationsClient = (ArrayList<Consultation>) client.getConsultations(); 
+		consultationsClient.add(consultationAncienne);
+		client.setConsultations(consultationsClient);
+		
+		// On enregistre l'ajout du client à la consultation.
+		Consultation consultationModifiee;
+		
+		try {
+			consultationModifiee = consultationRepository.save(consultationAvecIdClient.getConsultation());
+		} catch (Exception exception) {
+			// En cas d'erreur d'écriture on lève une exception.
+			throw new EcritureBaseDonneesException();
+		}
+		
+		// On enregistre les modifications sur le client.
+		Client clientModifie;
+		
+		try {
+			clientModifie = clientRepository.save(client);
+		} catch (Exception exception) {	
+			// En cas d'erreur d'écriture on lève une exception.
+			throw new EcritureBaseDonneesException();
+		}
+		
+		return new ConsultationAvecIdClient(consultationModifiee, clientModifie.getId());
 	}
 
+	// Retourne la disponibilité des livres imprimés, dont on a fourni la liste
+	// d'identifiants,
+	// sous la forme d'une liste d'entiers.
 	public ArrayList<Integer> consulterDisponibiliteLivresImprimes(List<Long> listeIdLivresImprimes)
 			throws LectureBaseDonneesException, ListeVideException, IdInvalideException {
 		// On prépare la liste de résultats

@@ -50,7 +50,6 @@ public class Commande {
 	@JsonIgnoreProperties( "commande" )
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commande")
 	List<LigneCommande> lignesCommande;
-	@NonNull
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Client client = new Client();
@@ -75,7 +74,7 @@ public class Commande {
 
 	// Constructeur complet mis à part l'ID
 	public Commande(String numero, @NonNull String status, @NonNull LocalDateTime date,
-			List<LigneCommande> lignesCommande, @NonNull Client client, List<Facture> factures) {
+			List<LigneCommande> lignesCommande, Client client, List<Facture> factures) {
 		super();
 		this.numero = numero;
 		this.status = status;
