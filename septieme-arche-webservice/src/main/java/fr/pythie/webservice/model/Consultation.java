@@ -36,7 +36,6 @@ public class Consultation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
-	@NonNull
 	LocalDateTime dateEnregistrement = LocalDateTime.now();
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
