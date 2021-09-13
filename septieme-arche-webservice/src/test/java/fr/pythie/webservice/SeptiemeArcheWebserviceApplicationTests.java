@@ -87,7 +87,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation du header.
 		HttpHeaders headers = new HttpHeaders();
 
-		// Prépartion de l'objet à envoyer
+		// Préparation de l'objet à envoyer
 		List<Long> listeIdLivresImprimes = new ArrayList<Long>();
 		listeIdLivresImprimes.add((long) 5);
 		listeIdLivresImprimes.add((long) 7);
@@ -114,7 +114,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation du header.
 		HttpHeaders headers = new HttpHeaders();
 
-		// Prépartion de l'objet à envoyer
+		// Préparation de l'objet à envoyer
 		List<Long> listeIdLivresNumeriques = new ArrayList<Long>();
 		listeIdLivresNumeriques.add((long) 2);
 		listeIdLivresNumeriques.add((long) 3);
@@ -141,7 +141,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation du header.
 		HttpHeaders headers = new HttpHeaders();
 
-		// Prépartion de l'objet à envoyer
+		// Préparation de l'objet à envoyer
 		String auteurOuTitre = "Bollywood";
 
 		// Préparation du corps de la requête.
@@ -166,7 +166,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation du header.
 		HttpHeaders headers = new HttpHeaders();
 
-		// Prépartion de l'objet à envoyer
+		// Préparation de l'objet à envoyer
 		String auteurOuTitre = "Cette requête est tellement longue qu'il est impossible qu'un livre ou auteur corresponde";
 
 		// Préparation du corps de la requête.
@@ -191,7 +191,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation du header.
 		HttpHeaders headers = new HttpHeaders();
 
-		// Prépartion de l'objet à envoyer
+		// Préparation de l'objet à envoyer
 		Article articleConsulte = articleRepository.getById((long) 3);
 		Consultation consultationAnonyme = new Consultation(LocalDateTime.now(), null, articleConsulte);
 
@@ -217,7 +217,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation du header.
 		HttpHeaders headers = new HttpHeaders();
 
-		// Prépartion de l'objet à envoyer
+		// Préparation de l'objet à envoyer
 		Article articleConsulte = articleRepository.getById((long) 5);
 		Consultation consultation = new Consultation(LocalDateTime.now(), null, articleConsulte);
 		ConsultationAvecIdClient consultationClient = new ConsultationAvecIdClient(consultation, (long) 3);
@@ -244,7 +244,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation du header.
 		HttpHeaders headers = new HttpHeaders();
 
-		// Prépartion de l'objet à envoyer
+		// Préparation de l'objet à envoyer
 		Consultation consultation = consultationRepository.getById((long) 12);
 		ConsultationAvecIdClient consultationAvecClient = new ConsultationAvecIdClient(consultation, (long) 4);
 		
@@ -270,7 +270,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation du header.
 		HttpHeaders headers = new HttpHeaders();
 
-		// Prépartion de l'objet à envoyer
+		// Préparation de l'objet à envoyer
 		List<Long> listeIdLivresImprimes = new ArrayList<Long>();
 		listeIdLivresImprimes.add((long) 8);
 		listeIdLivresImprimes.add((long) 5);
@@ -298,7 +298,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation du header.
 		HttpHeaders headers = new HttpHeaders();
 
-		// Prépartion de l'objet à envoyer
+		// Préparation de l'objet à envoyer
 		Adresse adresseLivraison = new Adresse("12", "Rue de Nanterre", "75019", "Paris", "France", "");
 		Adresse adresseFacturation = new Adresse("12", "Rue de Nanterre", "75019", "Paris", "France", "");
 		Client nouveauClient = new Client("Mme", "Kolos", "Anna", "akolos@orange.fr", "LukeBesson", null, null, null, adresseFacturation, adresseLivraison, null, null);
@@ -325,7 +325,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation du header.
 		HttpHeaders headers = new HttpHeaders();
 
-		// Prépartion de l'objet à envoyer
+		// Préparation de l'objet à envoyer
 		DemandeAuthentification demandeAuthentification = new DemandeAuthentification("mathile@lamour.com", "LeCinemaCestLaVie");
 
 		// Préparation du corps de la requête.
@@ -350,7 +350,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation du header.
 		HttpHeaders headers = new HttpHeaders();
 
-		// Prépartion de l'objet à envoyer
+		// Préparation de l'objet à envoyer
 		DemandeAuthentification demandeAuthentification = new DemandeAuthentification("mathile@lamour.com", "NImporteQuoi");
 
 		// Préparation du corps de la requête.
@@ -375,12 +375,11 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation du header.
 		HttpHeaders headers = new HttpHeaders();
 
-		// Prépartion de l'objet à envoyer
+		// Préparation de l'objet à envoyer
 		ArrayList<Consultation> consultations = new ArrayList<Consultation>();
 		ArrayList<Commande> commandes = new ArrayList<Commande>();
 		Adresse adresseFacturation = adresseRepository.findById((long) 8).orElse(null);
 		Adresse adresseLivraison = adresseRepository.findById((long) 7).orElse(null);
-		
 		
 		Client clientModifie = new Client(4, "Mme", "Renard", "Marguerite", "marguerite.renard@protonmail.com", "ViveLe7eArt", "4354-1961-9711-0489", "01/21", "178", adresseFacturation, adresseLivraison, consultations, commandes);
 
@@ -451,7 +450,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation du header.
 		HttpHeaders headers = new HttpHeaders();
 
-		// Prépartion de l'objet à envoyer
+		// Préparation de l'objet à envoyer
 		InformationsPaiement informationsPaiement = new InformationsPaiement("7510-4167-6722-0236", "03/22", "570", (long) 3);
 
 		// Préparation du corps de la requête.

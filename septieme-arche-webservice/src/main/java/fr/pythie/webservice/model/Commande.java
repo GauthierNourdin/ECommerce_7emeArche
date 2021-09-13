@@ -45,7 +45,6 @@ public class Commande {
 	String numero;
 	@NonNull
 	String status;
-	@NonNull
 	LocalDateTime date = LocalDateTime.now();
 	@JsonIgnoreProperties( "commande" )
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commande")
@@ -73,7 +72,7 @@ public class Commande {
 	}
 
 	// Constructeur complet mis à part l'ID
-	public Commande(String numero, @NonNull String status, @NonNull LocalDateTime date,
+	public Commande(String numero, @NonNull String status, LocalDateTime date,
 			List<LigneCommande> lignesCommande, Client client, List<Facture> factures) {
 		super();
 		this.numero = numero;

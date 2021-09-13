@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +27,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString(of = { "id", "date" }) 
+@ToString(of = { "id", "dateEnregistrement" }) 
 @EqualsAndHashCode
 @Entity
 public class Consultation {
@@ -38,7 +37,7 @@ public class Consultation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
 	@NonNull
-	LocalDateTime date = LocalDateTime.now();
+	LocalDateTime dateEnregistrement = LocalDateTime.now();
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Client client;
@@ -48,9 +47,9 @@ public class Consultation {
 	Article article;
 
 	// Constructeur complet mis à part l'ID
-	public Consultation(@NonNull LocalDateTime date, Client client, @NonNull Article article) {
+	public Consultation(@NonNull LocalDateTime dateEnregistrement, Client client, @NonNull Article article) {
 		super();
-		this.date = date;
+		this.dateEnregistrement = dateEnregistrement;
 		this.client = client;
 		this.article = article;
 	}
