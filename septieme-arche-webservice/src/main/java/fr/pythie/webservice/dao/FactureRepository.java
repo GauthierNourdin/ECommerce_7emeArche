@@ -4,6 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.pythie.webservice.model.Facture;
 
+/**
+ * 
+ * @author Gauthier Nourdin.
+ *
+ */
 public interface FactureRepository extends JpaRepository<Facture, Long>{
 
 }

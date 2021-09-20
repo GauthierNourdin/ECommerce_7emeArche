@@ -17,21 +17,25 @@ import fr.pythie.webservice.exception.LectureBaseDonneesException;
 import fr.pythie.webservice.interfaces.service.userinterface.ClientService;
 import fr.pythie.webservice.model.Client;
 
+/**
+ * Classe définissant toutes les requêtes possibles, ainsi que les réponses
+ * appropriées, concernant les clients, venant de l'interface utilisateur web.
+ * Distribue les requêtes aux classes services implémentant l'interface dédiée
+ * via Spring.
+ */
 @RestController
 @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 @RequestMapping("/userinterface/client")
 public class ClientController {
-	/**
-	 * Classe définissant toutes les requêtes possibles, ainsi que les réponses
-	 * appropriées, concernant les clients, venant de l'interface utilisateur web.
-	 * Distribue les requêtes aux classes services implémentant l'interface dédiée
-	 * via Spring.
-	 */
 
 	@Autowired
 	ClientService clientService;
 
-	// Enregistre un nouveau compte client
+	/**
+	 *  Enregistre un nouveau compte client
+	 * @param nouveauClient
+	 * @return
+	 */
 	@PostMapping("/creationCompteClient")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Client creationCompteClient(@RequestBody Client nouveauClient) {
@@ -62,7 +66,11 @@ public class ClientController {
 		return clientEnregistre;
 	}
 
-	// Authentifie un client et retourne ses informations
+	/**
+	 *  Authentifie un client et retourne ses informations
+	 * @param demandeAuthentification
+	 * @return
+	 */
 	@PostMapping("/authentificationClient")
 	@ResponseStatus(HttpStatus.OK)
 	public Client authentificationClient(@RequestBody DemandeAuthentification demandeAuthentification) {
@@ -89,7 +97,11 @@ public class ClientController {
 		return clientAuthentifie;
 	}
 
-	// Modifie les informations d'un compte client
+	/**
+	 * Modifie les informations d'un compte client
+	 * @param clientAModifier
+	 * @return
+	 */
 	@PostMapping("/modificationCompteClient")
 	@ResponseStatus(HttpStatus.OK)
 	public Client modificationCompteClient(@RequestBody Client clientAModifier) {

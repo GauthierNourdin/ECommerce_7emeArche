@@ -13,12 +13,15 @@ import fr.pythie.webservice.model.Livre;
 import fr.pythie.webservice.model.LivreImprime;
 import fr.pythie.webservice.model.LivreNumerique;
 
+/**
+ * Classe permettant de déserialiser un livre présent dans un JSON.
+ */
 public class LivreDeserializer extends JsonDeserializer<Livre> {
-	@Override
-	/*
-	 * Classe spéciale permettant de déserialiser un livre présent dans un JSON.
-	 */
 
+	/**
+	 * 
+	 */
+	@Override
 	public Livre deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
 		ObjectMapper mapper = (ObjectMapper) jp.getCodec();
 		ObjectNode root = (ObjectNode) mapper.readTree(jp);

@@ -6,12 +6,13 @@ import fr.pythie.webservice.model.Article;
 import fr.pythie.webservice.model.LivreImprime;
 import fr.pythie.webservice.model.LivreNumerique;
 
+/**
+ * Classe spécialisée pour calculer le prix TTC à partir de règles fixes pour
+ * les taxes
+ */
 @Component
 public class CalculTtc {
-	/**
-	 * Classe spécialisée pour calculer le prix TTC à partir de règles fixes pour
-	 * les taxes
-	 */
+
 
 	// Taux à appliquer
 	private static final double taxeLivreNumerique = 0.055;

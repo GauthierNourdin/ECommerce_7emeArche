@@ -37,6 +37,11 @@ import fr.pythie.webservice.model.Livre;
 import fr.pythie.webservice.model.LivreImprime;
 import fr.pythie.webservice.model.LivreNumerique;
 
+/**
+ * 
+ * @author Gauthier Nourdin.
+ *
+ */
 @SpringBootApplication
 public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 
@@ -73,13 +78,20 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 	@Autowired 
 	private LivreNumeriqueRepository livreNumeriqueRepository;
 	
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(SeptiemeArcheWebserviceApplication.class, args);
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		/** 
+		/* 
 		 * On ne doit injecter les données initiales que si les tables sont vides.
 		 */
 		

@@ -13,14 +13,19 @@ import fr.pythie.webservice.model.Article;
 import fr.pythie.webservice.model.LivreImprime;
 import fr.pythie.webservice.model.LivreNumerique;
 
+/**
+ * Classe permettant de déserialiser un article présent dans un JSON.
+ * C'est indispensable pour lire correctement les consultations et les commandes.
+ */
 public class ArticleDeserializer extends JsonDeserializer<Article> {
-	@Override
-	/*
-	 * Classe spéciale permettant de déserialiser un article présent dans un JSON.
-	 * C'est indispensable pour lire correctement les consultations et les commandes.
-	 */
 
+	/**
+	 * 	
+	 * 
+	 */ 
+	@Override
 	public Article deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+
 		ObjectMapper mapper = (ObjectMapper) jp.getCodec();
 		ObjectNode root = (ObjectNode) mapper.readTree(jp);
 		Class<? extends Article> articleClass = null;
@@ -32,4 +37,5 @@ public class ArticleDeserializer extends JsonDeserializer<Article> {
 		}
 		return mapper.convertValue(root, articleClass);
 	}
+	
 }

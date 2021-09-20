@@ -8,31 +8,67 @@ import javax.persistence.Entity;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.Setter;
-import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
-@NoArgsConstructor
-@Setter
-@Getter
-@ToString(of = { "espace", "unite" }) 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @JsonDeserialize(as = LivreNumerique.class)
 public class LivreNumerique extends Livre {
-	/** Classe pour les livres numériques */
+	/** 
+	 * Classe pour les livres numériques.
+	 */
 
 	double espace;
 	String unite;
 
-	// Constructeur complet mis à part l'ID
+	/**
+	 * 
+	 */
+	public LivreNumerique() {
+		super();
+	}
+	
+	/**
+	 *  Constructeur avec tous les paramètres obligatoires
+	 * @param titre
+	 * @param resume
+	 * @param isbn13
+	 * @param titreLivre
+	 * @param format
+	 * @param lienImage
+	 * @param dateDepotLegal
+	 * @param genres
+	 * @param auteurs
+	 * @param editeur
+	 */
+	public LivreNumerique(@NonNull String titre, @NonNull String resume, @NonNull String isbn13,
+			@NonNull String titreLivre, @NonNull String format, @NonNull String lienImage,
+			@NonNull LocalDate dateDepotLegal, @NonNull List<Genre> genres, @NonNull List<Auteur> auteurs,
+			@NonNull Editeur editeur) {
+		super(titre, resume, isbn13, titreLivre, format, lienImage, dateDepotLegal, genres, auteurs, editeur);
+	}
+	
+	/**
+	 *  Constructeur complet mis à part l'ID
+	 * @param titre
+	 * @param resume
+	 * @param prixHT
+	 * @param prixTTC
+	 * @param consultations
+	 * @param lignesCommande
+	 * @param isbn13
+	 * @param titreLivre
+	 * @param format
+	 * @param lienImage
+	 * @param nombrePages
+	 * @param dateDepotLegal
+	 * @param genres
+	 * @param auteurs
+	 * @param editeur
+	 * @param espace
+	 * @param unite
+	 */
 	public LivreNumerique(@NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
 			List<Consultation> consultations, List<LigneCommande> lignesCommande, @NonNull String isbn13,
 			@NonNull String titreLivre, @NonNull String format, @NonNull String lienImage, int nombrePages,
@@ -44,7 +80,27 @@ public class LivreNumerique extends Livre {
 		this.unite = unite;
 	}
 
-	// Constructeur complet
+	/**
+	 *  Constructeur complet
+	 * @param id
+	 * @param titre
+	 * @param resume
+	 * @param prixHT
+	 * @param prixTTC
+	 * @param consultations
+	 * @param lignesCommande
+	 * @param isbn13
+	 * @param titreLivre
+	 * @param format
+	 * @param lienImage
+	 * @param nombrePages
+	 * @param dateDepotLegal
+	 * @param genres
+	 * @param auteurs
+	 * @param editeur
+	 * @param espace
+	 * @param unite
+	 */
 	public LivreNumerique(long id, @NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
 			List<Consultation> consultations, List<LigneCommande> lignesCommande, @NonNull String isbn13,
 			@NonNull String titreLivre, @NonNull String format, @NonNull String lienImage, int nombrePages,
@@ -55,13 +111,81 @@ public class LivreNumerique extends Livre {
 		this.espace = espace;
 		this.unite = unite;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public double getEspace() {
+		return espace;
+	}
 
-	// Constructeur avec tous les paramètres obligatoires
-	public LivreNumerique(@NonNull String titre, @NonNull String resume, @NonNull String isbn13,
-			@NonNull String titreLivre, @NonNull String format, @NonNull String lienImage,
-			@NonNull LocalDate dateDepotLegal, @NonNull List<Genre> genres, @NonNull List<Auteur> auteurs,
-			@NonNull Editeur editeur) {
-		super(titre, resume, isbn13, titreLivre, format, lienImage, dateDepotLegal, genres, auteurs, editeur);
+	/**
+	 * 
+	 * @param espace
+	 */
+	public void setEspace(double espace) {
+		this.espace = espace;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public String getUnite() {
+		return unite;
+	}
+
+	/**
+	 * 
+	 * @param unite
+	 */
+	public void setUnite(String unite) {
+		this.unite = unite;
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		long temp;
+		temp = Double.doubleToLongBits(espace);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((unite == null) ? 0 : unite.hashCode());
+		return result;
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LivreNumerique other = (LivreNumerique) obj;
+		if (Double.doubleToLongBits(espace) != Double.doubleToLongBits(other.espace))
+			return false;
+		if (unite == null) {
+			if (other.unite != null)
+				return false;
+		} else if (!unite.equals(other.unite))
+			return false;
+		return true;
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public String toString() {
+		return "LivreNumerique [espace=" + espace + ", unite=" + unite + ", toString()=" + super.toString() + "]";
 	}
 
 }

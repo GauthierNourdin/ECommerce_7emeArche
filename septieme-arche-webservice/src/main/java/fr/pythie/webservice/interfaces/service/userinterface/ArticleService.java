@@ -16,31 +16,92 @@ import fr.pythie.webservice.model.Consultation;
 import fr.pythie.webservice.model.LivreImprime;
 import fr.pythie.webservice.model.LivreNumerique;
 
+/**
+ * Interface pour définir les méthodes attendues pour le controller REST
+ * traîtant les requêtes concernant les articles, provenant de l'interface
+ * utilisateur web.
+ */
 public interface ArticleService {
-	/**
-	 * Interface pour définir les méthodes attendues pour le controller REST
-	 * traîtant les requêtes concernant les articles, provenant de l'interface
-	 * utilisateur web.
-	 */
 
+	/**
+	 * 
+	 * @return
+	 * @throws LectureBaseDonneesException
+	 */
 	public List<IdentifiantEtTypeArticle> obtenirListeArticleParDefaut() throws LectureBaseDonneesException;
 
+	/**
+	 * 
+	 * @param listeIdLivresImprimes
+	 * @return
+	 * @throws LectureBaseDonneesException
+	 * @throws ListeVideException
+	 * @throws IdInvalideException
+	 */
 	public ArrayList<LivreImprime> obtenirListeLivresImprimes(List<Long> listeIdLivresImprimes) throws LectureBaseDonneesException, ListeVideException, IdInvalideException;
 
+	/**
+	 * 
+	 * @param listeIdLivresNumeriques
+	 * @return
+	 * @throws LectureBaseDonneesException
+	 * @throws ListeVideException
+	 * @throws IdInvalideException
+	 */
 	public ArrayList<LivreNumerique> obtenirListeLivresNumeriques(List<Long> listeIdLivresNumeriques) throws LectureBaseDonneesException, ListeVideException, IdInvalideException;
 	
+	/**
+	 * 
+	 * @param auteurOuTitre
+	 * @return
+	 * @throws LectureBaseDonneesException
+	 * @throws ListeVideException
+	 */
 	public List<IdentifiantEtTypeArticle> obtenirListeLivresParAuteurOuTitre(String auteurOuTitre) throws LectureBaseDonneesException, ListeVideException;
 
+	/**
+	 * 
+	 * @param consultationAnonyme
+	 * @return
+	 * @throws EcritureBaseDonneesException
+	 * @throws ConsultationNonAnonymeException
+	 */
 	public Consultation ajoutConsultationAnonyme(Consultation consultationAnonyme)
 			throws EcritureBaseDonneesException, ConsultationNonAnonymeException;
 
+	/**
+	 * 
+	 * @param consultationClient
+	 * @return
+	 * @throws LectureBaseDonneesException
+	 * @throws EcritureBaseDonneesException
+	 * @throws ClientInconnuException
+	 */
 	public ConsultationAvecIdClient ajoutConsultationClient(ConsultationAvecIdClient consultationClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ClientInconnuException;
 
+	/**
+	 * 
+	 * @param consultationAvecClient
+	 * @return
+	 * @throws LectureBaseDonneesException
+	 * @throws EcritureBaseDonneesException
+	 * @throws ConsultationNonAnonymeException
+	 * @throws ClientInconnuException
+	 * @throws ConsultationInconnueException
+	 */
 	public ConsultationAvecIdClient ajoutClientAConsultation(ConsultationAvecIdClient consultationAvecClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ConsultationNonAnonymeException,
 			ClientInconnuException, ConsultationInconnueException;
 
+	/**
+	 * 
+	 * @param listeIdLivresImprimes
+	 * @return
+	 * @throws LectureBaseDonneesException
+	 * @throws ListeVideException
+	 * @throws IdInvalideException
+	 */
 	public ArrayList<Integer> consulterDisponibiliteLivresImprimes(List<Long> listeIdLivresImprimes)
 			throws LectureBaseDonneesException, ListeVideException, IdInvalideException;
 

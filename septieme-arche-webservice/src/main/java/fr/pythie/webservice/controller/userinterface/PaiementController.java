@@ -15,21 +15,25 @@ import fr.pythie.webservice.exception.EcritureBaseDonneesException;
 import fr.pythie.webservice.exception.LectureBaseDonneesException;
 import fr.pythie.webservice.interfaces.service.userinterface.PaiementService;
 
+/**
+ * Classe définissant toutes les requêtes possibles, ainsi que les réponses
+ * appropriées, concernant les paiements, venant de l'interface utilisateur web.
+ * Distribue les requêtes aux classes services implémentant l'interface dédiée
+ * via Spring.
+ */
 @RestController
 @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 @RequestMapping("/userinterface/paiement")
 public class PaiementController {
-	/**
-	 * Classe définissant toutes les requêtes possibles, ainsi que les réponses
-	 * appropriées, concernant les paiements, venant de l'interface utilisateur web.
-	 * Distribue les requêtes aux classes services implémentant l'interface dédiée
-	 * via Spring.
-	 */
 
 	@Autowired
 	PaiementService paiementService;
 	
-	// Enregistre les informations bancaires d'un client
+	/**
+	 * Enregistre les informations bancaires d'un client
+	 * @param informationsPaiement
+	 * @return
+	 */
 	@PostMapping("/enregistrementInformationsBancaires")
 	@ResponseStatus(HttpStatus.OK)
 	public InformationsPaiement enregistrementInformationsBancaires(@RequestBody InformationsPaiement informationsPaiement) {

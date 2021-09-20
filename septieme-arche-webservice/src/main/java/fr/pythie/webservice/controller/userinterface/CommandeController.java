@@ -16,21 +16,25 @@ import fr.pythie.webservice.exception.LectureBaseDonneesException;
 import fr.pythie.webservice.exception.StockInsuffisantException;
 import fr.pythie.webservice.interfaces.service.userinterface.CommandeService;
 
+/**
+ * Classe définissant toutes les requêtes possibles, ainsi que les réponses
+ * appropriées, concernant les commandes, venant de l'interface utilisateur web.
+ * Distribue les requêtes aux classes services implémentant l'interface dédiée
+ * via Spring.
+ */
 @RestController
 @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 @RequestMapping("/userinterface/commande")
 public class CommandeController {
-	/**
-	 * Classe définissant toutes les requêtes possibles, ainsi que les réponses
-	 * appropriées, concernant les commandes, venant de l'interface utilisateur web.
-	 * Distribue les requêtes aux classes services implémentant l'interface dédiée
-	 * via Spring.
-	 */
 	
 	@Autowired
 	CommandeService commandeService;
 	
-	// Vérifie et enregistre la commande
+	/**
+	 *  Vérifie et enregistre la commande
+	 * @param commandeAEnregistrer
+	 * @return
+	 */
 	@PostMapping("/enregistrementCommande")
 	@ResponseStatus(HttpStatus.CREATED)
 	public CommandeAvecIdClient enregistrementCommande(@RequestBody CommandeAvecIdClient commandeAEnregistrer) {

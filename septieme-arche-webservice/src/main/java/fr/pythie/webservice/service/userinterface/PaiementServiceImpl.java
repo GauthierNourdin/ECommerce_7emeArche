@@ -11,18 +11,20 @@ import fr.pythie.webservice.exception.LectureBaseDonneesException;
 import fr.pythie.webservice.interfaces.service.userinterface.PaiementService;
 import fr.pythie.webservice.model.Client;
 
+/**
+ * Classe service implémentant les méthodes demandées par PaiementService afin
+ * de traîter les demandes concernant les paiements faites par l'interface
+ * utilisateur
+ */
 @Component
 public class PaiementServiceImpl implements PaiementService {
-	/**
-	 * Classe service implémentant les méthodes demandées par PaiementService afin
-	 * de traîter les demandes concernant les paiements faites par l'interface
-	 * utilisateur
-	 */
 
 	@Autowired
 	private ClientRepository clientRepository;
 
-	// Enregistre les informations de la carte bancaire du client.
+	/**
+	 * Enregistre les informations de la carte bancaire du client.
+	 */
 	@Override
 	public InformationsPaiement informationsBancaires(InformationsPaiement informationsPaiement)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ClientInconnuException {

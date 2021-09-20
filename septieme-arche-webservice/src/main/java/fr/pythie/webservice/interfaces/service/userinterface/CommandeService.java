@@ -6,13 +6,22 @@ import fr.pythie.webservice.exception.EcritureBaseDonneesException;
 import fr.pythie.webservice.exception.LectureBaseDonneesException;
 import fr.pythie.webservice.exception.StockInsuffisantException;
 
+/**
+ * Interface pour définir les méthodes attendues pour le controller REST
+ * traîtant les requêtes concernant les commandes, provenant de l'interface
+ * utilisateur web.
+ */
 public interface CommandeService {
-	/**
-	 * Interface pour définir les méthodes attendues pour le controller REST
-	 * traîtant les requêtes concernant les commandes, provenant de l'interface
-	 * utilisateur web.
-	 */
 
+	/**
+	 * 
+	 * @param commande
+	 * @return
+	 * @throws LectureBaseDonneesException
+	 * @throws EcritureBaseDonneesException
+	 * @throws StockInsuffisantException
+	 * @throws ClientInconnuException
+	 */
 	CommandeAvecIdClient enregistrementCommande(CommandeAvecIdClient commande) throws LectureBaseDonneesException,
 			EcritureBaseDonneesException, StockInsuffisantException, ClientInconnuException;
 

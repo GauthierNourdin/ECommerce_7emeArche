@@ -29,7 +29,9 @@ import lombok.experimental.FieldDefaults;
 @EqualsAndHashCode
 @Entity
 public class LigneCommande {
-	/** Classe pour les lignes de commande */
+	/** 
+	 * Classe pour les lignes de commande.
+	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

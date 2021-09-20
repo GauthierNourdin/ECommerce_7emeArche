@@ -3,6 +3,11 @@ package fr.pythie.webservice.configuration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * 
+ * @author Gauthier Nourdin.
+ *
+ */
 @Configuration
 @ComponentScan("fr.pythie.webservice.controller.pilotage, fr.pythie.webservice.controller.userinterface,"
 		+ "fr.pythie.webservice.dao, fr.pythie.webservice.interfaces.service.pilotage,"

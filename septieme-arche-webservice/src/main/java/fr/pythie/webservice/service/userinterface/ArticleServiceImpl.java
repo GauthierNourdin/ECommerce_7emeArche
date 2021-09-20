@@ -34,13 +34,14 @@ import fr.pythie.webservice.model.Livre;
 import fr.pythie.webservice.model.LivreImprime;
 import fr.pythie.webservice.model.LivreNumerique;
 
+/**
+ * Classe service implémentant les méthodes demandées par ArticleService afin de
+ * traîter les demandes concernant les articles faites par l'interface
+ * utilisateur
+ */
 @Component
 public class ArticleServiceImpl implements ArticleService {
-	/**
-	 * Classe service implémentant les méthodes demandées par ArticleService afin de
-	 * traîter les demandes concernant les articles faites par l'interface
-	 * utilisateur
-	 */
+
 
 	@Autowired
 	private ClientRepository clientRepository;
@@ -60,8 +61,10 @@ public class ArticleServiceImpl implements ArticleService {
 	@Autowired
 	private LivreNumeriqueRepository livreNumeriqueRepository;
 
-	// Retourne la liste par défaut des articles sous la forme d'une liste de paires
-	// identifiant / type d'article
+	/** 
+	 * Retourne la liste par défaut des articles sous la forme d'une liste de paires
+	 * identifiant / type d'article
+	 */
 	public List<IdentifiantEtTypeArticle> obtenirListeArticleParDefaut() throws LectureBaseDonneesException {
 		// On détermine d'abord la date servant à trier les lignes de commandes (quatre
 		// semaines)
@@ -166,7 +169,9 @@ public class ArticleServiceImpl implements ArticleService {
 		return listeArticleParDefaut;
 	}
 
-	// Retourne une liste de livres imprimés à partir d'une liste d'identifiants;
+	/** 
+	 * Retourne une liste de livres imprimés à partir d'une liste d'identifiants;
+	 */
 	public ArrayList<LivreImprime> obtenirListeLivresImprimes(List<Long> listeIdLivresImprimes)
 			throws LectureBaseDonneesException, ListeVideException, IdInvalideException {
 
@@ -202,7 +207,9 @@ public class ArticleServiceImpl implements ArticleService {
 
 	}
 
-	// Retourne une liste de livres numériques à partir d'une liste d'identifiants.
+	/**
+	 * Retourne une liste de livres numériques à partir d'une liste d'identifiants.
+	 */
 	public ArrayList<LivreNumerique> obtenirListeLivresNumeriques(List<Long> listeIdLivresNumeriques)
 			throws LectureBaseDonneesException, ListeVideException, IdInvalideException {
 
@@ -237,10 +244,12 @@ public class ArticleServiceImpl implements ArticleService {
 		return livresNumeriques;
 	}
 
-	// Retourne une liste de livres, sous la forme d'une liste de paires
-	// identifiant / type d'article, dont l'un des auteurs ou le titre correspond à
-	// la chaîne
-	// de caractère en entrée.
+	/**
+	 * Retourne une liste de livres, sous la forme d'une liste de paires
+	 * identifiant / type d'article, dont l'un des auteurs ou le titre correspond à
+	 * la chaîne
+	 * de caractère en entrée.
+	 */
 	public List<IdentifiantEtTypeArticle> obtenirListeLivresParAuteurOuTitre(String auteurOuTitre)
 			throws LectureBaseDonneesException, ListeVideException {
 		// On prépare la liste de résultats
@@ -337,7 +346,9 @@ public class ArticleServiceImpl implements ArticleService {
 		return livresCorrespondants;
 	}
 
-	// Enregistre une consultation anonyme
+	/**
+	 * Enregistre une consultation anonyme
+	 */
 	public Consultation ajoutConsultationAnonyme(Consultation consultationAnonyme)
 			throws EcritureBaseDonneesException, ConsultationNonAnonymeException {
 
@@ -358,7 +369,9 @@ public class ArticleServiceImpl implements ArticleService {
 		return nouvelleConsultation;
 	}
 
-	// Enregistre une consultation d'un client identifié.
+	/** 
+	 * Enregistre une consultation d'un client identifié.
+	 */
 	public ConsultationAvecIdClient ajoutConsultationClient(ConsultationAvecIdClient consultationAvecIdClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ClientInconnuException {
 			
@@ -408,7 +421,9 @@ public class ArticleServiceImpl implements ArticleService {
 		return new ConsultationAvecIdClient(consultationEnregistree, clientModifie.getId());
 	}
 
-	// Ajoute un client à une consultation anonyme
+	/**
+	 * Ajoute un client à une consultation anonyme
+	 */
 	public ConsultationAvecIdClient ajoutClientAConsultation(ConsultationAvecIdClient consultationAvecIdClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ConsultationNonAnonymeException,
 			ClientInconnuException, ConsultationInconnueException {
@@ -479,9 +494,11 @@ public class ArticleServiceImpl implements ArticleService {
 		return new ConsultationAvecIdClient(consultationModifiee, clientModifie.getId());
 	}
 
-	// Retourne la disponibilité des livres imprimés, dont on a fourni la liste
-	// d'identifiants,
-	// sous la forme d'une liste d'entiers.
+	/**
+	 * Retourne la disponibilité des livres imprimés, dont on a fourni la liste
+	 * d'identifiants,
+	 * sous la forme d'une liste d'entiers.
+	 */
 	public ArrayList<Integer> consulterDisponibiliteLivresImprimes(List<Long> listeIdLivresImprimes)
 			throws LectureBaseDonneesException, ListeVideException, IdInvalideException {
 		// On prépare la liste de résultats

@@ -27,21 +27,21 @@ import fr.pythie.webservice.model.Consultation;
 import fr.pythie.webservice.model.LivreImprime;
 import fr.pythie.webservice.model.LivreNumerique;
 
+/**
+ * Classe définissant toutes les requêtes possibles, ainsi que les réponses
+ * appropriées, concernant les articles, venant de l'interface utilisateur web.
+ * Distribue les requêtes aux classes services implémentant l'interface dédiée
+ * via Spring.
+ */
 @RestController
 @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 @RequestMapping("/userinterface/article")
 public class ArticleController {
-	/**
-	 * Classe définissant toutes les requêtes possibles, ainsi que les réponses
-	 * appropriées, concernant les articles, venant de l'interface utilisateur web.
-	 * Distribue les requêtes aux classes services implémentant l'interface dédiée
-	 * via Spring.
-	 */
 
 	@Autowired
 	ArticleService articleService;
 
-	/*
+	/**
 	 * Retourne la liste par défaut d'articles sous la forme d'une liste d'id + type
 	 * (IdentifiantEtTypeArticle).
 	 */
@@ -67,7 +67,7 @@ public class ArticleController {
 		return listeParDefautArticles;
 	}
 
-	/*
+	/**
 	 * Retourne les informations d'une liste de livres imprimés dont on reçoit les
 	 * identifiants.
 	 */
@@ -100,7 +100,7 @@ public class ArticleController {
 
 	}
 
-	/*
+	/**
 	 * Retourne les informations d'une liste de livres numériques dont on reçoit les
 	 * identifiants.
 	 */
@@ -133,7 +133,7 @@ public class ArticleController {
 
 	}
 	
-	/*
+	/**
 	 * Retourne une liste de livres selon l'auteur ou le titre (l'un ou l'autre
 	 * inclut la chaîne de caractère) sous la forme d'une liste d'id + type
 	 * (IdentifiantEtTypeArticle).
@@ -164,7 +164,11 @@ public class ArticleController {
 		return listeLivresParAuteurOuTitre;
 	}
 
-	// Enregistre une consultation anonyme
+	/**
+	 * Enregistre une consultation anonyme
+	 * @param consultationAnonyme
+	 * @return
+	 */
 	@PostMapping("/ajoutConsultationAnonyme")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Consultation ajoutConsultationAnonyme(@RequestBody Consultation consultationAnonyme) {
@@ -191,7 +195,11 @@ public class ArticleController {
 		return consultation;
 	}
 
-	// Enregistre une consultation d'un client identifié
+	/**
+	 * Enregistre une consultation d'un client identifié
+	 * @param consultationClient
+	 * @return
+	 */
 	@PostMapping("/ajoutConsultationClient")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ConsultationAvecIdClient ajoutConsultationClient(@RequestBody ConsultationAvecIdClient consultationClient) {
@@ -223,7 +231,11 @@ public class ArticleController {
 		return consultation;
 	}
 
-	// Met à jour une consultation anonyme en y ajoutant un client
+	/** 
+	 * Met à jour une consultation anonyme en y ajoutant un client
+	 * @param consultationAvecClient
+	 * @return
+	 */
 	@PostMapping("/ajoutClientAConsultation")
 	@ResponseStatus(HttpStatus.OK)
 	public ConsultationAvecIdClient ajoutClientAConsultation(@RequestBody ConsultationAvecIdClient consultationAvecClient) {
@@ -265,9 +277,11 @@ public class ArticleController {
 		return consultation;
 	}
 
-	// Donne la disponibilité d'une liste de livres imprimés. Reçoit en input une
-	// liste d'ID et donne en sortie une liste de taille équivalente de nombres
-	// entiers
+	/**
+	 * Donne la disponibilité d'une liste de livres imprimés. Reçoit en input une
+	 * liste d'ID et donne en sortie une liste de taille équivalente de nombres
+	 * entiers
+	 */
 	@PostMapping("/consulterDisponibiliteLivresImprimes")
 	@ResponseStatus(HttpStatus.OK)
 	public List<Integer> consulterDisponibiliteLivresImprimes(@RequestBody List<Long> listeIdLivresImprimes) {

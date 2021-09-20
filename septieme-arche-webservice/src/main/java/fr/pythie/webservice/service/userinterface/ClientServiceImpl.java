@@ -14,13 +14,13 @@ import fr.pythie.webservice.interfaces.service.userinterface.ClientService;
 import fr.pythie.webservice.model.Adresse;
 import fr.pythie.webservice.model.Client;
 
+/**
+ * Classe service implémentant les méthodes demandées par ClientService afin de
+ * traîter les demandes concernant les clients faites par l'interface
+ * utilisateur
+ */
 @Component
 public class ClientServiceImpl implements ClientService {
-	/**
-	 * Classe service implémentant les méthodes demandées par ClientService afin de
-	 * traîter les demandes concernant les clients faites par l'interface
-	 * utilisateur
-	 */
 
 	@Autowired
 	AdresseRepository adresseRepository;
@@ -28,7 +28,9 @@ public class ClientServiceImpl implements ClientService {
 	@Autowired
 	ClientRepository clientRepository;
 
-	// Permet d'enregistrer un nouveau client
+	/**
+	 * Permet d'enregistrer un nouveau client
+	 */
 	public Client creationCompteClient(Client nouveauClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, IdentifiantsUtilisesException {
 
@@ -96,7 +98,9 @@ public class ClientServiceImpl implements ClientService {
 		return clientEnregistre;
 	}
 
-	// Permet d'authentifier un client à partir de son email et de son mot de passe
+	/** 
+	 * Permet d'authentifier un client à partir de son email et de son mot de passe
+	 */
 	public Client authentificationClient(DemandeAuthentification demandeAuthentification)
 			throws LectureBaseDonneesException, ClientInconnuException {
 
@@ -121,7 +125,9 @@ public class ClientServiceImpl implements ClientService {
 
 	}
 
-	// Modifie les informations personnelles d'un client.
+	/** 
+	 * Modifie les informations personnelles d'un client.
+	 */
 	public Client modificationCompteClient(Client clientAModifier) throws LectureBaseDonneesException,
 			EcritureBaseDonneesException, ClientInconnuException, IdentifiantsUtilisesException {
 

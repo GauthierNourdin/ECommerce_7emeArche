@@ -24,13 +24,13 @@ import fr.pythie.webservice.model.Commande;
 import fr.pythie.webservice.model.LigneCommande;
 import fr.pythie.webservice.model.LivreImprime;
 
+/**
+ * Classe service implémentant les méthodes demandées par CommandeService afin
+ * de traîter les demandes concernant les commandes faites par l'interface
+ * utilisateur
+ */
 @Component
 public class CommandeServiceImpl implements CommandeService {
-	/**
-	 * Classe service implémentant les méthodes demandées par CommandeService afin
-	 * de traîter les demandes concernant les commandes faites par l'interface
-	 * utilisateur
-	 */
 
 	@Autowired
 	CommandeRepository commandeRepository;
@@ -47,7 +47,9 @@ public class CommandeServiceImpl implements CommandeService {
 	@Autowired
 	ArticleRepository articleRepository;
 
-	// Enregistre une commande et modifie les stocks des articles correspondants s'ils ont une information de stock.
+	/**
+	 * Enregistre une commande et modifie les stocks des articles correspondants s'ils ont une information de stock.
+	 */
 	public CommandeAvecIdClient enregistrementCommande(CommandeAvecIdClient commandeAvecIdClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, StockInsuffisantException,
 			ClientInconnuException {
@@ -208,6 +210,12 @@ public class CommandeServiceImpl implements CommandeService {
 		return new CommandeAvecIdClient(nouvelleCommande, clientModifie.getId());
 	}
 
+	/**
+	 *
+	 * @param lignesCommande
+	 * @throws LectureBaseDonneesException
+	 * @throws EcritureBaseDonneesException
+	 */
 	public void annulationDiminutionStocks (List<LigneCommande> lignesCommande) throws LectureBaseDonneesException, EcritureBaseDonneesException {
 		// Fonction spéciale qui permet d'annuler la diminution des stocks en cas de problème
 		
