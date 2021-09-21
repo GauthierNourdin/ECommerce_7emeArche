@@ -57,24 +57,27 @@ public abstract class Livre extends Article {
 	Editeur editeur = new Editeur();
 
 	/**
-	 * Ce constructeur permet de construire un livre vide.
+	 * Constructeur permettant de construire un livre vide.
 	 */
 	public Livre() {
 		super();
 	}
 	
 	/**
-	 * Ce constructeur permet de construire un livre avec toutes les informations obligatoires.
-	 * @param titre
-	 * @param resume
-	 * @param isbn13
-	 * @param titreLivre
-	 * @param format
-	 * @param lienImage
-	 * @param dateDepotLegal
-	 * @param genres
-	 * @param auteurs
-	 * @param editeur
+	 * Constructeur permettant de construire un livre avec toutes les informations obligatoires.
+	 * 
+	 * @param titre Le titre général.
+	 * @param resume Le résumé.
+	 * @param isbn13 Le numéro isbn13.
+	 * @param titreLivre Le titre du livre.
+	 * @param format Le format.
+	 * @param lienImage Le lien vers l'image du livre.
+	 * @param dateDepotLegal La date du dépot légal du livre.
+	 * @param genres La liste des genres du livre.
+	 * @param auteurs La liste des auteurs du livre.
+	 * @param editeur L'éditeur du livre.
+	 * 
+	 * @since 1.0
 	 */
 	public Livre(@NonNull String titre, @NonNull String resume, @NonNull String isbn13, @NonNull String titreLivre,
 			@NonNull String format, @NonNull String lienImage, @NonNull LocalDate dateDepotLegal,
@@ -91,23 +94,25 @@ public abstract class Livre extends Article {
 	}
 	
 	/**
-	 * Ce constructeur permet de construire un livre complet mais sans identifiant.
+	 * Constructeur permettant permet de construire un livre complet mais sans identifiant.
 	 * 
-	 * @param titre
-	 * @param resume
-	 * @param prixHT
-	 * @param prixTTC
-	 * @param consultations
-	 * @param lignesCommande
-	 * @param isbn13
-	 * @param titreLivre
-	 * @param format
-	 * @param lienImage
-	 * @param nombrePages
-	 * @param dateDepotLegal
-	 * @param genres
-	 * @param auteurs
-	 * @param editeur
+	 * @param titre Le titre général.
+	 * @param resume Le résumé.
+	 * @param prixHT Le prix unitaire hors taxe multiplié par 100.
+	 * @param prixTTC Le prix unitaire toutes taxes comprises multiplié par 100.
+	 * @param consultations La liste de consultations de la page de cet article.
+	 * @param lignesCommande La liste des lignes de commande associée à cet article.
+	 * @param isbn13 Le numéro isbn13.
+	 * @param titreLivre Le titre du livre.
+	 * @param format Le format.
+	 * @param lienImage Le lien vers l'image du livre.
+	 * @param nombrePages Le nombre de pages.
+	 * @param dateDepotLegal La date du dépot légal du livre.
+	 * @param genres La liste des genres du livre.
+	 * @param auteurs La liste des auteurs du livre.
+	 * @param editeur L'éditeur du livre.
+	 * 
+	 * @since 1.0
 	 */
 	public Livre(@NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
 			List<Consultation> consultations, List<LigneCommande> lignesCommande, @NonNull String isbn13,
@@ -127,24 +132,26 @@ public abstract class Livre extends Article {
 	}
 
 	/**
-	 * Ce constructeur permet de construire un livre complet.
+	 * Constructeur permettant permet de construire un livre complet.
 	 * 
-	 * @param id
-	 * @param titre
-	 * @param resume
-	 * @param prixHT
-	 * @param prixTTC
-	 * @param consultations
-	 * @param lignesCommande
-	 * @param isbn13
-	 * @param titreLivre
-	 * @param format
-	 * @param lienImage
-	 * @param nombrePages
-	 * @param dateDepotLegal
-	 * @param genres
-	 * @param auteurs
-	 * @param editeur
+	 * @param id L'identifiant.
+	 * @param titre Le titre général.
+	 * @param resume Le résumé.
+	 * @param prixHT Le prix unitaire hors taxe multiplié par 100.
+	 * @param prixTTC Le prix unitaire toutes taxes comprises multiplié par 100.
+	 * @param consultations La liste de consultations de la page de cet article.
+	 * @param lignesCommande La liste des lignes de commande associée à cet article.
+	 * @param isbn13 Le numéro isbn13.
+	 * @param titreLivre Le titre du livre.
+	 * @param format Le format.
+	 * @param lienImage Le lien vers l'image du livre.
+	 * @param nombrePages Le nombre de pages.
+	 * @param dateDepotLegal La date du dépot légal du livre.
+	 * @param genres La liste des genres du livre.
+	 * @param auteurs La liste des auteurs du livre.
+	 * @param editeur L'éditeur du livre.
+	 * 
+	 * @since 1.0
 	 */
 	public Livre(long id, @NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
 			List<Consultation> consultations, List<LigneCommande> lignesCommande, @NonNull String isbn13,
@@ -164,151 +171,245 @@ public abstract class Livre extends Article {
 	}
 
 	/**
+	 * Retourne le numéro isbn13.
 	 * 
-	 * @return
+	 * @return isbn13 Le numéro isbn13.
+	 * 
+	 * @see Livre#setIsbn13(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getIsbn13() {
 		return isbn13;
 	}
 
 	/**
+	 * Modifie le numéro isbn13.
 	 * 
-	 * @param isbn13
+	 * @param isbn13 Le nouveau numéro isbn13.
+	 * 
+	 * @see Livre#getIsbn13()
+	 * 
+	 * @since 1.0
 	 */
 	public void setIsbn13(String isbn13) {
 		this.isbn13 = isbn13;
 	}
 
 	/**
+	 * Retourne le titre du livre.
 	 * 
-	 * @return
+	 * @return titreLivre Le titre du livre.
+	 * 
+	 * @see Livre#setTitreLivre(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getTitreLivre() {
 		return titreLivre;
 	}
 
 	/**
+	 * Modifie le titre du livre.
 	 * 
-	 * @param titreLivre
+	 * @param titreLivre Le nouveau titre du livre.
+	 * 
+	 * @see Livre#getTitreLivre()
+	 * 
+	 * @since 1.0
 	 */
 	public void setTitreLivre(String titreLivre) {
 		this.titreLivre = titreLivre;
 	}
 
 	/**
+	 * Retourne le format.
 	 * 
-	 * @return
+	 * @return format Le format.
+	 * 
+	 * @see Livre#setFormat(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getFormat() {
 		return format;
 	}
 
 	/**
+	 * Modifie le format.
 	 * 
-	 * @param format
+	 * @param format Le nouveau format.
+	 * 
+	 * @see Livre#getFormat() 
+	 *  
+	 * @since 1.0
 	 */
 	public void setFormat(String format) {
 		this.format = format;
 	}
 
 	/**
+	 * Retourne le lien vers l'image du livre.
 	 * 
-	 * @return
+	 * @return lienImage Le lien vers l'image du livre.
+	 * 
+	 * @see Livre#setLienImage(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getLienImage() {
 		return lienImage;
 	}
 
 	/**
+	 * Modifie le lien vers l'image du livre.
 	 * 
-	 * @param lienImage
+	 * @param lienImage Le nouveau lien vers l'image du livre.
+	 * 
+	 * @see Livre#getLienImage()
+	 * 
+	 * @since 1.0
 	 */
 	public void setLienImage(String lienImage) {
 		this.lienImage = lienImage;
 	}
 
 	/**
+	 * Retourne le nombre de pages.
 	 * 
-	 * @return
+	 * @return nombrePages Le nombre de pages.
+	 * 
+	 * @see Livre#setNombrePages(int)
+	 * 
+	 * @since 1.0
 	 */
 	public int getNombrePages() {
 		return nombrePages;
 	}
 
 	/**
+	 * Modifie le nombre de pages.
 	 * 
-	 * @param nombrePages
+	 * @param nombrePages Le nouveau nombre de pages.
+	 * 
+	 * @see Livre#getNombrePages()
+	 * 
+	 * @since 1.0
 	 */
 	public void setNombrePages(int nombrePages) {
 		this.nombrePages = nombrePages;
 	}
 
 	/**
+	 * Retourne la date du dépot légal du livre.
 	 * 
-	 * @return
+	 * @return dateDepotLegal La date du dépot légal du livre.
+	 * 
+	 * @see Livre#setDateDepotLegal(LocalDate)
+	 * 
+	 * @since 1.0
 	 */
 	public LocalDate getDateDepotLegal() {
 		return dateDepotLegal;
 	}
 
 	/**
+	 * Modifie la date du dépot légal du livre.
 	 * 
-	 * @param dateDepotLegal
+	 * @param dateDepotLegal La nouvelle date du dépot légal du livre.
+	 * 
+	 * @see Livre#getDateDepotLegal()
+	 * 
+	 * @since 1.0
 	 */
 	public void setDateDepotLegal(LocalDate dateDepotLegal) {
 		this.dateDepotLegal = dateDepotLegal;
 	}
 
 	/**
+	 * Retourne la liste des genres du livre.
 	 * 
-	 * @return
+	 * @return genres La liste des genres du livre.
+	 * 
+	 * @see Livre#setGenres(List)
+	 * 
+	 * @since 1.0
 	 */
 	public List<Genre> getGenres() {
 		return genres;
 	}
 
 	/**
+	 * Modifie la liste des genres du livre.
 	 * 
-	 * @param genres
+	 * @param genres La nouvelle liste des genres du livre.
+	 * 
+	 * @see Livre#getGenres()
+	 * 
+	 * @since 1.0
 	 */
 	public void setGenres(List<Genre> genres) {
 		this.genres = genres;
 	}
 
 	/**
+	 * Retourne la liste des auteurs du livre.
 	 * 
-	 * @return
+	 * @return auteurs La liste des auteurs du livre.
+	 * 
+	 * @see Livre#setAuteurs(List)
+	 * 
+	 * @since 1.0
 	 */
 	public List<Auteur> getAuteurs() {
 		return auteurs;
 	}
 
 	/**
+	 * Modifie la liste des auteurs du livre.
 	 * 
-	 * @param auteurs
+	 * @param auteurs La nouvelle liste des auteurs du livre.
+	 * 
+	 * @see Livre#getAuteurs()
+	 * 
+	 * @since 1.0
 	 */
 	public void setAuteurs(List<Auteur> auteurs) {
 		this.auteurs = auteurs;
 	}
 
 	/**
+	 * Retourne l'éditeur du livre.
 	 * 
-	 * @return
+	 * @return editeur L'éditeur du livre.
+	 * 
+	 * @see Livre#setEditeur(Editeur)
+	 * 
+	 * @since 1.0
 	 */
 	public Editeur getEditeur() {
 		return editeur;
 	}
 
 	/**
+	 * Modifie l'éditeur du livre.
 	 * 
-	 * @param editeur
+	 * @param editeur Le nouvel éditeur du livre.
+	 * 
+	 * @see Livre#getEditeur()
+	 * 
+	 * @since 1.0
 	 */
 	public void setEditeur(Editeur editeur) {
 		this.editeur = editeur;
 	}
 
 	/**
+	 * Calcule le code hash.
 	 * 
+	 * @return result Le code hash.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public int hashCode() {
@@ -327,7 +428,7 @@ public abstract class Livre extends Article {
 	}
 
 	/**
-	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -384,13 +485,15 @@ public abstract class Livre extends Article {
 	}
 
 	/**
+	 * Produit la chaîne de caractères réprésentant le livre.
+	 * On n'y intègre pas l'éditeur auteurs, les genres et les auteurs associés.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public String toString() {
 		return "Livre [isbn13=" + isbn13 + ", titreLivre=" + titreLivre + ", format=" + format + ", lienImage="
-				+ lienImage + ", nombrePages=" + nombrePages + ", dateDepotLegal=" + dateDepotLegal + ", genres="
-				+ genres + ", auteurs=" + auteurs + ", editeur=" + editeur + ", toString()=" + super.toString() + "]";
+				+ lienImage + ", nombrePages=" + nombrePages + ", dateDepotLegal=" + dateDepotLegal + ", toString()=" + super.toString() + "]";
 	}
 	
 	

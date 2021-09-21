@@ -48,19 +48,24 @@ public class Client extends Personne {
 	List<Commande> commandes;
 
 	/**
+	 * Constructeur permettant de construire un client vide.
 	 * 
+	 * @since 1.0
 	 */
 	public Client() {
 		super();
 	}
 	
 	/**
-	 * Constructeur avec tous les paramètres obligatoires
-	 * @param nom
-	 * @param email
-	 * @param motDePasse
-	 * @param adresseFacturation
-	 * @param adresseLivraison
+	 * Constructeur permettant de construire un client avec les informations obligatoires.
+	 * 
+	 * @param nom Le nom.
+	 * @param email L'adresse email.
+	 * @param motDePasse Le mot de passe.
+	 * @param adresseFacturation L'adresse de facturation.
+	 * @param adresseLivraison L'adresse de livraison.
+	 * 
+	 * @since 1.0
 	 */
 	public Client(@NonNull String nom, @NonNull String email, @NonNull String motDePasse,
 			@NonNull Adresse adresseFacturation, @NonNull Adresse adresseLivraison) {
@@ -72,19 +77,22 @@ public class Client extends Personne {
 	}
 	
 	/**
-	 * Constructeur complet mis à part l'ID
-	 * @param civilite
-	 * @param nom
-	 * @param prenom
-	 * @param email
-	 * @param motDePasse
-	 * @param numeroCarte
-	 * @param dateDeValidite
-	 * @param cvc
-	 * @param adresseFacturation
-	 * @param adresseLivraison
-	 * @param consultations
-	 * @param commandes
+	 * Constructeur permettant de construire un client complet mais sans identifiant.
+	 * 
+	 * @param civilite La civilité.
+	 * @param nom Le nom.
+	 * @param prenom Le ou les prénoms.
+	 * @param email L'adresse email.
+	 * @param motDePasse Le mot de passe.
+	 * @param numeroCarte Le numéro de la carte bancaire du client.
+	 * @param dateDeValidite La date de validité de la carte bancaire du client.
+	 * @param cvc Le cvc de la carte bancaire du client.
+	 * @param adresseFacturation L'adresse de facturation.
+	 * @param adresseLivraison L'adresse de livraison.
+	 * @param consultations La liste des consultations faites par ce client.
+	 * @param commandes La liste des commandes passées par ce client.
+	 * 
+	 * @since 1.0
 	 */
 	public Client(String civilite, @NonNull String nom, String prenom, @NonNull String email,
 			@NonNull String motDePasse, String numeroCarte, String dateDeValidite, String cvc,
@@ -103,20 +111,23 @@ public class Client extends Personne {
 	}
 
 	/**
-	 * Constructeur complet
-	 * @param id
-	 * @param civilite
-	 * @param nom
-	 * @param prenom
-	 * @param email
-	 * @param motDePasse
-	 * @param numeroCarte
-	 * @param dateDeValidite
-	 * @param cvc
-	 * @param adresseFacturation
-	 * @param adresseLivraison
-	 * @param consultations
-	 * @param commandes
+	 * Constructeur permettant de construire un client complet.
+	 * 
+	 * @param id L'identifiant.
+	 * @param civilite La civilité.
+	 * @param nom Le nom.
+	 * @param prenom Le ou les prénoms.
+	 * @param email L'adresse email.
+	 * @param motDePasse Le mot de passe.
+	 * @param numeroCarte Le numéro de la carte bancaire du client.
+	 * @param dateDeValidite La date de validité de la carte bancaire du client.
+	 * @param cvc Le cvc de la carte bancaire du client.
+	 * @param adresseFacturation L'adresse de facturation.
+	 * @param adresseLivraison L'adresse de livraison.
+	 * @param consultations La liste des consultations faites par ce client.
+	 * @param commandes La liste des commandes passées par ce client.
+	 * 
+	 * @since 1.0
 	 */
 	public Client(long id, String civilite, @NonNull String nom, String prenom, @NonNull String email,
 			@NonNull String motDePasse, String numeroCarte, String dateDeValidite, String cvc,
@@ -135,151 +146,245 @@ public class Client extends Personne {
 	}
 
 	/**
+	 * Retourne l'adresse email.
 	 * 
-	 * @return
+	 * @return email L'adresse email.
+	 * 
+	 * @see Client#setEmail(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getEmail() {
 		return email;
 	}
 
 	/**
+	 * Modifie l'adresse email.
 	 * 
-	 * @param email
+	 * @param email La nouvelle adresse email.
+	 * 
+	 * @see Client#getEmail()
+	 * 
+	 * @since 1.0
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
 	/**
+	 * Retourne le mot de passe.
 	 * 
-	 * @return
+	 * @return motDePasse Le mot de passe.
+	 * 
+	 * @see Client#setMotDePasse(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getMotDePasse() {
 		return motDePasse;
 	}
 
 	/**
+	 * Modifie le mot de passe.
 	 * 
-	 * @param motDePasse
+	 * @param motDePasse Le nouveau mot de passe.
+	 * 
+	 * @see Client#getMotDePasse()
+	 * 
+	 * @since 1.0
 	 */
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
 
 	/**
+	 * Retourne le numéro de la carte bancaire du client.
 	 * 
-	 * @return
+	 * @return numeroCarte Le numéro de la carte bancaire du client.
+	 * 
+	 * @see Client#setNumeroCarte(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getNumeroCarte() {
 		return numeroCarte;
 	}
 
 	/**
+	 * Modifie le numéro de la carte bancaire du client.
 	 * 
-	 * @param numeroCarte
+	 * @param numeroCarte Le nouveau numéro de la carte bancaire du client.
+	 * 
+	 * @see Client#getNumeroCarte()
+	 * 
+	 * @since 1.0
 	 */
 	public void setNumeroCarte(String numeroCarte) {
 		this.numeroCarte = numeroCarte;
 	}
 
 	/**
+	 * Retourne la date de validité de la carte bancaire du client.
 	 * 
-	 * @return
+	 * @return dateDeValidite La date de validité de la carte bancaire du client.
+	 * 
+	 * @see Client#setDateDeValidite(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getDateDeValidite() {
 		return dateDeValidite;
 	}
 
 	/**
+	 * Modifie la date de validité de la carte bancaire du client.
 	 * 
-	 * @param dateDeValidite
+	 * @param dateDeValidite La nouvelle date de validité de la carte bancaire du client.
+	 * 
+	 * @see Client#getDateDeValidite()
+	 * 
+	 * @since 1.0	 
 	 */
 	public void setDateDeValidite(String dateDeValidite) {
 		this.dateDeValidite = dateDeValidite;
 	}
 
 	/**
+	 * Retourne le cvc de la carte bancaire du client.
 	 * 
-	 * @return
+	 * @return cvc Le cvc de la carte bancaire du client.
+	 * 
+	 * @see Client#setCvc(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getCvc() {
 		return cvc;
 	}
 
 	/**
+	 * Modifie le cvc de la carte bancaire du client.
 	 * 
-	 * @param cvc
+	 * @param cvc Le nouveau cvc de la carte bancaire du client.
+	 * 
+	 * @see Client#getCvc()
+	 * 
+	 * @since 1.0
 	 */
 	public void setCvc(String cvc) {
 		this.cvc = cvc;
 	}
 
 	/**
+	 * Retourne l'adresse de facturation.
 	 * 
-	 * @return
+	 * @return adresseFacturation L'adresse de facturation.
+	 * 
+	 * @see Client#setAdresseFacturation(Adresse)
+	 * 
+	 * @since 1.0
 	 */
 	public Adresse getAdresseFacturation() {
 		return adresseFacturation;
 	}
 
 	/**
+	 * Modifie l'adresse de facturation.
 	 * 
-	 * @param adresseFacturation
+	 * @param adresseFacturation La nouvelle adresse de facturation.
+	 * 
+	 * @see Client#getAdresseFacturation()
+	 * 
+	 * @since 1.0
 	 */
 	public void setAdresseFacturation(Adresse adresseFacturation) {
 		this.adresseFacturation = adresseFacturation;
 	}
 
 	/**
+	 * Retourne l'adresse de livraison.
 	 * 
-	 * @return
+	 * @return adresseLivraison L'adresse de livraison.
+	 * 
+	 * @see Client#setAdresseLivraison(Adresse)
+	 * 
+	 * @since 1.0
 	 */
 	public Adresse getAdresseLivraison() {
 		return adresseLivraison;
 	}
 
 	/**
+	 * Modifie l'adresse de livraison.
 	 * 
-	 * @param adresseLivraison
+	 * @param adresseLivraison La nouvelle adresse de livraison.
+	 * 
+	 * @see Client#getAdresseLivraison()
+	 * 
+	 * @since 1.0
 	 */
 	public void setAdresseLivraison(Adresse adresseLivraison) {
 		this.adresseLivraison = adresseLivraison;
 	}
 
 	/**
+	 * Retourne la liste des consultations faites par ce client.
 	 * 
-	 * @return
+	 * @return consultations La liste des consultations faites par ce client.
+	 * 
+	 * @see Client#setConsultations(List)
+	 * 
+	 * @since 1.0
 	 */
 	public List<Consultation> getConsultations() {
 		return consultations;
 	}
 
 	/**
+	 * Modifie la liste des consultations faites par ce client.
 	 * 
-	 * @param consultations
+	 * @param consultations La nouvelle liste des consultations faites par ce client.
+	 * 
+	 * @see Client#getConsultations()
+	 * 
+	 * @since 1.0
 	 */
 	public void setConsultations(List<Consultation> consultations) {
 		this.consultations = consultations;
 	}
 
 	/**
+	 * Retourne la liste des commandes passées par ce client.
 	 * 
-	 * @return
+	 * @return commandes La liste des commandes passées par ce client.
+	 * 
+	 * @see Client#setCommandes(List)
+	 * 
+	 * @since 1.0
 	 */
 	public List<Commande> getCommandes() {
 		return commandes;
 	}
 
 	/**
+	 * Modifie la liste des commandes passées par ce client.
 	 * 
-	 * @param commandes
+	 * @param commandes La nouvelle liste des commandes passées par ce client.
+	 * 
+	 * @see Client#getCommandes()
+	 * 
+	 * @since 1.0
 	 */
 	public void setCommandes(List<Commande> commandes) {
 		this.commandes = commandes;
 	}
 
 	/**
+	 * Calcule le code hash.
 	 * 
+	 * @return result Le code hash.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public int hashCode() {
@@ -298,7 +403,13 @@ public class Client extends Personne {
 	}
 
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à ce client.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -358,14 +469,15 @@ public class Client extends Personne {
 	}
 
 	/**
+	 * Produit la chaîne de caractères réprésentant le client.
+	 * On n'y intègre pas les adresses, les consultations et les commandes associées.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public String toString() {
 		return "Client [email=" + email + ", motDePasse=" + motDePasse + ", numeroCarte=" + numeroCarte
-				+ ", dateDeValidite=" + dateDeValidite + ", cvc=" + cvc + ", adresseFacturation=" + adresseFacturation
-				+ ", adresseLivraison=" + adresseLivraison + ", consultations=" + consultations + ", commandes="
-				+ commandes + ", toString()=" + super.toString() + "]";
+				+ ", dateDeValidite=" + dateDeValidite + ", cvc=" + cvc + ", toString()=" + super.toString() + "]";
 	}
 	
 }

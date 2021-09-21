@@ -30,27 +30,34 @@ public class Auteur extends Personne {
 	List<Livre> livres;
 
 	/**
+	 * Constructeur permettant de construire un auteur vide.
 	 * 
+	 * @since 1.0
 	 */
 	public Auteur() {
 		super();
 	}
 	
 	/**
+	 * Constructeur permettant de construire un auteur avec les informations obligatoires.
 	 * 
-	 * @param nom
+	 * @param nom Le nom de famille.
+	 * 
+	 * @since 1.0
 	 */
-	// Constructeur avec tous les paramètres obligatoires
 	public Auteur(@NonNull String nom) {
 		super(nom);
 	}
 	
 	/**
-	 * Constructeur complet mis à part l'ID
-	 * @param civilite
-	 * @param nom
-	 * @param prenom
-	 * @param livres
+	 * Constructeur permettant de construire un auteur complet mais sans identifiant.
+	 * 
+	 * @param civilite La civilité.
+	 * @param nom Le nom de famille.
+	 * @param prenom Le ou les prénoms.
+	 * @param livres La liste des livres écrits par cet auteur.
+	 * 
+	 * @since 1.0
 	 */
 	public Auteur(String civilite, @NonNull String nom, String prenom, List<Livre> livres) {
 		super(civilite, nom, prenom);
@@ -58,12 +65,15 @@ public class Auteur extends Personne {
 	}
 
 	/**
+	 * Constructeur permettant de construire un auteur complet.
 	 * 
-	 * @param id
-	 * @param civilite
-	 * @param nom
-	 * @param prenom
-	 * @param livres
+	 * @param id L'identifiant.
+	 * @param civilite La civilité.
+	 * @param nom Le nom de famille.
+	 * @param prenom Le ou les prénoms.
+	 * @param livres La liste des livres écrits par cet auteur.
+	 * 
+	 * @since 1.0
 	 */
 	// Constructeur complet
 	public Auteur(long id, String civilite, @NonNull String nom, String prenom, List<Livre> livres) {
@@ -72,23 +82,37 @@ public class Auteur extends Personne {
 	}
 
 	/**
+	 * Retourne la liste des livres écrits par cet auteur.
 	 * 
-	 * @return
+	 * @return livres La liste des livres écrits par cet auteur.
+	 * 
+	 * @see Auteur#setLivres(List)
+	 * 
+	 * @since 1.0
 	 */
 	public List<Livre> getLivres() {
 		return livres;
 	}
 
 	/**
+	 * Modifie la liste des livres écrits par cet auteur.
 	 * 
-	 * @param livres
+	 * @param livres La nouvelle liste des livres écrits par cet auteur.
+	 * 
+	 * @see Auteur#getLivres()
+	 * 
+	 * @since 1.0
 	 */
 	public void setLivres(List<Livre> livres) {
 		this.livres = livres;
 	}
 
 	/**
+	 * Calcule le code hash.
 	 * 
+	 * @return result Le code hash.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public int hashCode() {
@@ -99,7 +123,13 @@ public class Auteur extends Personne {
 	}
 
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à cet auteur.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -119,11 +149,14 @@ public class Auteur extends Personne {
 	}
 
 	/**
+	 * Produit la chaîne de caractères réprésentant l'auteur.
+	 * On n'y intègre pas les livres écrits associés.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public String toString() {
-		return "Auteur [livres=" + livres + ", toString()=" + super.toString() + "]";
+		return "Auteur [toString()=" + super.toString() + "]";
 	}
 	
 }

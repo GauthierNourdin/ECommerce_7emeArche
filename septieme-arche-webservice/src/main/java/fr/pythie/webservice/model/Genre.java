@@ -38,15 +38,20 @@ public class Genre {
 	List<Livre> livres;
 
 	/**
-	 * 	
+	 * Constructeur permettant de construire un genre vide.
+	 * 
+	 * @since 1.0
 	 */
 	public Genre() {
 		super();
 	}
 
 	/**
+	 * Constructeur permettant de construire un genre avec les informations obligatoires.
 	 * 
-	 * @param nom
+	 * @param nom Le nom.
+	 * 
+	 * @since 1.0
 	 */
 	public Genre(@NonNull String nom) {
 		super();
@@ -54,9 +59,12 @@ public class Genre {
 	}
 	
 	/**
-	 *  Constructeur complet mis à part l'ID
-	 * @param nom
-	 * @param livres
+	 * Constructeur permettant de construire un genre complet mais sans identifiant.
+	 * 
+	 * @param nom Le nom.
+	 * @param livres La liste des livres possédant ce genre.
+	 * 
+	 * @since 1.0
 	 */
 	public Genre(@NonNull String nom, List<Livre> livres) {
 		super();
@@ -65,10 +73,13 @@ public class Genre {
 	}
 	
 	/**
+	 * Constructeur permettant de construire un genre complet.
 	 * 
-	 * @param id
-	 * @param nom
-	 * @param livres
+	 * @param id L'identifiant.
+	 * @param nom Le nom.
+	 * @param livres La liste des livres possédant ce genre.
+	 * 
+	 * @since 1.0
 	 */
 	public Genre(long id, @NonNull String nom, List<Livre> livres) {
 		super();
@@ -78,55 +89,89 @@ public class Genre {
 	}
 
 	/**
+	 * Retourne l'identifiant.
 	 * 
-	 * @return
+	 * @return id L'identifiant.
+	 * 
+	 * @see Genre#setId(long)
+	 * 
+	 * @since 1.0
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
+	 * Modifie l'identifiant.
 	 * 
-	 * @param id
+	 * @param id Le nouvel identifiant.
+	 * 
+	 * @see Genre#getId()
+	 * 
+	 * @since 1.0
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
+	 * Retourne le nom.
 	 * 
-	 * @return
+	 * @return nom Le nom.
+	 * 
+	 * @see Genre#setNom(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getNom() {
 		return nom;
 	}
 
 	/**
+	 * Modifie le nom.
 	 * 
-	 * @param nom
+	 * @param nom Le nouveau nom.
+	 * 
+	 * @see Genre#getNom()
+	 * 
+	 * @since 1.0
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
 	/**
+	 * Retourne la liste des livres possédant ce genre.
 	 * 
-	 * @return
+	 * @return livres La liste des livres possédant ce genre.
+	 * 
+	 * @see Genre#setLivres(List)
+	 * 
+	 * @since 1.0
 	 */
 	public List<Livre> getLivres() {
 		return livres;
 	}
 
 	/**
+	 * Modifie la liste des livres possédant ce genre.
 	 * 
-	 * @param livres
+	 * @param livres La nouvelle liste des livres possédant ce genre.
+	 * 
+	 * @see Genre#getLivres()
+	 * 
+	 * @since 1.0
 	 */
 	public void setLivres(List<Livre> livres) {
 		this.livres = livres;
 	}
 	
 	/**
+	 * Calcule le code hash.
 	 * 
+	 * @return result Le code hash.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public int hashCode() {
@@ -139,7 +184,13 @@ public class Genre {
 	}
 	
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à ce genre.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -166,7 +217,10 @@ public class Genre {
 	}
 
 	/**
+	 * Produit la chaîne de caractères réprésentant le genre.
+	 * On n'y intègre pas les livres associés.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public String toString() {

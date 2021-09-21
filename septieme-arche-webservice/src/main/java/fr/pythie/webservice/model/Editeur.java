@@ -43,16 +43,21 @@ public class Editeur {
 	List<Livre> livres;
 
 	/**
+	 * Constructeur permettant de construire un éditeur vide.
 	 * 
+	 * @since 1.0
 	 */
 	public Editeur() {
 		super();
 	}
 	
 	/**
+	 * Constructeur permettant de construire un éditeur avec les informations obligatoires.
 	 * 
-	 * @param nom
-	 * @param adresse
+	 * @param nom Le nom.
+	 * @param adresse L'adresse commerciale.
+	 * 
+	 * @since 1.0
 	 */
 	public Editeur(@NonNull String nom, @NonNull Adresse adresse) {
 		super();
@@ -61,10 +66,13 @@ public class Editeur {
 	}
 	
 	/** 
-	 * Constructeur complet mis à part l'ID
-	 * @param nom
-	 * @param adresse
-	 * @param livres
+	 * Constructeur permettant de construire un éditeur complet mais sans identifiant.
+	 * 
+	 * @param nom Le nom.
+	 * @param adresse L'adresse commerciale.
+	 * @param livres La liste des livres publiés par cet éditeur.
+	 * 
+	 * @since 1.0
 	 */
 	public Editeur(@NonNull String nom, @NonNull Adresse adresse, List<Livre> livres) {
 		super();
@@ -74,11 +82,14 @@ public class Editeur {
 	}
 
 	/**
+	 * Constructeur permettant de construire un éditeur complet mais sans identifiant.
 	 * 
-	 * @param id
-	 * @param nom
-	 * @param adresse
-	 * @param livres
+	 * @param id L'identifiant.
+	 * @param nom Le nom.
+	 * @param adresse L'adresse commerciale.
+	 * @param livres La liste des livres publiés par cet éditeur.
+	 * 
+	 * @since 1.0
 	 */
 	public Editeur(long id, @NonNull String nom, @NonNull Adresse adresse, List<Livre> livres) {
 		super();
@@ -89,71 +100,115 @@ public class Editeur {
 	}
 
 	/**
+	 * Retourne l'identifiant.
 	 * 
-	 * @return
+	 * @return id L'identifiant.
+	 * 
+	 * @see Editeur# setId(long)
+	 * 
+	 * @since 1.0
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
+	 * Modifie l'identifiant.
 	 * 
-	 * @param id
+	 * @param id Le nouvel identifiant.
+	 * 
+	 * @see Editeur#getId()
+	 * 
+	 * @since 1.0
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
+	 * Retourne le nom.
 	 * 
-	 * @return
+	 * @return nom Le nom.
+	 * 
+	 * @see Editeur#setNom(String)
+	 *  
+	 * @since 1.0
 	 */
 	public String getNom() {
 		return nom;
 	}
 
 	/**
+	 * Modifie le nom.
 	 * 
-	 * @param nom
+	 * @param nom Le nouveau nom.
+	 * 
+	 * @see Editeur#getNom()
+	 *  
+	 * @since 1.0
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
 	/**
+	 * Retourne l'adresse commerciale.
 	 * 
-	 * @return
+	 * @return adresse L'adresse commerciale.
+	 * 
+	 * @see Editeur#setAdresse(Adresse)
+	 * 
+	 * @since 1.0
 	 */
 	public Adresse getAdresse() {
 		return adresse;
 	}
 
 	/**
+	 * Modifie l'adresse commerciale.
 	 * 
-	 * @param adresse
+	 * @param adresse La nouvelle adresse commerciale.
+	 * 
+	 * @see Editeur#getAdresse()
+	 * 
+	 * @since 1.0
 	 */
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
 
 	/**
+	 * Retourne la liste des livres publiés par cet éditeur.
 	 * 
-	 * @return
+	 * @return livres La liste des livres publiés par cet éditeur.
+	 * 
+	 * @see Editeur#setLivres(List)
+	 * 
+	 * @since 1.0
 	 */
 	public List<Livre> getLivres() {
 		return livres;
 	}
 
 	/**
+	 * Modifie la liste des livres publiés par cet éditeur.
 	 * 
-	 * @param livres
+	 * @param livres La nouvelle liste des livres publiés par cet éditeur.
+	 * 
+	 * @see Editeur#getLivres()
+	 * 
+	 * @since 1.0
 	 */
 	public void setLivres(List<Livre> livres) {
 		this.livres = livres;
 	}
 
 	/**
+	 * Calcule le code hash.
 	 * 
+	 * @return result Le code hash.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public int hashCode() {
@@ -167,7 +222,13 @@ public class Editeur {
 	}
 
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à cet éditeur.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -199,7 +260,10 @@ public class Editeur {
 	}
 
 	/**
+	 * Produit la chaîne de caractères réprésentant l'éditeur.
+	 * On n'y intègre pas l'adresse et les livres associés.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public String toString() {

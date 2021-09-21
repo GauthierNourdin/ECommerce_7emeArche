@@ -37,18 +37,23 @@ public class Adresse {
 	String complement;
 	
 	/**
+	 * Constructeur permettant de construire une adresse vide.
 	 * 
+	 * @since 1.0
 	 */
 	public Adresse() {
 		super();
 	}
 	
 	/**
+	 * Constructeur permettant de construire une adresse avec les informations obligatoires.
 	 * 
-	 * @param numeroRue
-	 * @param nomRue
-	 * @param codePostal
-	 * @param ville
+	 * @param numeroRue Le numéro de rue.
+	 * @param nomRue Le nom de la rue.
+	 * @param codePostal Le code postal.
+	 * @param ville La ville.
+	 * 
+	 * @since 1.0
 	 */
 	public Adresse(@NonNull String numeroRue, @NonNull String nomRue, @NonNull String codePostal,
 			@NonNull String ville) {
@@ -60,13 +65,16 @@ public class Adresse {
 	}
 	
 	/**
+	 * Constructeur permettant de construire une adresse complète mais sans identifiant.
 	 * 
-	 * @param numeroRue
-	 * @param nomRue
-	 * @param codePostal
-	 * @param ville
-	 * @param pays
-	 * @param complement
+	 * @param numeroRue Le numéro de rue.
+	 * @param nomRue Le nom de la rue.
+	 * @param codePostal Le code postal.
+	 * @param ville La ville.
+	 * @param pays Le pays.
+	 * @param complement Le complément d'adresse.
+	 * 
+	 * @since 1.0
 	 */
 	public Adresse(@NonNull String numeroRue, @NonNull String nomRue, @NonNull String codePostal, @NonNull String ville,
 			String pays, String complement) {
@@ -80,14 +88,17 @@ public class Adresse {
 	}
 
 	/**
+	 * Constructeur permettant de construire une adresse complète.
 	 * 
-	 * @param id
-	 * @param numeroRue
-	 * @param nomRue
-	 * @param codePostal
-	 * @param ville
-	 * @param pays
-	 * @param complement
+	 * @param id L'identifiant.
+	 * @param numeroRue Le numéro de rue.
+	 * @param nomRue Le nom de la rue.
+	 * @param codePostal Le code postal.
+	 * @param ville La ville.
+	 * @param pays Le pays.
+	 * @param complement Le complément d'adresse.
+	 * 
+	 * @since 1.0
 	 */
 	public Adresse(long id, @NonNull String numeroRue, @NonNull String nomRue, @NonNull String codePostal,
 			@NonNull String ville, String pays, String complement) {
@@ -102,119 +113,193 @@ public class Adresse {
 	}
 
 	/**
+	 * Retourne l'identifiant.
 	 * 
-	 * @return
+	 * @return id L'identifiant.
+	 * 
+	 * @see Adresse#setId(long)
+	 * 
+	 * @since 1.0
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
+	 * Modifie l'identifiant.
 	 * 
-	 * @param id
+	 * @param id Le nouvel identifiant.
+	 * 
+	 * @see Adresse#getId()
+	 * 
+	 * @since 1.0
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
+	 * Retourne le numéro de rue.
 	 * 
-	 * @return
+	 * @return numeroRue Le numéro de rue.
+	 * 
+	 * @see Adresse#setNumeroRue(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getNumeroRue() {
 		return numeroRue;
 	}
 	
 	/**
+	 * Modifie le numéro de rue.
 	 * 
+	 * @param numeroRue Le nouveau numéro de rue.
 	 * 
+	 * @see Adresse#getNumeroRue()
+	 * 
+	 * @since 1.0
 	 */
 	public void setNumeroRue(String numeroRue) {
 		this.numeroRue = numeroRue;
 	}
 
 	/**
+	 * Retourne le nom de rue.
 	 * 
-	 * @return
+	 * @return nomRue Le nom de rue.
+	 * 
+	 * @see Adresse#setNomRue(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getNomRue() {
 		return nomRue;
 	}
 
 	/**
+	 * Modifie le nom de rue.
 	 * 
-	 * @param nomRue
+	 * @param nomRue Le nouveau nom de rue.
+	 * 
+	 * @see Adresse#getNomRue()
+	 * 
+	 * @since 1.0
 	 */
 	public void setNomRue(String nomRue) {
 		this.nomRue = nomRue;
 	}
 
 	/**
+	 * Retourne le code postal.
 	 * 
-	 * @return
+	 * @return codePostal Le code postal.
+	 * 
+	 * @see Adresse#setCodePostal(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getCodePostal() {
 		return codePostal;
 	}
 
 	/**
+	 * Modifie le code postal.
 	 * 
-	 * @param codePostal
+	 * @param codePostal Le nouveau code postal.
+	 * 
+	 * @see Adresse#getCodePostal()
+	 * 
+	 * @since 1.0
 	 */
 	public void setCodePostal(String codePostal) {
 		this.codePostal = codePostal;
 	}
 
 	/**
+	 * Retourne la ville.
 	 * 
-	 * @return
+	 * @return ville La ville.
+	 * 
+	 * @see Adresse#setVille(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getVille() {
 		return ville;
 	}
 
 	/**
+	 * Modifie la ville.
 	 * 
-	 * @param ville
+	 * @param ville La nouvelle ville.
+	 * 
+	 * @see Adresse#getVille()
+	 * 
+	 * @since 1.0
 	 */
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
 
 	/**
+	 * Retourne le pays.
 	 * 
-	 * @return
+	 * @return pays Le pays.
+	 * 
+	 * @see Adresse#setPays(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getPays() {
 		return pays;
 	}
 
 	/**
+	 * Modifie le pays.
 	 * 
-	 * @param pays
+	 * @param pays Le nouveau pays.
+	 * 
+	 * @see Adresse#getPays()
+	 * 
+	 * @since 1.0
 	 */
 	public void setPays(String pays) {
 		this.pays = pays;
 	}
 
 	/**
+	 * Retourne le complément d'adresse.
 	 * 
-	 * @return
+	 * @return complement Le complément d'adresse.
+	 * 
+	 * @see Adresse#setComplement(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getComplement() {
 		return complement;
 	}
 
 	/**
+	 * Modifie le complément d'adresse.
 	 * 
-	 * @param complement
+	 * @param complement Le nouveau complément d'adresse.
+	 * 
+	 * @see Adresse#getComplement()
+	 * 
+	 * @since 1.0
 	 */
 	public void setComplement(String complement) {
 		this.complement = complement;
 	}
 
 	/**
+	 * Calcule le code hash.
 	 * 
+	 * @return result Le code hash.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public int hashCode() {
@@ -231,7 +316,13 @@ public class Adresse {
 	}
 
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à cette adresse.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -278,7 +369,9 @@ public class Adresse {
 	}
 
 	/**
+	 * Produit la chaîne de caractères réprésentant l'adresse.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public String toString() {

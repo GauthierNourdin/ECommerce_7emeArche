@@ -49,7 +49,7 @@ public abstract class Article {
 	List<LigneCommande> lignesCommande;
 
 	/** 
-	 * Ce constructeur permet de construire un article vide.
+	 * Constructeur permettant de construire un article vide.
 	 * 
 	 * @since 1.0
 	 */
@@ -58,10 +58,10 @@ public abstract class Article {
 	}
 	
 	/**
-	 * Ce constructeur permet de construire un article avec les informations obligatoires.
+	 * Constructeur permettant de construire un article avec les informations obligatoires.
 	 * 
-	 * @param titre Le titre affiché de l'article.
-	 * @param resume Le résumé associé à l'article.
+	 * @param titre Le titre général.
+	 * @param resume Le résumé.
 	 * 
 	 * @since 1.0
 	 */
@@ -72,14 +72,14 @@ public abstract class Article {
 	}
 	
 	/** 
-	 * Ce constructeur permet de construire un article complet mais sans identifiant
+	 * Constructeur permettant de construire un article complet mais sans identifiant.
 	 * 
-	 * @param titre Le titre affiché de l'article.
-	 * @param resume Le résumé associé à l'article.
-	 * @param prixHT Le prix unitaire hors taxe de l'article multiplié par 100.
-	 * @param prixTTC Le prix unitaire toutes taxes comprises de l'article multiplié par 100.
-	 * @param consultations La liste de consultations de la page de cette article.
-	 * @param lignesCommandes La liste des lignes de commande associées à cet article.
+	 * @param titre Le titre général.
+	 * @param resume Le résumé.
+	 * @param prixHT Le prix unitaire hors taxe multiplié par 100.
+	 * @param prixTTC Le prix unitaire toutes taxes comprises multiplié par 100.
+	 * @param consultations La liste de consultations de la page de cet article.
+	 * @param lignesCommandes La liste des lignes de commande associée à cet article.
 	 * 
 	 * @since 1.0
 	 */
@@ -95,15 +95,15 @@ public abstract class Article {
 	}
 	
 	/**
-	 * Ce constructeur permet de construire un article complet
+	 * Constructeur permettant de construire un article complet
 	 * 
-	 * @param id L'identifiant de cet article.
-	 * @param titre Le titre affiché de l'article.
-	 * @param resume Le résumé associé à l'article.
-	 * @param prixHT Le prix unitaire hors taxe de l'article multiplié par 100.
-	 * @param prixTTC Le prix unitaire toutes taxes comprises de l'article multiplié par 100.
-	 * @param consultations La liste de consultations de la page de cette article.
-	 * @param lignesCommande La liste des lignes de commande associées à cet article.
+	 * @param id L'identifiant.
+	 * @param titre Le titre général.
+	 * @param resume Le résumé.
+	 * @param prixHT Le prix unitaire hors taxe multiplié par 100.
+	 * @param prixTTC Le prix unitaire toutes taxes comprises multiplié par 100.
+	 * @param consultations La liste de consultations de la page de cet article.
+	 * @param lignesCommande La liste des lignes de commande associée à cet article.
 	 * 
 	 * @since 1.0
 	 */
@@ -120,9 +120,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Retourne l'identifiant de l'article.
+	 * Retourne l'identifiant.
 	 * 
-	 * @return id L'identifiant de l'article.
+	 * @return id L'identifiant.
 	 * 
 	 * @see Article#setId(long)
 	 * 
@@ -133,9 +133,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Modifie l'identifiant de l'article.
+	 * Modifie l'identifiant.
 	 * 
-	 * @param id Le nouvel identifiant de l'article.
+	 * @param id Le nouvel identifiant.
 	 * 
 	 * @see Article#getId()
 	 * 
@@ -146,9 +146,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Retourne le titre de l'article.
+	 * Retourne le titre général.
 	 * 
-	 * @return titre Le titre de l'article.
+	 * @return titre Le titre général.
 	 * 
 	 * @see Article#setTitre(String)
 	 * 
@@ -159,9 +159,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Modifie le titre de l'article.
+	 * Modifie le titre général.
 	 * 
-	 * @param titre Le nouveau titre de l'article.
+	 * @param titre Le nouveau titre général.
 	 * 
 	 * @see Article#getTitre()
 	 * 
@@ -172,9 +172,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Retourne le résumé de l'article.
+	 * Retourne le résumé.
 	 * 
-	 * @return resume Le résumé de l'article.
+	 * @return resume Le résumé.
 	 * 
 	 * @see Article#setResume(String)
 	 * 
@@ -185,9 +185,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Modifie le résumé de l'article.
+	 * Modifie le résumé.
 	 * 
-	 * @param resume Le nouveau résumé de l'article.
+	 * @param resume Le nouveau résumé.
 	 * 
 	 * @see Article#getResume()
 	 * 
@@ -198,9 +198,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Retourne le prix unitaire hors taxe de l'article.
+	 * Retourne le prix unitaire hors taxe.
 	 * 
-	 * @return prixHT Le prix unitiare hors taxe de l'article.
+	 * @return prixHT Le prix unitiare hors taxe.
 	 * 
 	 * @see Article#setPrixHT(int)
 	 * 
@@ -211,9 +211,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Modifie le prix unitaire hors taxe de l'article.
+	 * Modifie le prix unitaire hors taxe.
 	 * 
-	 * @param prixHT Le nouveau prix unitaire hors taxe de l'article.
+	 * @param prixHT Le nouveau prix unitaire hors taxe.
 	 * 
 	 * @see Article#getPrixHT()
 	 * 
@@ -224,9 +224,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Retourne le prix unitaire toutes taxes comprises de l'article.
+	 * Retourne le prix unitaire toutes taxes comprises.
 	 * 
-	 * @return prixTTC Le prix unitaire toutes taxes comprises de l'article.
+	 * @return prixTTC Le prix unitaire toutes taxes comprises.
 	 * 
 	 * @see Article#setPrixTTC(int)
 	 * 
@@ -237,9 +237,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Modifie le prix unitaire toutes taxes comprises de l'article.
+	 * Modifie le prix unitaire toutes taxes comprises.
 	 * 
-	 * @param prixTTC Le nouveau prix unitaire toutes taxes comprises de l'article.
+	 * @param prixTTC Le nouveau prix unitaire toutes taxes comprises.
 	 * 
 	 * @see Article#getPrixTTC()
 	 * 
@@ -250,11 +250,11 @@ public abstract class Article {
 	}
 
 	/**
-	 * Retourne la liste des consultations associées à cet article.
+	 * Retourne la liste des consultations associée à cet article.
 	 * 
-	 * @return consultations La liste des consultations associées à cet article.
+	 * @return consultations La liste des consultations associée à cet article.
 	 * 
-	 * @see Article#setConsultations(List<Consultation>)
+	 * @see Article#setConsultations(List)
 	 * 
 	 * @since 1.0
 	 */
@@ -263,9 +263,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Modifie la liste des consultations associées à cet article.
+	 * Modifie la liste des consultations associée à cet article.
 	 * 
-	 * @param consultations La nouvelle liste des consultations associées à cet article.
+	 * @param consultations La nouvelle liste des consultations associée à cet article.
 	 * 
 	 * @see Article#getConsultations()
 	 * 
@@ -276,11 +276,11 @@ public abstract class Article {
 	}
 
 	/** 
-	 * Retourne la liste des lignes de commande associées à cet article.
+	 * Retourne la liste des lignes de commande associée à cet article.
 	 * 
-	 * @return lignesCommande La liste des lignes de commande associées à cet article.
+	 * @return lignesCommande La liste des lignes de commande associée à cet article.
 	 * 
-	 * @see Article#setLignesCommande(List<LigneCommande>)
+	 * @see Article#setLignesCommande(List)
 	 * 
 	 * @since 1.0
 	 */
@@ -289,9 +289,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Modifie la liste des lignes de commande associées à cet article.
+	 * Modifie la liste des lignes de commande associée à cet article.
 	 * 
-	 * @param lignesCommande La nouvelle liste des lignes de commande associées à cet article.
+	 * @param lignesCommande La nouvelle liste des lignes de commande associée à cet article.
 	 * 
 	 * @see Article#getLignesCommande()
 	 * 
@@ -302,9 +302,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Cette fonction définit les conditions dans lesquelles un autre objet est égal à cet article.
+	 * Définit les conditions dans lesquelles un autre objet est égal à cet article.
 	 *
-	 * @param obj L'objet auquel on veut comparer celui-ci.
+	 * @param obj L'objet auquel on veut comparer.
 	 *
 	 * @return true Si les deux objets sont identiques, false sinon.
 	 *
@@ -349,9 +349,9 @@ public abstract class Article {
 	}
 
 	/**
-	 * Cette fonction permet de calculer le code hash de cet objet.
+	 * Calcule le code hash.
 	 * 
-	 * @return result Le code hash de cet objet.
+	 * @return result Le code hash.
 	 * 
 	 * @since 1.0
 	 */

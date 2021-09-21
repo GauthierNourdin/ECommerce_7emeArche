@@ -18,7 +18,7 @@ import fr.pythie.webservice.model.LivreNumerique;
 @Component
 public class CalculTtc {
 
-	// Taux à appliquer.
+	// Taux à appliquer selon le type d'article.
 	private static final double taxeLivreNumerique = 0.055;
 	private static final double taxeLivreImprime = 0.055;
 

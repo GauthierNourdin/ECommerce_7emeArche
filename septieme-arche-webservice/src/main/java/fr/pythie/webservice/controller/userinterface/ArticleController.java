@@ -40,7 +40,6 @@ import fr.pythie.webservice.model.LivreNumerique;
  * @since 1.0
  */
 @RestController
-@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 @RequestMapping("/userinterface/article")
 public class ArticleController {
 
@@ -66,8 +65,8 @@ public class ArticleController {
 			// commandes) on envoie un status HTTP 503
 			throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Les données sont inaccessibles.");
 		} catch (Exception exception) {
-			// En cas d'erreur inattendue on envoie un status HTTP 501
-			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");
+			// En cas d'erreur inattendue on envoie un status HTTP 500
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erreur non traîtée.");
 		}
 
 		return listeParDefautArticles;
@@ -98,8 +97,8 @@ public class ArticleController {
 			// Dans le cas où un des id est inconnu, on envoie un status HTTP 403
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Un des identifiants est inconnu.");
 		} catch (Exception exception) {
-			// En cas d'erreur inattendue on envoie un status HTTP 501
-			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");
+			// En cas d'erreur inattendue on envoie un status HTTP 500
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erreur non traîtée.");
 		}
 
 		return livresImprimes;
@@ -131,8 +130,8 @@ public class ArticleController {
 			// Dans le cas où un des id est inconnu, on envoie un status HTTP 403
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Un des identifiants est inconnu.");
 		} catch (Exception exception) {
-			// En cas d'erreur inattendue on envoie un status HTTP 501
-			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");
+			// En cas d'erreur inattendue on envoie un status HTTP 500
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erreur non traîtée.");
 		}
 
 		return livresNumeriques;
@@ -163,8 +162,8 @@ public class ArticleController {
 			// Dans le cas où la liste de résultat est vide, on envoie un status HTTP 204
 			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Pas de résultats.");
 		} catch (Exception exception) {
-			// En cas d'erreur inattendue on envoie un status HTTP 501
-			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");
+			// En cas d'erreur inattendue on envoie un status HTTP 500
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erreur non traîtée.");
 		}
 
 		return listeLivresParAuteurOuTitre;
@@ -194,8 +193,8 @@ public class ArticleController {
 			// le mauvais service) on envoie un status HTTP 403
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "La consultation n'est pas anonyme.");
 		} catch (Exception exception) {
-			// En cas d'erreur inattendue on envoie un status HTTP 501
-			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");
+			// En cas d'erreur inattendue on envoie un status HTTP 500
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erreur non traîtée.");
 		}
 
 		return consultation;
@@ -230,8 +229,8 @@ public class ArticleController {
 			// le mauvais service) on envoie un status HTTP 403
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Le client n'est pas connu.");
 		} catch (Exception exception) {
-			// En cas d'erreur inattendue on envoie un status HTTP 501
-			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");
+			// En cas d'erreur inattendue on envoie un status HTTP 500
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erreur non traîtée.");
 		}
 
 		return consultation;
@@ -276,8 +275,8 @@ public class ArticleController {
 			// le mauvais service) on envoie un status HTTP 403
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "La consultation n'est pas connue.");
 		} catch (Exception exception) {
-			// En cas d'erreur inattendue on envoie un status HTTP 501
-			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");
+			// En cas d'erreur inattendue on envoie un status HTTP 500
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erreur non traîtée.");
 		}
 
 		return consultation;
@@ -310,8 +309,8 @@ public class ArticleController {
 			// Dans le cas où un ID de la liste est invalide, on envoie un status HTTP 400
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Un ou plusieurs ID sont invalides");
 		} catch (Exception exception) {
-			// En cas d'erreur inattendue on envoie un status HTTP 501
-			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");
+			// En cas d'erreur inattendue on envoie un status HTTP 500
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erreur non traîtée.");
 		}
 
 		return listeDisponibiliteLivresImprimes;

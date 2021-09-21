@@ -38,16 +38,21 @@ public class Facture {
 	Commande commande = new Commande();
 
 	/**
+	 * Constructeur permettant de construire une facture vide.
 	 * 
+	 * @since 1.0
 	 */
 	public Facture() {
 		super();
 	}
 	
 	/**
+	 * Constructeur permettant de construire une facture avec les informations obligatoires.
 	 * 
-	 * @param status
-	 * @param commande
+	 * @param status Le status actuel.
+	 * @param commande La commande à laquelle est attachée la facture.
+	 * 
+	 * @since 1.0
 	 */
 	public Facture(@NonNull String status, @NonNull Commande commande) {
 		super();
@@ -56,10 +61,13 @@ public class Facture {
 	}
 
 	/**
-	 * Constructeur complet mis à part l'ID
-	 * @param numero
-	 * @param status
-	 * @param commande
+	 * Constructeur permettant de construire une facture complète mais sans identifiant.
+	 * 
+	 * @param numero Le numéro commercial.
+	 * @param status Le status actuel.
+	 * @param commande La commande à laquelle est attachée la facture.
+	 * 
+	 * @since 1.0
 	 */
 	public Facture(String numero, @NonNull String status, @NonNull Commande commande) {
 		super();
@@ -69,11 +77,14 @@ public class Facture {
 	}
 	
 	/**
+	 * Constructeur permettant de construire une facture complète.
 	 * 
-	 * @param id
-	 * @param numero
-	 * @param status
-	 * @param commande
+	 * @param id L'identifiant.
+	 * @param numero Le numéro commercial.
+	 * @param status Le status actuel.
+	 * @param commande La commande à laquelle est attachée la facture.
+	 * 
+	 * @since 1.0
 	 */
 	public Facture(long id, String numero, @NonNull String status, @NonNull Commande commande) {
 		super();
@@ -84,76 +95,116 @@ public class Facture {
 	}
 
 	/**
+	 * Retourne l'identifiant.
 	 * 
-	 * @return
+	 * @return id L'identifiant.
+	 * 
+	 * @see Facture#setId(long)
+	 * 
+	 * @since 1.0
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
+	 * Modifie l'identifiant.
 	 * 
-	 * @param id
+	 * @param id Le nouvel identifiant.
+	 * 
+	 * @see Facture#getId()
+	 * 
+	 * @since 1.0
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
+	 * Retourne le numéro commercial.
 	 * 
-	 * @return
+	 * @return numero Le numéro commercial.
+	 * 
+	 * @see Facture#setNumero(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getNumero() {
 		return numero;
 	}
 
 	/**
+	 * Modifie le numéro commercial.
 	 * 
-	 * @param numero
+	 * @param numero Le nouveau numéro commercial.
+	 * 
+	 * @see Facture#getNumero()
+	 * 
+	 * @since 1.0
 	 */
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
 	/**
+	 * Retourne le status actuel.
 	 * 
-	 * @return
+	 * @return status Le status actuel.
+	 * 
+	 * @see Facture#setStatus(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getStatus() {
 		return status;
 	}
 
 	/**
+	 * Modifie le status actuel.
 	 * 
-	 * @param status
+	 * @param status Le nouveau status actuel.
+	 *  
+	 * @see Facture#getStatus()
+	 * 
+	 * @since 1.0
 	 */
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
 	/**
+	 * Retourne la commande à laquelle est attachée la facture.
 	 * 
-	 * @return
+	 * @return commande La commande à laquelle est attachée la facture.
+	 * 
+	 * @see Facture#setCommande(Commande)
+	 * 
+	 * @since 1.0
 	 */
 	public Commande getCommande() {
 		return commande;
 	}
 
 	/**
+	 * Modifie la commande à laquelle est attachée la facture.
 	 * 
-	 * @param commande
+	 * @param commande La nouvelle commande à laquelle est attachée la facture.
+	 * 
+	 * @see Facture#getCommande()
+	 * 
+	 * @since 1.0
 	 */
 	public void setCommande(Commande commande) {
 		this.commande = commande;
 	}
 
 	/**
-	 * Méthode pour construire le numéro de facture à partir du numéro de la commande
-	 * de référence et du rang de la facture pour la commande (à fin de permettre les
-	 * relances ou le paiement en plusieurs fois). Le numéro se compose du numéro de 
+	 * Méthode pour construire le numéro de facture. Ce numéro se compose du numéro de 
 	 * commande, d'un tiret de séparation et du rang de la facture sur deux chiffres
-	 * (établi à l'aide du nombre de factures, actuelles, associées à la commande.
+	 * (établi à l'aide du nombre de factures actuelles associées à la commande.
 	 * Se génère avant la sauvegarde de la facture en base de données.
+	 * 
+	 * @since 1.0
 	 */
 	public void definirNumero() {
 		String stringNumero;
@@ -163,7 +214,11 @@ public class Facture {
 	}
 
 	/**
+	 * Calcule le code hash.
 	 * 
+	 * @return result Le code hash.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public int hashCode() {
@@ -177,7 +232,13 @@ public class Facture {
 	}
 
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à cette facture.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -209,7 +270,10 @@ public class Facture {
 	}
 
 	/**
+	 * Produit la chaîne de caractères réprésentant la facture.
+	 * On n'y intègre pas la commande associée.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public String toString() {

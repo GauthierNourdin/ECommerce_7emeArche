@@ -30,7 +30,6 @@ import fr.pythie.webservice.model.Client;
  * @since 1.0
  */
 @RestController
-@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 @RequestMapping("/userinterface/client")
 public class ClientController {
 
@@ -65,8 +64,8 @@ public class ClientController {
 			// enregistré on envoie un status HTTP 403
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Les identifiants sont déjà utilisés.");
 		} catch (Exception exception) {
-			// En cas d'erreur inattendue on envoie un status HTTP 501
-			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");
+			// En cas d'erreur inattendue on envoie un status HTTP 500
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erreur non traîtée.");
 		}
 
 		return clientEnregistre;
@@ -93,11 +92,11 @@ public class ClientController {
 			throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Impossible d'accéder aux données.");
 		} catch (ClientInconnuException exception) {
 			// En cas d'absence de client reconnu (mauvais inputs) on envoie un status HTTP
-			// 204
-			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Pas de client reconnu.");
+			// 401.
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Pas de client reconnu.");
 		} catch (Exception exception) {
-			// En cas d'erreur inattendue on envoie un status HTTP 501
-			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");
+			// En cas d'erreur inattendue on envoie un status HTTP 500
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erreur non traîtée.");
 		}
 
 		return clientAuthentifie;
@@ -135,8 +134,8 @@ public class ClientController {
 			// enregistré on envoie un status HTTP 403
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Les identifiants sont déjà utilisés.");
 		} catch (Exception exception) {
-			// En cas d'erreur inattendue on envoie un status HTTP 501
-			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");
+			// En cas d'erreur inattendue on envoie un status HTTP 500
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erreur non traîtée.");
 		}
 
 		return clientModifie;

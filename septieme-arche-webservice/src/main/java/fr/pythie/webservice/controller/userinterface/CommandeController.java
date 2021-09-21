@@ -29,7 +29,6 @@ import fr.pythie.webservice.interfaces.service.userinterface.CommandeService;
  * @since 1.0
  */
 @RestController
-@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 @RequestMapping("/userinterface/commande")
 public class CommandeController {
 	
@@ -68,8 +67,8 @@ public class CommandeController {
 			// En cas de client non identifié on envoie un status HTTP 401
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Seul un client authentifié peut passer commande.");
 		} catch (Exception exception) {
-			// En cas d'erreur inattendue on envoie un status HTTP 501
-			throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Erreur non traîtée.");
+			// En cas d'erreur inattendue on envoie un status HTTP 500
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erreur non traîtée.");
 		}
 
 		return nouvelleCommande;

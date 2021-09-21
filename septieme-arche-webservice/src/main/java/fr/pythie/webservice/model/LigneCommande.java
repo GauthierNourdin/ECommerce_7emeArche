@@ -42,14 +42,20 @@ public class LigneCommande {
 	Commande commande = new Commande();
 
 	/**
+	 * Constructeur permettant de construire une ligne de commande vide.
 	 * 
+	 * @since 1.0
 	 */
 	public LigneCommande() {
 		super();
 	}
 
 	/**
+	 * Constructeur permettant de construire une ligne de commande avec les informations obligatoires.
 	 * 
+	 * @param article L'article référencé par cette ligne.
+	 * 
+	 * @since 1.0
 	 */
 	public LigneCommande(@NonNull Article article) {
 		super();
@@ -57,12 +63,15 @@ public class LigneCommande {
 	}
 
 	/**
-	 * Constructeur complet mis à part l'ID
-	 * @param quantiteCommandee
-	 * @param prixHT
-	 * @param prixTTC
-	 * @param article
-	 * @param commande
+	 * Constructeur permettant de construire une ligne de commande complète mais sans identifiant.
+	 * 
+	 * @param quantiteCommandee La quantité commandée.
+	 * @param prixHT Le prix unitaire hors taxe.
+	 * @param prixTTC Le prix unitaire toutes taxes comprises.
+	 * @param article L'article référencé par cette ligne.
+	 * @param commande La commande contenant cette ligne.
+	 * 
+	 * @since 1.0
 	 */
 	public LigneCommande(int quantiteCommandee, int prixHT, int prixTTC, @NonNull Article article,
 			Commande commande) {
@@ -75,13 +84,16 @@ public class LigneCommande {
 	}
 	
 	/**
+	 * Constructeur permettant de construire une ligne de commande complète.
 	 * 
-	 * @param id
-	 * @param quantiteCommandee
-	 * @param prixHT
-	 * @param prixTTC
-	 * @param article
-	 * @param commande
+	 * @param id L'identifiant.
+	 * @param quantiteCommandee La quantité commandée.
+	 * @param prixHT Le prix unitaire hors taxe.
+	 * @param prixTTC Le prix unitaire toutes taxes comprises.
+	 * @param article L'article référencé par cette ligne.
+	 * @param commande La commande contenant cette ligne.
+	 * 
+	 * @since 1.0
 	 */
 	public LigneCommande(long id, int quantiteCommandee, int prixHT, int prixTTC, @NonNull Article article,
 			Commande commande) {
@@ -95,102 +107,167 @@ public class LigneCommande {
 	}
 
 	/**
+	 * Retourne l'identifiant.
 	 * 
-	 * @return
+	 * @return id L'identifiant.
+	 * 
+	 * @see LigneCommande#setId(long)
+	 * 
+	 * @since 1.0
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
+	 * Modifie l'identifiant.
 	 * 
-	 * @param id
+	 * @param id Le nouvel identifiant.
+	 * 
+	 * @see LigneCommande#getId()
+	 * 
+	 * @since 1.0
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
+	 * Retourne la quantité commandée.
 	 * 
-	 * @return
+	 * @return quantiteCommandee La quantité commandée.
+	 * 
+	 * @see LigneCommande#setQuantiteCommandee(int)
+	 * 
+	 * @since 1.0
 	 */
 	public int getQuantiteCommandee() {
 		return quantiteCommandee;
 	}
 
 	/**
+	 * Modifie la quantité commandée.
+	 *  
+	 * @param quantiteCommandee La nouvelle quantité commandée.
 	 * 
-	 * @param quantiteCommandee
+	 * @see LigneCommande#getQuantiteCommandee()
+	 * 
+	 * @since 1.0
 	 */
 	public void setQuantiteCommandee(int quantiteCommandee) {
 		this.quantiteCommandee = quantiteCommandee;
 	}
 	
 	/**
-	 * 	
+	 * Retourne le prix unitaire hors taxe.
+	 * 
+	 * @param prixHT Le prix unitaire hors taxe.
+	 * 
+	 * @see LigneCommande#setPrixHT(int)
+	 * 
+	 * @since 1.0
 	 */
 	public int getPrixHT() {
 		return prixHT;
 	}
 
 	/**
+	 * Modifie le prix unitaire hors taxe.
 	 * 
-	 * @param prixHT
+	 * @param prixHT Le nouveau prix unitaire hors taxe.
+	 * 
+	 * @see LigneCommande#getPrixHT()
+	 * 
+	 * @since 1.0
 	 */
 	public void setPrixHT(int prixHT) {
 		this.prixHT = prixHT;
 	}
 
 	/**
+	 * Retourne le prix unitaire toutes taxes comprises.
+	 *  
+	 * @return prixTTC Le prix unitaire toutes taxes comprises.
 	 * 
-	 * @return
+	 * @see LigneCommande#setPrixTTC(int)
+	 * 
+	 * @since 1.0
 	 */
 	public int getPrixTTC() {
 		return prixTTC;
 	}
 
 	/**
+	 * Modifie le prix unitaire toutes taxes comprises.
 	 * 
-	 * @param prixTTC
+	 * @param prixTTC Le nouveau prix unitaire toutes taxes comprises.
+	 * 
+	 * @see LigneCommande#getPrixTTC()
+	 * 
+	 * @since 1.0
 	 */
 	public void setPrixTTC(int prixTTC) {
 		this.prixTTC = prixTTC;
 	}
 
 	/**
+	 * Retourne l'article référencé par cette ligne.
 	 * 
-	 * @return
+	 * @return article L'article référencé par cette ligne.
+	 * 
+	 * @see LigneCommande#setArticle(Article)
+	 * 
+	 * @since 1.0
 	 */
 	public Article getArticle() {
 		return article;
 	}
 
 	/**
+	 * Modifie l'article référencé par cette ligne.
 	 * 
-	 * @param article
+	 * @param article Le nouvel article référencé par cette ligne.
+	 * 
+	 * @see LigneCommande#getArticle()
+	 * 
+	 * @since 1.0
 	 */
 	public void setArticle(Article article) {
 		this.article = article;
 	}
 
 	/**
+	 * Retourne la commande contenant cette ligne.
 	 * 
-	 * @return
+	 * @return commande La commande contenant cette ligne.
+	 * 
+	 * @see LigneCommande#setCommande(Commande)
+	 * 
+	 * @since 1.0
 	 */
 	public Commande getCommande() {
 		return commande;
 	}
 
 	/**
+	 * Modifie la commande contenant cette ligne.
 	 * 
-	 * @param commande
+	 * @param commande La nouvelle commande contenant cette ligne.
+	 * 
+	 * @see LigneCommande#getCommande()
+	 * 
+	 * @since 1.0
 	 */
 	public void setCommande(Commande commande) {
 		this.commande = commande;
 	}
 
 	/**
+	 * Calcule le code hash.
 	 * 
+	 * @return result Le code hash.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public int hashCode() {
@@ -206,7 +283,13 @@ public class LigneCommande {
 	}
 
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à cette ligne de commande.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -239,7 +322,10 @@ public class LigneCommande {
 	}
 
 	/**
+	 * Produit la chaîne de caractères réprésentant le genre.
+	 * On n'y intègre pas la commande et l'article associés.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public String toString() {

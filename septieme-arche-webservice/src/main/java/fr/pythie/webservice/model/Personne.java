@@ -31,7 +31,7 @@ public abstract class Personne {
 	String prenom;
 
 	/**
-	 * 
+	 * @since 1.0
 	 */
 	public Personne() {
 		super();
@@ -40,6 +40,8 @@ public abstract class Personne {
 	/**
 	 * 
 	 * @param nom
+	 * 
+	 * @since 1.0
 	 */
 	public Personne(@NonNull String nom) {
 		super();
@@ -52,6 +54,8 @@ public abstract class Personne {
 	 * @param civilite
 	 * @param nom
 	 * @param prenom
+	 * 
+	 * @since 1.0
 	 */
 	public Personne(String civilite, @NonNull String nom, String prenom) {
 		super();
@@ -62,10 +66,12 @@ public abstract class Personne {
 	
 	/**
 	 * 
-	 * @param id
-	 * @param civilite
-	 * @param nom
-	 * @param prenom
+	 * @param id L'identifiant.
+	 * @param civilite La civilité.
+	 * @param nom Le nom.
+	 * @param prenom Le ou les prénoms.
+	 * 
+	 * @since 1.0
 	 */
 	public Personne(long id, String civilite, @NonNull String nom, String prenom) {
 		super();
@@ -77,7 +83,11 @@ public abstract class Personne {
 
 	/**
 	 * 
-	 * @return
+	 * @return id
+	 * 
+	 * @see Personne#setId(long)
+	 * 
+	 * @since 1.0
 	 */
 	public long getId() {
 		return id;
@@ -86,6 +96,10 @@ public abstract class Personne {
 	/**
 	 * 
 	 * @param id
+	 * 
+	 * @see Personne#getId()
+	 * 
+	 * @since 1.0
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -93,7 +107,11 @@ public abstract class Personne {
 
 	/**
 	 * 
-	 * @return
+	 * @return civilite
+	 * 
+	 * @see Personne#setCivilite(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getCivilite() {
 		return civilite;
@@ -102,6 +120,10 @@ public abstract class Personne {
 	/**
 	 * 
 	 * @param civilite
+	 * 
+	 * @see Personne#getCivilite()
+	 * 
+	 * @since 1.0
 	 */
 	public void setCivilite(String civilite) {
 		this.civilite = civilite;
@@ -109,7 +131,11 @@ public abstract class Personne {
 
 	/**
 	 * 
-	 * @return
+	 * @return nom
+	 * 
+	 * @see Personne#setNom(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getNom() {
 		return nom;
@@ -118,6 +144,10 @@ public abstract class Personne {
 	/**
 	 * 
 	 * @param nom
+	 * 
+	 * @see Personne#getNom()
+	 * 
+	 * @since 1.0
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -125,19 +155,30 @@ public abstract class Personne {
 
 	/**
 	 * 
-	 * @return
+	 * @return prenom
+	 * 
+	 * @see Personne#setPrenom(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getPrenom() {
 		return prenom;
 	}
 
-	/**	
-	 *
+	/**
+	 * @param prenom
+	 * 
+	 * @see Personne#getPrenom()
+	 * 
+	 * @since 1.0
 	 */
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
 
+	/**
+	 * @since 1.0
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -149,6 +190,9 @@ public abstract class Personne {
 		return result;
 	}
 
+	/**
+	 * @since 1.0
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -178,6 +222,9 @@ public abstract class Personne {
 		return true;
 	}
 
+	/**
+	 * @since 1.0
+	 */
 	@Override
 	public String toString() {
 		return "Personne [id=" + id + ", civilite=" + civilite + ", nom=" + nom + ", prenom=" + prenom + "]";
