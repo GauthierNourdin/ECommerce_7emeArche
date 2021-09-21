@@ -8,6 +8,12 @@ import lombok.experimental.FieldDefaults;
  * Classe contenant les informations requises pour le paiement.
  * Contient l'identifiant du client, son numéro de carte bancaire, sa date de
  * validité et son cvc.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class InformationsPaiement {

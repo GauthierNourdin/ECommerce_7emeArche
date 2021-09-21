@@ -15,12 +15,18 @@ import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Classe modèle pour sauvegarder les genres des livres.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 public class Genre {
-	/**
-	 * Classe pour sauvegarder les genres des livres.
-	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

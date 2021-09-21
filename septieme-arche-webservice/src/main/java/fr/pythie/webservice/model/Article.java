@@ -17,19 +17,20 @@ import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
+/** 
+ * Classe modèle abstraite servant de base à tous les types d'articles.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @JsonDeserialize(using = ArticleDeserializer.class)
 public abstract class Article {
-	/** 
-	 * Classe abstraite servant de base à tous les types d'articles.
-	 * 
-	 * @author Gauthier Nourdin
-	 * 
-	 * @since 1.0
-	 * 
-	 * @version 1.0
-	 */
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -9,6 +9,12 @@ import fr.pythie.webservice.exception.LectureBaseDonneesException;
  * Interface pour définir les méthodes attendues pour le controller REST
  * traîtant les requêtes concernant les paiements, provenant de l'interface
  * utilisateur web.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 public interface PaiementService {
 

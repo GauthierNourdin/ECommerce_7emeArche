@@ -2,6 +2,12 @@ package fr.pythie.webservice.exception;
 
 /**
  * Classe d'exception indicant un problème d'écriture sur la base de données
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 public class EcritureBaseDonneesException extends Exception {
 	

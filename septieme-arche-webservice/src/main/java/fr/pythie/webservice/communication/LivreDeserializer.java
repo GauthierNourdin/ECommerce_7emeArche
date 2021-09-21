@@ -15,6 +15,12 @@ import fr.pythie.webservice.model.LivreNumerique;
 
 /**
  * Classe permettant de déserialiser un livre présent dans un JSON.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 public class LivreDeserializer extends JsonDeserializer<Livre> {
 

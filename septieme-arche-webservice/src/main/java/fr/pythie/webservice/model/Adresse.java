@@ -9,12 +9,18 @@ import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
+/** 
+ * Classe modèle pour les adresses.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 public class Adresse {
-	/** 
-	 * Classe pour les adresses.
-	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -13,12 +13,18 @@ import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Classe modèle pour les factures.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 public class Facture {
-	/**
-	 * Classe pour les factures.
-	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

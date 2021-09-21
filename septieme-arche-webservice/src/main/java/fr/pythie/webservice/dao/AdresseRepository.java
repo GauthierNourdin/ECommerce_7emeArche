@@ -6,8 +6,11 @@ import fr.pythie.webservice.model.Adresse;
 
 /**
  * 
- * @author Gauthier Nourdin.
- *
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 public interface AdresseRepository extends JpaRepository<Adresse, Long>{
 

@@ -9,12 +9,18 @@ import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Classe modèle abstraite servant de base aux classes Client et Auteur.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 public abstract class Personne {
-	/**
-	 * Classe abstraite servant de base aux classes Client et Auteur.
-	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

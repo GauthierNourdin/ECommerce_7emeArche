@@ -11,13 +11,19 @@ import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
+/** 
+ * Classe modèle pour les livres imprimés.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @JsonDeserialize(as = LivreImprime.class)
 public class LivreImprime extends Livre {
-	/** 
-	 * Classe pour les livres imprimés.
-	 */
 
 	int quantiteStock;
 	@NonNull

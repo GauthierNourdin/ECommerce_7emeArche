@@ -8,6 +8,12 @@ import lombok.experimental.FieldDefaults;
 /**
  * Classe contenant une commande et l'id du client auquel elle est associée. 
  * Permet de transmettre simplement une commande d'un client identifié.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CommandeAvecIdClient {

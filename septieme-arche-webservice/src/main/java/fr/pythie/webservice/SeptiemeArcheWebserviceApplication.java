@@ -39,8 +39,11 @@ import fr.pythie.webservice.model.LivreNumerique;
 
 /**
  * 
- * @author Gauthier Nourdin.
- *
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 @SpringBootApplication
 public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{

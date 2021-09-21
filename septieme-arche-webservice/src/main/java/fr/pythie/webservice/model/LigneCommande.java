@@ -11,21 +11,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.Setter;
-import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+/** 
+ * Classe modèle pour les lignes de commande.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 public class LigneCommande {
-	/** 
-	 * Classe pour les lignes de commande.
-	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

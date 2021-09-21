@@ -8,6 +8,12 @@ import lombok.experimental.FieldDefaults;
  * Classe contenant l'id et le type d'un article. 
  * Permet d'obtenir ultérieurement toutes les informations d'un article en connaissant le contenu
  * exact JSON attendu.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class IdentifiantEtTypeArticle {

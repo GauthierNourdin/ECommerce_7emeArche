@@ -16,12 +16,18 @@ import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
+/** 
+ * Classe modèle pour les consultations d'articles.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 public class Consultation {
-	/** 
-	 * Classe pour les consultations d'articles.
-	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -22,6 +22,12 @@ import fr.pythie.webservice.model.Client;
  * appropriées, concernant les clients, venant de l'interface utilisateur web.
  * Distribue les requêtes aux classes services implémentant l'interface dédiée
  * via Spring.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 @RestController
 @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)

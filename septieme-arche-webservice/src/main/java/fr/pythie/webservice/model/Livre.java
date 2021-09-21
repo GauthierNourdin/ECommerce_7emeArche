@@ -16,15 +16,21 @@ import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
+/** 
+ * Classe modèle abstraite servent de base à tous les livres.
+ * 
+ * @see Article
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @JsonDeserialize(using = LivreDeserializer.class)
 public abstract class Livre extends Article {
-	/** 
-	 * Classe abstraite servent de base à tous les livres.
-	 * 
-	 * @see Article
-	 */
 
 	@NonNull
 	String isbn13;

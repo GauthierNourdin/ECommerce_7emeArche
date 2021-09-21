@@ -5,8 +5,11 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * 
- * @author Gauthier Nourdin.
- *
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 @Configuration
 @ComponentScan("fr.pythie.webservice.controller.pilotage, fr.pythie.webservice.controller.userinterface,"

@@ -15,9 +15,13 @@ import fr.pythie.webservice.model.Adresse;
 import fr.pythie.webservice.model.Client;
 
 /**
- * Classe service implémentant les méthodes demandées par ClientService afin de
- * traîter les demandes concernant les clients faites par l'interface
- * utilisateur
+ * Classe service traîtant les demandes concernant les clients.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 @Component
 public class ClientServiceImpl implements ClientService {
@@ -29,7 +33,17 @@ public class ClientServiceImpl implements ClientService {
 	ClientRepository clientRepository;
 
 	/**
-	 * Permet d'enregistrer un nouveau client
+	 * Enregistre un nouveau client.
+	 * 
+	 * @param nouveauClient Client a enregistrer.
+	 * 
+	 * @return clientEnregistre Client enregistré.
+	 * 
+	 * @throws LectureBaseDonneesException Si la lecture de la base de données échoue.
+	 * @throws EcritureBaseDonneesException Si l'écriture dans la base de données échoue.
+	 * @throws IdentifiantsUtilisesException Si les identifiants demandés sont déjà utilisés par un autre client.
+	 * 
+	 * @since 1.0
 	 */
 	public Client creationCompteClient(Client nouveauClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, IdentifiantsUtilisesException {
@@ -99,7 +113,19 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	/** 
-	 * Permet d'authentifier un client à partir de son email et de son mot de passe
+	 * Permet d'authentifier un client à partir de son email et de son mot de passe.
+	 * L'entrée est de type DemandeAuthentification.
+	 * 
+	 * @param demandeAuthentification Couple email / mot de passe.
+	 * 
+	 * @return clientIdentifie Client correspondant aux identifiants.
+	 * 
+	 * @throws LectureBaseDonneesException Si la lecture de la base de données échoue.
+	 * @throws ClientInconnuException Si les identifiants ne correspondent à aucun client.
+	 * 
+	 * @see fr.pythie.webservice.communication.DemandeAuthentification
+	 * 
+	 * @since 1.0
 	 */
 	public Client authentificationClient(DemandeAuthentification demandeAuthentification)
 			throws LectureBaseDonneesException, ClientInconnuException {
@@ -127,6 +153,18 @@ public class ClientServiceImpl implements ClientService {
 
 	/** 
 	 * Modifie les informations personnelles d'un client.
+	 * 
+	 * @param clientAModifier Client avec nouvelles informations.
+	 *  
+	 * @return clientModifie Client modifié.
+	 * 
+	 * @throws LectureBaseDonneesException Si la lecture de la base de données échoue.
+	 * @throws EcritureBaseDonneesException Si l'écriture dans la base de données échoue.
+	 * @throws ClientInconnuException Si le client n'est connu dans la base de données.
+	 * @throws IdentifiantsUtilisesException Si les nouveaux identifiants sont déjà
+	 * utilisés par un autre client.
+	 * 
+	 * @since 1.0
 	 */
 	public Client modificationCompteClient(Client clientAModifier) throws LectureBaseDonneesException,
 			EcritureBaseDonneesException, ClientInconnuException, IdentifiantsUtilisesException {

@@ -14,12 +14,18 @@ import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Classe modèle pour les clients.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 public class Client extends Personne {
-	/**
-	 * Classe pour les clients.
-	 */
 
 	@NonNull
 	String email;

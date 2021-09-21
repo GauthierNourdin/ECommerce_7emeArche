@@ -25,9 +25,13 @@ import fr.pythie.webservice.model.LigneCommande;
 import fr.pythie.webservice.model.LivreImprime;
 
 /**
- * Classe service implémentant les méthodes demandées par CommandeService afin
- * de traîter les demandes concernant les commandes faites par l'interface
- * utilisateur
+ * Classe service traîtant les demandes concernant les commandes.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 @Component
 public class CommandeServiceImpl implements CommandeService {
@@ -48,7 +52,22 @@ public class CommandeServiceImpl implements CommandeService {
 	ArticleRepository articleRepository;
 
 	/**
-	 * Enregistre une commande et modifie les stocks des articles correspondants s'ils ont une information de stock.
+	 * Enregistre une commande et modifie les stocks des articles ayant un stock.
+	 * L'entrée et la sortie sont de type CommandeAvecIdClient.
+	 * 
+	 * @param CommandeAvecIdClient Commande à valider et à enregistrer.
+	 * 
+	 * @return nouvelleCommandeAvecIdClient Commande enregistrée.
+	 * 
+	 * @throws LectureBaseDonneesException Si la lecture de la base de données échoue.
+	 * @throws EcritureBaseDonneesException Si l'écriture dans une base de données échoue.
+	 * @throws StockInsuffisantException Si le stock d'un article est insuffisant.
+	 * @throws ClientInconnuException Si l'identifiant client est invalide.
+	 * 
+	 * @see fr.pythie.webservice.communication.CommandeAvecIdClient
+	 * @see CommandeServiceImpl#annulationDiminutionStocks(List)
+	 * 
+	 * @since 1.0
 	 */
 	public CommandeAvecIdClient enregistrementCommande(CommandeAvecIdClient commandeAvecIdClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, StockInsuffisantException,
@@ -207,14 +226,20 @@ public class CommandeServiceImpl implements CommandeService {
 			throw new EcritureBaseDonneesException();
 		}
 		
-		return new CommandeAvecIdClient(nouvelleCommande, clientModifie.getId());
+		CommandeAvecIdClient nouvelleCommandeAvecIdClient = new CommandeAvecIdClient(nouvelleCommande, clientModifie.getId());
+		
+		return nouvelleCommandeAvecIdClient;
 	}
 
 	/**
+	 * Annule les modifications des stocks de la base de données en cas de problème.
 	 *
-	 * @param lignesCommande
-	 * @throws LectureBaseDonneesException
-	 * @throws EcritureBaseDonneesException
+	 * @param lignesCommande Liste des lignes de commande qui ont modifié le stock.
+	 * 
+	 * @throws LectureBaseDonneesException Si la lecture de la base de données échoue.
+	 * @throws EcritureBaseDonneesException Si l'écriture dans la base de données échoue.
+	 * 
+	 * @since 1.0
 	 */
 	public void annulationDiminutionStocks (List<LigneCommande> lignesCommande) throws LectureBaseDonneesException, EcritureBaseDonneesException {
 		// Fonction spéciale qui permet d'annuler la diminution des stocks en cas de problème

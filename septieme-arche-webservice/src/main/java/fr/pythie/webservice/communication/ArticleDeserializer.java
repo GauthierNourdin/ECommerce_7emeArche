@@ -16,11 +16,17 @@ import fr.pythie.webservice.model.LivreNumerique;
 /**
  * Classe permettant de déserialiser un article présent dans un JSON.
  * C'est indispensable pour lire correctement les consultations et les commandes.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 public class ArticleDeserializer extends JsonDeserializer<Article> {
 
 	/**
-	 * 	
+	 * 
 	 * 
 	 */ 
 	@Override

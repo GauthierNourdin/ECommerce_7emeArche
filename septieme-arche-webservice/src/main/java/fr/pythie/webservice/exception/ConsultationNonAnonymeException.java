@@ -3,6 +3,12 @@ package fr.pythie.webservice.exception;
 /**
  * Classe d'exception indicant que la consultation référence un client alors que
  * ce ne devrait pas être le cas.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 public class ConsultationNonAnonymeException extends Exception {
 

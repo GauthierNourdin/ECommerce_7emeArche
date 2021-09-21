@@ -1,7 +1,13 @@
 package fr.pythie.webservice.exception;
 
 /**
- * Classe d'exception permettant de réprésenter une consultation inconnue. 
+ * Classe d'exception permettant de réprésenter une consultation inconnue.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 public class ConsultationInconnueException extends Exception {
 

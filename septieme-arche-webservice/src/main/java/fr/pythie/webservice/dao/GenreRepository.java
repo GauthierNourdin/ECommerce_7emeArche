@@ -6,8 +6,11 @@ import fr.pythie.webservice.model.Genre;
 
 /**
  * 
- * @author Gauthier Nourdin.
- *
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 public interface GenreRepository extends JpaRepository<Genre, Long>{
 

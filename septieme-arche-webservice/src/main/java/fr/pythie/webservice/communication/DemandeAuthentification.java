@@ -7,6 +7,12 @@ import lombok.experimental.FieldDefaults;
 /**
  * Classe contenant un email et un mot de passe. 
  * Permet de déposer simplement une demande d'authentification d'un client.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DemandeAuthentification {

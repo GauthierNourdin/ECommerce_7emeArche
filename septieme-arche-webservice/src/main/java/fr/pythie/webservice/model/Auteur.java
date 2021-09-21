@@ -12,12 +12,18 @@ import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
+/** 
+ * Classe modèle pour les auteurs.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 public class Auteur extends Personne {
-	/** 
-	 * Classe pour les auteurs.
-	 */
 
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "auteurs")

@@ -35,17 +35,20 @@ import fr.pythie.webservice.model.LivreImprime;
 import fr.pythie.webservice.model.LivreNumerique;
 
 /**
- * Classe service implémentant les méthodes demandées par ArticleService afin de
- * traîter les demandes concernant les articles faites par l'interface
- * utilisateur
+ * Classe service traîtant les demandes concernant les articles.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 @Component
 public class ArticleServiceImpl implements ArticleService {
 
-
 	@Autowired
 	private ClientRepository clientRepository;
-	
+
 	@Autowired
 	private ConsultationRepository consultationRepository;
 
@@ -61,9 +64,19 @@ public class ArticleServiceImpl implements ArticleService {
 	@Autowired
 	private LivreNumeriqueRepository livreNumeriqueRepository;
 
-	/** 
-	 * Retourne la liste par défaut des articles sous la forme d'une liste de paires
-	 * identifiant / type d'article
+	/**
+	 * Calcule et retourne la liste par défaut des articles. La réponse est une
+	 * liste de type IdentifiantEtTypeArticle. On sélectionne les 50 articles les
+	 * plus vendus en volume dans les 28 derniers jours.
+	 * 
+	 * @return listeArticleParDefaut Liste par défaut des articles.
+	 * 
+	 * @throws fr.pythie.webservice.exception.LectureBaseDonneesException Si la
+	 * lecture de la base de données échoue.
+	 * 
+	 * @see fr.pythie.webservice.communication.IdentifiantEtTypeArticle
+	 * 
+	 * @since 1.0
 	 */
 	public List<IdentifiantEtTypeArticle> obtenirListeArticleParDefaut() throws LectureBaseDonneesException {
 		// On détermine d'abord la date servant à trier les lignes de commandes (quatre
@@ -169,8 +182,22 @@ public class ArticleServiceImpl implements ArticleService {
 		return listeArticleParDefaut;
 	}
 
-	/** 
-	 * Retourne une liste de livres imprimés à partir d'une liste d'identifiants;
+	/**
+	 * Retourne une liste de livres imprimés à partir d'une liste d'identifiants.
+	 * Conserve l'ordre de la liste transmise.
+	 * 
+	 * @param listeIdLivresImprimes Liste des identifiants des livres.
+	 * 
+	 * @return livreImprimes Liste des livres imprimés correspondant.
+	 * 
+	 * @throws fr.pythie.webservice.exception.LectureBaseDonneesException Si la
+	 * lecture de la base de données échoue.
+	 * @throws fr.pythie.webservice.exception.ListeVideException Si la liste
+	 * d'identifiants est vide.
+	 * @throws fr.pythie.webservice.exception.IdInvalideException Si l'un des
+	 * identifiants est invalide.
+	 *
+	 * @since 1.0
 	 */
 	public ArrayList<LivreImprime> obtenirListeLivresImprimes(List<Long> listeIdLivresImprimes)
 			throws LectureBaseDonneesException, ListeVideException, IdInvalideException {
@@ -209,6 +236,20 @@ public class ArticleServiceImpl implements ArticleService {
 
 	/**
 	 * Retourne une liste de livres numériques à partir d'une liste d'identifiants.
+	 * Conserve l'ordre de la liste transmise.
+	 * 
+	 * @param listeIdLivresNumeriques Liste des identifiants des livres.
+	 * 
+	 * @return livreNumeriques Liste des livres numériques correspondant.
+	 * 
+	 * @throws fr.pythie.webservice.exception.LectureBaseDonneesException Si la
+	 * lecture de la base de données échoue.
+	 * @throws fr.pythie.webservice.exception.ListeVideException Si la liste
+	 * d'identifiants est vide.
+	 * @throws fr.pythie.webservice.exception.IdInvalideException Si l'un des
+	 * identifiants est invalide.
+	 *
+	 * @since 1.0
 	 */
 	public ArrayList<LivreNumerique> obtenirListeLivresNumeriques(List<Long> listeIdLivresNumeriques)
 			throws LectureBaseDonneesException, ListeVideException, IdInvalideException {
@@ -245,10 +286,22 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Retourne une liste de livres, sous la forme d'une liste de paires
-	 * identifiant / type d'article, dont l'un des auteurs ou le titre correspond à
-	 * la chaîne
-	 * de caractère en entrée.
+	 * Retourne une liste de livres correspondant à une chaîne de caractère. La
+	 * réponse est une liste de type IdentifiantEtTypeArticle. Pour correspondre un
+	 * livre doit avoir une partie du titre ou une partie du nom et prénom d'un des
+	 * auteurs correspondant à la chaîne de caractère en ignorant la casse.
+	 * 
+	 * @param auteurOuTitre Chaîne de caractère que l'on recherche.
+	 * 
+	 * @return livresCorrespondants Liste des livres correspondants.
+	 * 
+	 * @throws LectureBaseDonneesException Si la lecture de la base de données
+	 * échoue.
+	 * @throws ListeVideException Si la liste résultat est vide.
+	 * 
+	 * @see fr.pythie.webservice.communication.IdentifiantEtTypeArticle
+	 * 
+	 * @since 1.0
 	 */
 	public List<IdentifiantEtTypeArticle> obtenirListeLivresParAuteurOuTitre(String auteurOuTitre)
 			throws LectureBaseDonneesException, ListeVideException {
@@ -347,82 +400,120 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Enregistre une consultation anonyme
+	 * Enregistre une consultation anonyme.
+	 * 
+	 * @param consultationAnonyme Consultation non associée à un client.
+	 * 
+	 * @return nouvelleConsultation Consultation enregistrée.
+	 * 
+	 * @throws EcritureBaseDonneesException Si l'écriture dans la base de données échoue.
+	 * @throws ConsultationNonAnonymeException Si on obtient des informations clients avec la consultation.
+	 * 
+	 * @since 1.0
 	 */
 	public Consultation ajoutConsultationAnonyme(Consultation consultationAnonyme)
 			throws EcritureBaseDonneesException, ConsultationNonAnonymeException {
 
-		// On doit vérifier que la consultation transmise ne contienne pas d'information client, sinon on lève une exception.
+		// On doit vérifier que la consultation transmise ne contienne pas d'information
+		// client, sinon on lève une exception.
 		if (consultationAnonyme.getClient() != null) {
 			throw new ConsultationNonAnonymeException();
 		}
-		
-		Consultation nouvelleConsultation; 
-		
-		try { 
+
+		Consultation nouvelleConsultation;
+
+		try {
 			nouvelleConsultation = consultationRepository.save(consultationAnonyme);
 		} catch (Exception exception) {
 			// En cas d'erreur à l'écriture on lève une exception.
 			throw new EcritureBaseDonneesException();
 		}
-		
+
 		return nouvelleConsultation;
 	}
 
-	/** 
-	 * Enregistre une consultation d'un client identifié.
+	/**
+	 * Enregistre une consultation d'un client identifié. L'entrée et la sortie
+	 * sont de type ConsultationAvecIdClient.
+	 * 
+	 * @param consultationAvecIdClient Consultation associée à un client.
+	 * 
+	 * @return consultationEnregistreeAvecIdClient Consultation enregistrée avec l'id client.
+	 * 
+	 * @throws LectureBaseDonneesException Si la lecture de la base de données échoue.
+	 * @throws EcritureBaseDonneesException Si l'écriture dans la base de données échoue.
+	 * @throws ClientInconnuException Si l'identifiant client est inconnu.
+	 * 
+	 * @see fr.pythie.webservice.communication.ConsultationAvecIdClient
+	 * 
+	 * @since 1.0
 	 */
 	public ConsultationAvecIdClient ajoutConsultationClient(ConsultationAvecIdClient consultationAvecIdClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ClientInconnuException {
-			
+
 		// On vérifie que l'identifiant client correspond à un utilisateur enregistré.
 		Client client;
-		
+
 		try {
 			client = clientRepository.findById(consultationAvecIdClient.getIdClient()).orElse(null);
 		} catch (Exception exception) {
 			// En cas d'erreur de lecture on lève une exception.
 			throw new LectureBaseDonneesException();
 		}
-		
+
 		// Si l'identifiant client n'est pas reconnu, on lève une exception.
 		if (client == null) {
 			throw new ClientInconnuException();
 		}
-		
+
 		// On ajoute le client à la consultation.
 		consultationAvecIdClient.getConsultation().setClient(client);
-		
+
 		// On ajoute la consultation au client.
-		ArrayList<Consultation> consultationsClient = (ArrayList<Consultation>) client.getConsultations(); 
+		ArrayList<Consultation> consultationsClient = (ArrayList<Consultation>) client.getConsultations();
 		consultationsClient.add(consultationAvecIdClient.getConsultation());
 		client.setConsultations(consultationsClient);
-		
+
 		// On enregistre la consultation.
 		Consultation consultationEnregistree;
-		
+
 		try {
 			consultationEnregistree = consultationRepository.save(consultationAvecIdClient.getConsultation());
 		} catch (Exception exception) {
 			// En cas d'erreur d'écriture on lève une exception.
 			throw new EcritureBaseDonneesException();
 		}
-			
+
 		// On enregistre les modifications sur le client.
 		Client clientModifie;
-		
+
 		try {
 			clientModifie = clientRepository.save(client);
-		} catch (Exception exception) {	
+		} catch (Exception exception) {
 			// En cas d'erreur d'écriture on lève une exception.
 			throw new EcritureBaseDonneesException();
 		}
+
+		ConsultationAvecIdClient consultationEnregistreeAvecIdClient = new ConsultationAvecIdClient(consultationEnregistree, clientModifie.getId());
 		
-		return new ConsultationAvecIdClient(consultationEnregistree, clientModifie.getId());
+		return consultationEnregistreeAvecIdClient;
 	}
 
 	/**
-	 * Ajoute un client à une consultation anonyme
+	 * Ajoute un client à une consultation anonyme. L'entrée et la sortie
+	 * sont de type ConsultationAvecIdClient.
+	 * 
+	 * @param consultationAvecIdClient Consultation associée à un client.
+	 * 
+	 * @return consultationEnregistreeAvecIdClient Consultation enregistrée avec l'id client.
+	 * 
+	 * @throws LectureBaseDonneesException Si la lecture de la base de données échoue.
+	 * @throws EcritureBaseDonneesException Si l'écriture dans la base de données échoue.
+	 * @throws ClientInconnuException Si l'identifiant client est inconnu.
+	 * 
+	 * @see fr.pythie.webservice.communication.ConsultationAvecIdClient
+	 * 
+	 * @since 1.0
 	 */
 	public ConsultationAvecIdClient ajoutClientAConsultation(ConsultationAvecIdClient consultationAvecIdClient)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ConsultationNonAnonymeException,
@@ -430,74 +521,84 @@ public class ArticleServiceImpl implements ArticleService {
 
 		// On vérifie que l'identifiant client correspond à un utilisateur enregistré.
 		Client client;
-		
+
 		try {
 			client = clientRepository.findById(consultationAvecIdClient.getIdClient()).orElse(null);
 		} catch (Exception exception) {
 			// En cas d'erreur de lecture on lève une exception.
 			throw new LectureBaseDonneesException();
 		}
-		
+
 		// Si l'identifiant client n'est pas reconnu, on lève une exception.
 		if (client == null) {
 			throw new ClientInconnuException();
 		}
-		
+
 		// On vérifie que la consultation corresponde à une consultation enregistrée.
 		Consultation consultationAncienne;
-		
+
 		try {
-			consultationAncienne = consultationRepository.findById(consultationAvecIdClient.getConsultation().getId()).orElse(null);
+			consultationAncienne = consultationRepository.findById(consultationAvecIdClient.getConsultation().getId())
+					.orElse(null);
 		} catch (Exception exception) {
 			// En cas d'erreur de lecture on lève une exception.
 			throw new LectureBaseDonneesException();
 		}
-		
+
 		// Si la consultation est inconnue, on lève une exception.
 		if (consultationAncienne == null) {
 			throw new ConsultationInconnueException();
 		}
-		
+
 		// On vérifie que cette consultation était anonyme sinon on lève une exception.
 		if (consultationAncienne.getClient() != null) {
 			throw new ConsultationNonAnonymeException();
 		}
-		
+
 		// On ajoute le client à la consultation.
 		consultationAncienne.setClient(client);
-		
+
 		// On ajoute la consultation au client.
-		ArrayList<Consultation> consultationsClient = (ArrayList<Consultation>) client.getConsultations(); 
+		ArrayList<Consultation> consultationsClient = (ArrayList<Consultation>) client.getConsultations();
 		consultationsClient.add(consultationAncienne);
 		client.setConsultations(consultationsClient);
-		
+
 		// On enregistre l'ajout du client à la consultation.
 		Consultation consultationModifiee;
-		
+
 		try {
 			consultationModifiee = consultationRepository.save(consultationAvecIdClient.getConsultation());
 		} catch (Exception exception) {
 			// En cas d'erreur d'écriture on lève une exception.
 			throw new EcritureBaseDonneesException();
 		}
-		
+
 		// On enregistre les modifications sur le client.
 		Client clientModifie;
-		
+
 		try {
 			clientModifie = clientRepository.save(client);
-		} catch (Exception exception) {	
+		} catch (Exception exception) {
 			// En cas d'erreur d'écriture on lève une exception.
 			throw new EcritureBaseDonneesException();
 		}
-		
+
 		return new ConsultationAvecIdClient(consultationModifiee, clientModifie.getId());
 	}
 
 	/**
-	 * Retourne la disponibilité des livres imprimés, dont on a fourni la liste
-	 * d'identifiants,
-	 * sous la forme d'une liste d'entiers.
+	 * Retourne le stock des livres imprimés à partir d'une liste d'identifiants.
+	 * Conserve l'ordre de la liste transmise.
+	 * 
+	 * @param listeIdLivresImprimes Liste d'identifiants.
+	 * 
+	 * @return disponibiliteLivresImprime Liste des stocks.
+	 * 
+	 * @throws LectureBaseDonneesException Si la lecture de la base de données échoue.
+	 * @throws ListeVideException Si la liste d'identifiants est vide.
+	 * @throws IdInvalideException Si l'un des identifiants est invalide.
+	 * 
+	 * @since 1.0
 	 */
 	public ArrayList<Integer> consulterDisponibiliteLivresImprimes(List<Long> listeIdLivresImprimes)
 			throws LectureBaseDonneesException, ListeVideException, IdInvalideException {

@@ -12,9 +12,13 @@ import fr.pythie.webservice.interfaces.service.userinterface.PaiementService;
 import fr.pythie.webservice.model.Client;
 
 /**
- * Classe service implémentant les méthodes demandées par PaiementService afin
- * de traîter les demandes concernant les paiements faites par l'interface
- * utilisateur
+ * Classe service traîtant les demandes concernant les paiements.
+ * 
+ * @author Gauthier Nourdin
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
  */
 @Component
 public class PaiementServiceImpl implements PaiementService {
@@ -23,7 +27,20 @@ public class PaiementServiceImpl implements PaiementService {
 	private ClientRepository clientRepository;
 
 	/**
-	 * Enregistre les informations de la carte bancaire du client.
+	 * Enregistre les informations de la carte bancaire du client. L'entrée et la 
+	 * sortie sont de type InformationsPaiement.
+	 * 
+	 * @param informationsPaiement Informations bancaires et identifiant client.
+	 * 
+	 * @return informationsPaiement Informations bancaires enregistrées.
+	 * 
+	 * @throws LectureBaseDonneesException Si la lecture de la base de données échoue.
+	 * @throws EcritureBaseDonneesException Si l'écriture dans la base de données échoue.
+	 * @throws ClientInconnuException Si l'identifiant client est invalide.
+	 * 
+	 * @see fr.pythie.webservice.communication.InformationsPaiement
+	 * 
+	 * @version
 	 */
 	@Override
 	public InformationsPaiement informationsBancaires(InformationsPaiement informationsPaiement)
