@@ -79,7 +79,7 @@ public abstract class Article {
 	 * @param prixHT Le prix unitaire hors taxe multiplié par 100.
 	 * @param prixTTC Le prix unitaire toutes taxes comprises multiplié par 100.
 	 * @param consultations La liste de consultations de la page de cet article.
-	 * @param lignesCommandes La liste des lignes de commande associée à cet article.
+	 * @param lignesCommande La liste des lignes de commande associée à cet article.
 	 * 
 	 * @since 1.0
 	 */
@@ -380,7 +380,5 @@ public abstract class Article {
 		return "Article [id=" + id + ", titre=" + titre + ", resume=" + resume + ", prixHT=" + prixHT + ", prixTTC="
 				+ prixTTC + "]";
 	}
-
-
 
 }

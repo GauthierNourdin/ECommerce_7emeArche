@@ -23,16 +23,21 @@ public class DemandeAuthentification {
 	String motDePasse;
 	
 	/**
+	 * Constructeur permettant de construire un objet vide.
 	 * 
+	 * @since 1.0
 	 */
 	public DemandeAuthentification() {
 		super();
 	}
 
 	/**
+	 * Constructeur permettant de construire un objet complet.
 	 * 
-	 * @param email
-	 * @param motDePasse
+	 * @param email L'email envoyé.
+	 * @param motDePasse Le mot de passe envoyé.
+	 * 
+	 * @since 1.0
 	 */
 	public DemandeAuthentification(@NonNull String email, @NonNull String motDePasse) {
 		super();
@@ -41,39 +46,63 @@ public class DemandeAuthentification {
 	}
 
 	/**
+	 * Retourne l'email envoyé.
 	 * 
-	 * @return
+	 * @return email L'email envoyé.
+	 * 
+	 * @see DemandeAuthentification#setEmail(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getEmail() {
 		return email;
 	}
 
 	/**
+	 * Modifie l'email envoyé.
 	 * 
-	 * @param email
+	 * @param email Le nouvel email envoyé.
+	 * 
+	 * @see DemandeAuthentification#getEmail()
+	 * 
+	 * @since 1.0
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
 	/**
+	 * Retourne le mot de passe envoyé.
+	 *  
+	 * @return motDePasse Le mot de passe envoyé.
 	 * 
-	 * @return
+	 * @see DemandeAuthentification#setMotDePasse(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getMotDePasse() {
 		return motDePasse;
 	}
 
 	/**
+	 * Modifie le mot de passe envoyé.
 	 * 
-	 * @param motDePasse
+	 * @param motDePasse Le nouveau mot de passe envoyé.
+	 * 
+	 * @see DemandeAuthentification#getMotDePasse()
+	 * 
+	 * @since 1.0
 	 */
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
 
 	/**
+	 * Calcule le code hash.
 	 * 
+	 * @return result Le code hash.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public int hashCode() {
@@ -85,7 +114,13 @@ public class DemandeAuthentification {
 	}
 
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à celui-ci.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -110,7 +145,9 @@ public class DemandeAuthentification {
 	}
 
 	/**
+     * Produit la chaîne de caractères réprésentant cet objet.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public String toString() {

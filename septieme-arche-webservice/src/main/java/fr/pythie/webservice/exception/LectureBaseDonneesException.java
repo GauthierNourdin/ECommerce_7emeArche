@@ -1,7 +1,7 @@
 package fr.pythie.webservice.exception;
 
 /**
- * Classe d'exception indicant un problème de lecture sur la base de données
+ * Classe d'exception indicant un problème de lecture sur la base de données.
  * 
  * @author Gauthier Nourdin
  * 

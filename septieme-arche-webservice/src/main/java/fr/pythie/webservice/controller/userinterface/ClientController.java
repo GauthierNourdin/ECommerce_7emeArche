@@ -18,10 +18,9 @@ import fr.pythie.webservice.interfaces.service.userinterface.ClientService;
 import fr.pythie.webservice.model.Client;
 
 /**
- * Classe définissant toutes les requêtes possibles, ainsi que les réponses
- * appropriées, concernant les clients, venant de l'interface utilisateur web.
- * Distribue les requêtes aux classes services implémentant l'interface dédiée
- * via Spring.
+ * Classe de controller REST pour traîter les requêtes concernant les clients.
+ * Définit les requêtes et leurs réponses possibles pour le site web. Appelle les méthodes appropriées du service.
+ * Les requêtes et les réponses sont transmises au format JSON.
  * 
  * @author Gauthier Nourdin
  * 
@@ -37,9 +36,17 @@ public class ClientController {
 	ClientService clientService;
 
 	/**
-	 *  Enregistre un nouveau compte client
-	 * @param nouveauClient
-	 * @return
+	 * Traîte une requête POST de création de compte client avec les informations client dans le corps.
+	 * La réponse standard est le client enregistré.
+	 * Retourne une erreur 503 si la base de données est inaccessible à la lecture ou à l'écriture.
+	 * Retourne une erreur 403 si les identifiants sont déjà utilisés par un autre utilisateur.
+	 * Retourne une erreur 500 en cas de problème inconnu.
+	 * 
+	 * @param nouveauClient Le nouveau client.
+	 * 
+	 * @return clientEnregistre Le client enregistré.
+	 * 
+	 * @since 1.0
 	 */
 	@PostMapping("/creationCompteClient")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -72,9 +79,17 @@ public class ClientController {
 	}
 
 	/**
-	 *  Authentifie un client et retourne ses informations
-	 * @param demandeAuthentification
-	 * @return
+	 * Traîte une requête POST d'authentification client avec les identifiants dans le corps.
+	 * La réponse standard est le client identifié.
+	 * Retourne une erreur 503 si la base de données est inaccessible à la lecture.
+	 * Retourne une erreur 401 si les identifiants ne correspondent à aucun client.
+	 * Retourne une erreur 500 en cas de problème inconnu.
+	 * 
+	 * @param demandeAuthentification Les identifiants du client.
+	 * 
+	 * @return clientAuthentifie Les informations client.
+	 * 
+	 * @since 1.0
 	 */
 	@PostMapping("/authentificationClient")
 	@ResponseStatus(HttpStatus.OK)
@@ -103,9 +118,17 @@ public class ClientController {
 	}
 
 	/**
-	 * Modifie les informations d'un compte client
-	 * @param clientAModifier
-	 * @return
+	 * Traîte une requête POST de modification de compte client avec les informations client dans le corps.
+	 * La réponse standard est le client mis à jour.
+	 * Retourne une erreur 503 si la base de données est inaccessible à la lecture ou à l'écriture.
+	 * Retourne une erreur 403 si les nouveaux identifiants sont déjà utilisés par un autre utilisateur ou si le client est inconnu.
+	 * Retourne une erreur 500 en cas de problème inconnu.
+	 * 
+	 * @param clientAModifier Les nouvelles informations client.
+	 * 
+	 * @return clientModifie Les informations du client mis à jour.
+	 * 
+	 * @since 1.0
 	 */
 	@PostMapping("/modificationCompteClient")
 	@ResponseStatus(HttpStatus.OK)

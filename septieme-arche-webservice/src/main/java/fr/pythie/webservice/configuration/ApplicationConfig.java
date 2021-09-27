@@ -4,6 +4,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * Cette classe spéciale définit quels packages et classes Spring doit prendre en compte.
  * 
  * @author Gauthier Nourdin
  * 

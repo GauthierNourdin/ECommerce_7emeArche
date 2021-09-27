@@ -38,6 +38,8 @@ import fr.pythie.webservice.model.LivreImprime;
 import fr.pythie.webservice.model.LivreNumerique;
 
 /**
+ * Classe principale de l'application permettant de l'activer.
+ * Suit les règles de Spring Boot en implémentant ApplicationRunner.
  * 
  * @author Gauthier Nourdin
  * 
@@ -82,15 +84,23 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 	private LivreNumeriqueRepository livreNumeriqueRepository;
 	
 	/**
+	 * Fonction principale de l'application. 
 	 * 
-	 * @param args
+	 * @param args Les paramètres transmis lors de l'appel de l'application.
+	 * 
+	 * @since 1.0
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(SeptiemeArcheWebserviceApplication.class, args);
 	}
 	
 	/**
+	 * Fonction définissant le comportement de l'application.
+	 * Lors du premier démarrage, l'application charge dans la base de données les données initiales.
 	 * 
+	 * @param args Les paramètres transmis lors de l'appel de l'application.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public void run(ApplicationArguments args) throws Exception {

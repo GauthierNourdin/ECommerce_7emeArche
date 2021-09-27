@@ -29,24 +29,29 @@ public class LivreNumerique extends Livre {
 	String unite;
 
 	/**
+	 * Constructeur permettant de construire un livre numérique vide.
 	 * 
+	 * @since 1.0
 	 */
 	public LivreNumerique() {
 		super();
 	}
 	
 	/**
-	 *  Constructeur avec tous les paramètres obligatoires
-	 * @param titre
-	 * @param resume
-	 * @param isbn13
-	 * @param titreLivre
-	 * @param format
-	 * @param lienImage
-	 * @param dateDepotLegal
-	 * @param genres
-	 * @param auteurs
-	 * @param editeur
+	 * Constructeur permettant de construire un livre numérique avec toutes les informations obligatoires.
+	 * 
+	 * @param titre Le titre général.
+	 * @param resume Le résumé.
+	 * @param isbn13 Le numéro isbn13.
+	 * @param titreLivre Le titre du livre.
+	 * @param format Le format.
+	 * @param lienImage Le lien vers l'image du livre.
+	 * @param dateDepotLegal La date du dépot légal du livre.
+	 * @param genres La liste des genres du livre.
+	 * @param auteurs La liste des auteurs du livre.
+	 * @param editeur L'éditeur du livre.
+	 * 
+	 * @since 1.0
 	 */
 	public LivreNumerique(@NonNull String titre, @NonNull String resume, @NonNull String isbn13,
 			@NonNull String titreLivre, @NonNull String format, @NonNull String lienImage,
@@ -56,24 +61,27 @@ public class LivreNumerique extends Livre {
 	}
 	
 	/**
-	 *  Constructeur complet mis à part l'ID
-	 * @param titre
-	 * @param resume
-	 * @param prixHT
-	 * @param prixTTC
-	 * @param consultations
-	 * @param lignesCommande
-	 * @param isbn13
-	 * @param titreLivre
-	 * @param format
-	 * @param lienImage
-	 * @param nombrePages
-	 * @param dateDepotLegal
-	 * @param genres
-	 * @param auteurs
-	 * @param editeur
-	 * @param espace
-	 * @param unite
+	 * Constructeur permettant permet de construire un livre numérique complet mais sans identifiant.
+	 * 
+	 * @param titre Le titre général.
+	 * @param resume Le résumé.
+	 * @param prixHT Le prix unitaire hors taxe multiplié par 100.
+	 * @param prixTTC Le prix unitaire toutes taxes comprises multiplié par 100.
+	 * @param consultations La liste de consultations de la page de cet article.
+	 * @param lignesCommande La liste des lignes de commande associée à cet article.
+	 * @param isbn13 Le numéro isbn13.
+	 * @param titreLivre Le titre du livre.
+	 * @param format Le format.
+	 * @param lienImage Le lien vers l'image du livre.
+	 * @param nombrePages Le nombre de pages.
+	 * @param dateDepotLegal La date du dépot légal du livre.
+	 * @param genres La liste des genres du livre.
+	 * @param auteurs La liste des auteurs du livre.
+	 * @param editeur L'éditeur du livre.
+	 * @param espace La taille numérique du livre.
+	 * @param unite L'unité de taille du livre.
+	 * 
+	 * @since 1.0
 	 */
 	public LivreNumerique(@NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
 			List<Consultation> consultations, List<LigneCommande> lignesCommande, @NonNull String isbn13,
@@ -87,25 +95,28 @@ public class LivreNumerique extends Livre {
 	}
 
 	/**
-	 *  Constructeur complet
-	 * @param id
-	 * @param titre
-	 * @param resume
-	 * @param prixHT
-	 * @param prixTTC
-	 * @param consultations
-	 * @param lignesCommande
-	 * @param isbn13
-	 * @param titreLivre
-	 * @param format
-	 * @param lienImage
-	 * @param nombrePages
-	 * @param dateDepotLegal
-	 * @param genres
-	 * @param auteurs
-	 * @param editeur
-	 * @param espace
-	 * @param unite
+	 * Constructeur permettant permet de construire un livre numérique complet.
+	 * 
+	 * @param id L'identifiant.
+	 * @param titre Le titre général.
+	 * @param resume Le résumé.
+	 * @param prixHT Le prix unitaire hors taxe multiplié par 100.
+	 * @param prixTTC Le prix unitaire toutes taxes comprises multiplié par 100.
+	 * @param consultations La liste de consultations de la page de cet article.
+	 * @param lignesCommande La liste des lignes de commande associée à cet article.
+	 * @param isbn13 Le numéro isbn13.
+	 * @param titreLivre Le titre du livre.
+	 * @param format Le format.
+	 * @param lienImage Le lien vers l'image du livre.
+	 * @param nombrePages Le nombre de pages.
+	 * @param dateDepotLegal La date du dépot légal du livre.
+	 * @param genres La liste des genres du livre.
+	 * @param auteurs La liste des auteurs du livre.
+	 * @param editeur L'éditeur du livre.
+	 * @param espace La taille numérique du livre.
+	 * @param unite L'unité de taille du livre.
+	 * 
+	 * @since 1.0
 	 */
 	public LivreNumerique(long id, @NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
 			List<Consultation> consultations, List<LigneCommande> lignesCommande, @NonNull String isbn13,
@@ -119,39 +130,63 @@ public class LivreNumerique extends Livre {
 	}
 	
 	/**
+	 * Retourne la taille numérique du livre.
 	 * 
-	 * @return
+	 * @return espace La taille numérique du livre.
+	 * 
+	 * @see LivreNumerique#setEspace
+	 * 
+	 * @since 1.0
 	 */
 	public double getEspace() {
 		return espace;
 	}
 
 	/**
+	 * Modifie la taille numérique du livre.
 	 * 
-	 * @param espace
+	 * @param espace La nouvelle taille numérique du livre.
+	 * 
+	 * @see LivreNumerique#getEspace()
+	 * 
+	 * @since 1.0
 	 */
 	public void setEspace(double espace) {
 		this.espace = espace;
 	}
 
 	/**
+	 * Retourne l'unité de taille du livre.
 	 * 
-	 * @return
+	 * @return unite L'unité de taille du livre.
+	 * 
+	 * @see LivreNumerique#setUnite(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getUnite() {
 		return unite;
 	}
 
 	/**
+	 * Modifie l'unité de taille du livre.
 	 * 
-	 * @param unite
+	 * @param unite La nouvelle unité de taille du livre.
+	 * 
+	 * @see LivreNumerique#getUnite()
+	 * 
+	 * @since 1.0
 	 */
 	public void setUnite(String unite) {
 		this.unite = unite;
 	}
 
 	/**
+	 * Calcule le code hash.
 	 * 
+	 * @return result Le code hash.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public int hashCode() {
@@ -165,7 +200,13 @@ public class LivreNumerique extends Livre {
 	}
 
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à ce livre numérique.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -187,7 +228,10 @@ public class LivreNumerique extends Livre {
 	}
 
 	/**
+	 * Produit la chaîne de caractères réprésentant le livre numérique.
+	 * On n'y intègre pas l'éditeur, les consultations, les lignes de commandes, les genres et les auteurs associés.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public String toString() {

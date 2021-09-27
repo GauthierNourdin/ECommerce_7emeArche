@@ -161,7 +161,7 @@ public class LigneCommande {
 	/**
 	 * Retourne le prix unitaire hors taxe.
 	 * 
-	 * @param prixHT Le prix unitaire hors taxe.
+	 * @return prixHT Le prix unitaire hors taxe.
 	 * 
 	 * @see LigneCommande#setPrixHT(int)
 	 * 

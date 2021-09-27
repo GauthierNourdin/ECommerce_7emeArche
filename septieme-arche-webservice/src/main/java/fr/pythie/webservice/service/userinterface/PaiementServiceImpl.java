@@ -12,7 +12,8 @@ import fr.pythie.webservice.interfaces.service.userinterface.PaiementService;
 import fr.pythie.webservice.model.Client;
 
 /**
- * Classe service traîtant les demandes concernant les paiements.
+ * Classe service traîtant les requêtes concernant les paiements.
+ * Les requêtes proviennent des controllers REST répondant au site web.
  * 
  * @author Gauthier Nourdin
  * 
@@ -40,7 +41,7 @@ public class PaiementServiceImpl implements PaiementService {
 	 * 
 	 * @see fr.pythie.webservice.communication.InformationsPaiement
 	 * 
-	 * @version
+	 * @since 1.0
 	 */
 	@Override
 	public InformationsPaiement informationsBancaires(InformationsPaiement informationsPaiement)

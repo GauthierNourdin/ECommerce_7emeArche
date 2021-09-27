@@ -1,7 +1,7 @@
 package fr.pythie.webservice.exception;
 
 /**
- * Classe d'exception indicant un client inconnu (mauvaise authentification, client inconnu...)
+ * Classe d'exception indicant un client inconnu (mauvaise authentification, client inconnu...).
  * 
  * @author Gauthier Nourdin
  * 

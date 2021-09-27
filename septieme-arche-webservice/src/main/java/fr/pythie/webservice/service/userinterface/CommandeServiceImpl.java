@@ -25,7 +25,8 @@ import fr.pythie.webservice.model.LigneCommande;
 import fr.pythie.webservice.model.LivreImprime;
 
 /**
- * Classe service traîtant les demandes concernant les commandes.
+ * Classe service traîtant les requêtes concernant les commandes.
+ * Les requêtes proviennent des controllers REST répondant au site web.
  * 
  * @author Gauthier Nourdin
  * 
@@ -55,7 +56,7 @@ public class CommandeServiceImpl implements CommandeService {
 	 * Enregistre une commande et modifie les stocks des articles ayant un stock.
 	 * L'entrée et la sortie sont de type CommandeAvecIdClient.
 	 * 
-	 * @param CommandeAvecIdClient Commande à valider et à enregistrer.
+	 * @param commandeAvecIdClient Commande à valider et à enregistrer.
 	 * 
 	 * @return nouvelleCommandeAvecIdClient Commande enregistrée.
 	 * 

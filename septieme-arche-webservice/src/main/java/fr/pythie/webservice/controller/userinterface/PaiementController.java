@@ -16,10 +16,9 @@ import fr.pythie.webservice.exception.LectureBaseDonneesException;
 import fr.pythie.webservice.interfaces.service.userinterface.PaiementService;
 
 /**
- * Classe définissant toutes les requêtes possibles, ainsi que les réponses
- * appropriées, concernant les paiements, venant de l'interface utilisateur web.
- * Distribue les requêtes aux classes services implémentant l'interface dédiée
- * via Spring.
+ * Classe de controller REST pour traîter les requêtes concernant les paiements.
+ * Définit les requêtes et leurs réponses possibles pour le site web. Appelle les méthodes appropriées du service.
+ * Les requêtes et les réponses sont transmises au format JSON.
  * 
  * @author Gauthier Nourdin
  * 
@@ -35,9 +34,18 @@ public class PaiementController {
 	PaiementService paiementService;
 	
 	/**
-	 * Enregistre les informations bancaires d'un client
-	 * @param informationsPaiement
-	 * @return
+	 * Traîte une requête POST d'enregistrement d'informations bancaires d'un client.
+	 * Les informations bancaires sont inclues dans le corps avec l'identifiant du client.
+	 * La réponse standard est la même que l'entrée.
+	 * Retourne une erreur 503 si la base de données est inaccessible à la lecture ou à l'écriture.
+	 * Retourne une erreur 403 si le client n'est pas identifié ou reconnu.
+	 * Retourne une erreur 500 en cas de problème inconnu.
+	 * 
+	 * @param informationsPaiement Les informations client requises pour le paiement.
+	 * 
+	 * @return paiement Les informations enregistrées.
+	 * 
+	 * @since 1.0
 	 */
 	@PostMapping("/enregistrementInformationsBancaires")
 	@ResponseStatus(HttpStatus.OK)
@@ -69,6 +77,5 @@ public class PaiementController {
 
 		return paiement;
 	}
-	
 	
 }

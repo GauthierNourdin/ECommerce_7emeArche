@@ -25,8 +25,19 @@ import fr.pythie.webservice.model.LivreNumerique;
 public class LivreDeserializer extends JsonDeserializer<Livre> {
 
 	/**
+	 * Fonction permettant de deserialiser un message JSON contenant un livre dont on ignore la nature.
+	 * Pour cette version un livre peut être un livre imprimé ou un livre numérique.
 	 * 
-	 */
+	 * @param jp Le lecteur JSON chargé de lire l'objet JSON.
+	 * @param ctxt Le contexte de la desérialisation.
+	 * 
+	 * @return livreIdentifie Le livre contenu dans l'objet JSON.
+	 * 
+	 * @throws IOException Indique un problème de lecture de l'objet JSON.
+	 * @throws JsonProcessingException L'objet JSON ne peut pas être converti en objet JAVA.
+	 * 
+	 * @since 1.0
+	 */ 
 	@Override
 	public Livre deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
 		ObjectMapper mapper = (ObjectMapper) jp.getCodec();
@@ -38,6 +49,8 @@ public class LivreDeserializer extends JsonDeserializer<Livre> {
 		} else {
 			livreClass = LivreNumerique.class;
 		}
-		return mapper.convertValue(root, livreClass);
+		
+		Livre livreIdentifie = mapper.convertValue(root, livreClass);
+		return livreIdentifie;
 	}
 }

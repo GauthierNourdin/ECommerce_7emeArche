@@ -24,6 +24,7 @@ import fr.pythie.webservice.exception.EcritureBaseDonneesException;
 import fr.pythie.webservice.exception.IdInvalideException;
 import fr.pythie.webservice.exception.LectureBaseDonneesException;
 import fr.pythie.webservice.exception.ListeVideException;
+import fr.pythie.webservice.exception.MauvaisStringException;
 import fr.pythie.webservice.interfaces.service.userinterface.ArticleService;
 import fr.pythie.webservice.model.Auteur;
 import fr.pythie.webservice.model.Client;
@@ -35,7 +36,8 @@ import fr.pythie.webservice.model.LivreImprime;
 import fr.pythie.webservice.model.LivreNumerique;
 
 /**
- * Classe service traîtant les demandes concernant les articles.
+ * Classe service traîtant les requêtes concernant les articles.
+ * Les requêtes proviennent des controllers REST répondant au site web.
  * 
  * @author Gauthier Nourdin
  * 
@@ -84,12 +86,12 @@ public class ArticleServiceImpl implements ArticleService {
 		LocalDateTime dateDepartRecherche = LocalDateTime.now().minusDays(28);
 
 		ArrayList<IdentifiantEtTypeArticle> listeArticleParDefaut = new ArrayList<IdentifiantEtTypeArticle>();
-		ArrayList<Commande> commandesMois = new ArrayList<Commande>();
+		ArrayList<Commande> commandesPertinantes = new ArrayList<Commande>();
 
 		// On récupère les données des commandes de la base de données. On lève une
 		// exception en cas d'échec.
 		try {
-			commandesMois = (ArrayList<Commande>) commandeRepository.findByDateAfter(dateDepartRecherche);
+			commandesPertinantes = (ArrayList<Commande>) commandeRepository.findByDateAfter(dateDepartRecherche);
 		} catch (Exception exception) {
 			throw new LectureBaseDonneesException();
 		}
@@ -108,7 +110,7 @@ public class ArticleServiceImpl implements ArticleService {
 		 */
 
 		// Boucle sur les commandes
-		for (Commande comm : commandesMois) {
+		for (Commande comm : commandesPertinantes) {
 
 			// Boucle sur les lignes de commandes d'une commande
 			for (LigneCommande ligneComm : comm.getLignesCommande()) {
@@ -298,13 +300,14 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @throws LectureBaseDonneesException Si la lecture de la base de données
 	 * échoue.
 	 * @throws ListeVideException Si la liste résultat est vide.
+	 * @throws MauvaisStringException Si le String en entrée est vide. 
 	 * 
 	 * @see fr.pythie.webservice.communication.IdentifiantEtTypeArticle
 	 * 
 	 * @since 1.0
 	 */
 	public List<IdentifiantEtTypeArticle> obtenirListeLivresParAuteurOuTitre(String auteurOuTitre)
-			throws LectureBaseDonneesException, ListeVideException {
+			throws LectureBaseDonneesException, ListeVideException, MauvaisStringException {
 		// On prépare la liste de résultats
 		ArrayList<IdentifiantEtTypeArticle> livresCorrespondants = new ArrayList<IdentifiantEtTypeArticle>();
 

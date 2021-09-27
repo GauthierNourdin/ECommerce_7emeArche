@@ -15,7 +15,8 @@ import fr.pythie.webservice.model.Adresse;
 import fr.pythie.webservice.model.Client;
 
 /**
- * Classe service traîtant les demandes concernant les clients.
+ * Classe service traîtant les requêtes concernant les clients.
+ * Les requêtes proviennent des controllers REST répondant au site web.
  * 
  * @author Gauthier Nourdin
  * 

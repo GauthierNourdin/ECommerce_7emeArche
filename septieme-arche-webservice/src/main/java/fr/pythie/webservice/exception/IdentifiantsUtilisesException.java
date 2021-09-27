@@ -2,7 +2,7 @@ package fr.pythie.webservice.exception;
 
 /**
  * Classe d'exception indicant que les identifiants (email + mot de passe) sont
- * déjà utilisés par un utilisateur enregistré
+ * déjà utilisés par un utilisateur enregistré.
  * 
  * @author Gauthier Nourdin
  * 

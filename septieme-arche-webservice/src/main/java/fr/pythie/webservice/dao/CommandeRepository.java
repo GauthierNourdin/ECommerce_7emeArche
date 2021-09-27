@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import fr.pythie.webservice.model.Commande;
 
 /**
+ * Interface permettant de manipuler les commandes en base de données.
+ * Schéma utilisé par Spring Data JPA pour créer automatiquement les méthodes et requêtes nécessaires.
  * 
  * @author Gauthier Nourdin
  * 
@@ -18,9 +20,13 @@ import fr.pythie.webservice.model.Commande;
 public interface CommandeRepository extends JpaRepository<Commande, Long>{
 	
 	/**
-	 * Fonction pour appeler toutes les commandes dont la date de création est après une certaine date.
-	 * @param date
-	 * @return
+	 * Fonction pour appeler toutes les commandes dont la date d'enregistrement est ultérieure à une date donnée.
+	 * 
+	 * @param date La date limite.
+	 * 
+	 * @return commandesPertinantes La liste des commandes enregistrées après la date limite.
+	 * 
+	 * @since 1.0
 	 */
 	List<Commande> findByDateAfter(LocalDateTime date);
 

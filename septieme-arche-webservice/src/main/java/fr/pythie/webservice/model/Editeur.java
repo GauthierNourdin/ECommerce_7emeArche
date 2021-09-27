@@ -104,7 +104,7 @@ public class Editeur {
 	 * 
 	 * @return id L'identifiant.
 	 * 
-	 * @see Editeur# setId(long)
+	 * @see Editeur#setId(long)
 	 * 
 	 * @since 1.0
 	 */

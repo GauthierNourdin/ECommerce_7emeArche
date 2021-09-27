@@ -24,16 +24,21 @@ public class ConsultationAvecIdClient {
 	Long idClient;
 	
 	/**
+	 * Constructeur permettant de construire un objet vide.
 	 * 
+	 * @since 1.0
 	 */
 	public ConsultationAvecIdClient() {
 		super();
 	}
 
 	/**
+	 * Constructeur permettant de construire un objet complet.
 	 * 
-	 * @param consultation
-	 * @param idClient
+	 * @param consultation La consultation à sauvegarder.
+	 * @param idClient L'identifiant du client ayant fait cette consultation.
+	 * 
+	 * @since 1.0
 	 */
 	public ConsultationAvecIdClient(@NonNull Consultation consultation, @NonNull Long idClient) {
 		super();
@@ -42,39 +47,63 @@ public class ConsultationAvecIdClient {
 	}
 
 	/**
+	 * Retourne la consultation à sauvegarder.
 	 * 
-	 * @return
+	 * @return consultation La consultation à sauvegarder.
+	 * 
+	 * @see ConsultationAvecIdClient#setConsultation(Consultation)
+	 * 
+	 * @since 1.0
 	 */
 	public Consultation getConsultation() {
 		return consultation;
 	}
 
 	/**
+	 * Modifie la consultation à sauvegarder.
 	 * 
-	 * @param consultation
+	 * @param consultation La nouvelle consultation à sauvegarder.
+	 * 
+	 * @see ConsultationAvecIdClient#getConsultation()
+	 * 
+	 * @since 1.0
 	 */
 	public void setConsultation(Consultation consultation) {
 		this.consultation = consultation;
 	}
 
 	/**
+	 * Retourne l'identifiant du client ayant fait cette consultation.
 	 * 
-	 * @return
+	 * @return idClient L'identifiant du client ayant fait cette consultation.
+	 * 
+	 * @see ConsultationAvecIdClient#setIdClient(Long)
+	 * 
+	 * @since 1.0
 	 */
 	public Long getIdClient() {
 		return idClient;
 	}
 
 	/**
+	 * Modifie l'identifiant du client ayant fait cette consultation.
 	 * 
-	 * @param idClient
+	 * @param idClient Le nouvel identifiant du client ayant fait cette consultation.
+	 *  
+	 * @see ConsultationAvecIdClient#getIdClient()
+	 * 
+	 * @since 1.0
 	 */
 	public void setIdClient(Long idClient) {
 		this.idClient = idClient;
 	}
 
 	/**
+	 * Calcule le code hash.
 	 * 
+	 * @return result Le code hash.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public int hashCode() {
@@ -86,7 +115,13 @@ public class ConsultationAvecIdClient {
 	}
 
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à celui-ci.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -111,7 +146,9 @@ public class ConsultationAvecIdClient {
 	}
 
 	/**
+     * Produit la chaîne de caractères réprésentant cet objet.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public String toString() {

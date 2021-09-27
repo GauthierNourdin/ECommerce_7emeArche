@@ -58,6 +58,8 @@ public abstract class Livre extends Article {
 
 	/**
 	 * Constructeur permettant de construire un livre vide.
+	 * 
+	 * @since 1.0
 	 */
 	public Livre() {
 		super();
@@ -428,6 +430,12 @@ public abstract class Livre extends Article {
 	}
 
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à ce livre.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
+	 * 
 	 * @since 1.0
 	 */
 	@Override
@@ -486,7 +494,7 @@ public abstract class Livre extends Article {
 
 	/**
 	 * Produit la chaîne de caractères réprésentant le livre.
-	 * On n'y intègre pas l'éditeur auteurs, les genres et les auteurs associés.
+	 * On n'y intègre pas l'éditeur, les consultations, les lignes de commandes, les genres et les auteurs associés.
 	 * 
 	 * @since 1.0
 	 */
@@ -495,7 +503,5 @@ public abstract class Livre extends Article {
 		return "Livre [isbn13=" + isbn13 + ", titreLivre=" + titreLivre + ", format=" + format + ", lienImage="
 				+ lienImage + ", nombrePages=" + nombrePages + ", dateDepotLegal=" + dateDepotLegal + ", toString()=" + super.toString() + "]";
 	}
-	
-	
 	
 }

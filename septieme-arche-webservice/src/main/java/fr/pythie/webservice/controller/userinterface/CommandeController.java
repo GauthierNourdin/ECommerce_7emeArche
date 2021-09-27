@@ -17,10 +17,9 @@ import fr.pythie.webservice.exception.StockInsuffisantException;
 import fr.pythie.webservice.interfaces.service.userinterface.CommandeService;
 
 /**
- * Classe définissant toutes les requêtes possibles, ainsi que les réponses
- * appropriées, concernant les commandes, venant de l'interface utilisateur web.
- * Distribue les requêtes aux classes services implémentant l'interface dédiée
- * via Spring.
+ * Classe de controller REST pour traîter les requêtes concernant les commandes.
+ * Définit les requêtes et leurs réponses possibles pour le site web. Appelle les méthodes appropriées du service.
+ * Les requêtes et les réponses sont transmises au format JSON.
  * 
  * @author Gauthier Nourdin
  * 
@@ -36,9 +35,19 @@ public class CommandeController {
 	CommandeService commandeService;
 	
 	/**
-	 *  Vérifie et enregistre la commande
-	 * @param commandeAEnregistrer
-	 * @return
+	 * Traîte une requête POST de validation est d'enregistrement de commande.
+	 * Les informations sur la commande sont inclues dans le corps avec l'identifiant du client qui la passe.
+	 * La réponse standard est la commande enregistrée.
+	 * Retourne une erreur 503 si la base de données est inaccessible à la lecture ou à l'écriture.
+	 * Retourne une erreur 401 si le client n'est pas identifié ou reconnu.
+	 * Retourne une erreur 409 si les stocks ne permettent plus le passage de la commande.
+	 * Retourne une erreur 500 en cas de problème inconnu.
+	 * 
+	 * @param commandeAEnregistrer La nouvelle commande à valider et à enregistré.
+	 * 
+	 * @return nouvelleCommande La commande validée et enregistrée. 
+	 * 
+	 * @since 1.0
 	 */
 	@PostMapping("/enregistrementCommande")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -73,6 +82,5 @@ public class CommandeController {
 
 		return nouvelleCommande;
 	}
-	
 	
 }

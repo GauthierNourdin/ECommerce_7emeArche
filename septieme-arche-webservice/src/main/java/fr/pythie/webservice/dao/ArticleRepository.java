@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import fr.pythie.webservice.model.Article;
 
 /**
+ * Interface permettant de manipuler les articles en base de données.
+ * Schéma utilisé par Spring Data JPA pour créer automatiquement les méthodes et requêtes nécessaires.
  * 
  * @author Gauthier Nourdin
  * 

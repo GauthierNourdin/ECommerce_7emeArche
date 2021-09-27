@@ -37,25 +37,30 @@ public class LivreImprime extends Livre {
 	String uniteLongueur;
 
 	/**
+	 * Constructeur permettant de construire un livre imprimé vide.
 	 * 
+	 * @since 1.0
 	 */
 	public LivreImprime() {
 		super();
 	}
 	
 	/**
-	 * Constructeur avec tous les paramètres obligatoires
-	 * @param titre
-	 * @param resume
-	 * @param isbn13
-	 * @param titreLivre
-	 * @param format
-	 * @param lienImage
-	 * @param dateDepotLegal
-	 * @param genres
-	 * @param auteurs
-	 * @param editeur
-	 * @param dateFinTirage
+	 * Constructeur permettant de construire un livre imprimé avec toutes les informations obligatoires.
+	 * 
+	 * @param titre Le titre général.
+	 * @param resume Le résumé.
+	 * @param isbn13 Le numéro isbn13.
+	 * @param titreLivre Le titre du livre.
+	 * @param format Le format.
+	 * @param lienImage Le lien vers l'image du livre.
+	 * @param dateDepotLegal La date du dépot légal du livre.
+	 * @param genres La liste des genres du livre.
+	 * @param auteurs La liste des auteurs du livre.
+	 * @param editeur L'éditeur du livre.
+	 * @param dateFinTirage La date de fin du dernier tirage.
+	 * 
+	 * @since 1.0
 	 */
 	public LivreImprime(@NonNull String titre, @NonNull String resume, @NonNull String isbn13,
 			@NonNull String titreLivre, @NonNull String format, @NonNull String lienImage,
@@ -66,31 +71,34 @@ public class LivreImprime extends Livre {
 	}
 	
 	/**
-	 *  Constructeur complet mis à part l'ID
-	 * @param titre
-	 * @param resume
-	 * @param prixHT
-	 * @param prixTTC
-	 * @param consultations
-	 * @param lignesCommande
-	 * @param isbn13
-	 * @param titreLivre
-	 * @param format
-	 * @param lienImage
-	 * @param nombrePages
-	 * @param dateDepotLegal
-	 * @param genres
-	 * @param auteurs
-	 * @param editeur
-	 * @param quantiteStock
-	 * @param dateFinTirage
-	 * @param dateReimpression
-	 * @param poids
-	 * @param unitePoids
-	 * @param longueur
-	 * @param largeur
-	 * @param epaisseur
-	 * @param uniteLongueur
+	 * Constructeur permettant permet de construire un livre imprimé complet mais sans identifiant.
+	 * 
+	 * @param titre Le titre général.
+	 * @param resume Le résumé.
+	 * @param prixHT Le prix unitaire hors taxe multiplié par 100.
+	 * @param prixTTC Le prix unitaire toutes taxes comprises multiplié par 100.
+	 * @param consultations La liste de consultations de la page de cet article.
+	 * @param lignesCommande La liste des lignes de commande associée à cet article.
+	 * @param isbn13 Le numéro isbn13.
+	 * @param titreLivre Le titre du livre.
+	 * @param format Le format.
+	 * @param lienImage Le lien vers l'image du livre.
+	 * @param nombrePages Le nombre de pages.
+	 * @param dateDepotLegal La date du dépot légal du livre.
+	 * @param genres La liste des genres du livre.
+	 * @param auteurs La liste des auteurs du livre.
+	 * @param editeur L'éditeur du livre.
+	 * @param quantiteStock La quantité en stock.
+	 * @param dateFinTirage La date de fin du dernier tirage.
+	 * @param dateReimpression La date du début de la dernière réimpression.
+	 * @param poids Le poids du livre.
+	 * @param unitePoids L'unité de poids du livre.
+	 * @param longueur La longueur du livre.
+	 * @param largeur La largeur du livre.
+	 * @param epaisseur L'épaisseur du livre.
+	 * @param uniteLongueur L'unité de longueur du livre.
+	 * 
+	 * @since 1.0
 	 */
 	public LivreImprime(@NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
 			List<Consultation> consultations, List<LigneCommande> lignesCommande, @NonNull String isbn13,
@@ -113,32 +121,35 @@ public class LivreImprime extends Livre {
 	}
 
 	/**
-	 * Constructeur complet
-	 * @param id
-	 * @param titre
-	 * @param resume
-	 * @param prixHT
-	 * @param prixTTC
-	 * @param consultations
-	 * @param lignesCommande
-	 * @param isbn13
-	 * @param titreLivre
-	 * @param format
-	 * @param lienImage
-	 * @param nombrePages
-	 * @param dateDepotLegal
-	 * @param genres
-	 * @param auteurs
-	 * @param editeur
-	 * @param quantiteStock
-	 * @param dateFinTirage
-	 * @param dateReimpression
-	 * @param poids
-	 * @param unitePoids
-	 * @param longueur
-	 * @param largeur
-	 * @param epaisseur
-	 * @param uniteLongueur
+	 * Constructeur permettant permet de construire un livre imprimé complet.
+	 * 
+	 * @param id L'identifiant.
+	 * @param titre Le titre général.
+	 * @param resume Le résumé.
+	 * @param prixHT Le prix unitaire hors taxe multiplié par 100.
+	 * @param prixTTC Le prix unitaire toutes taxes comprises multiplié par 100.
+	 * @param consultations La liste de consultations de la page de cet article.
+	 * @param lignesCommande La liste des lignes de commande associée à cet article.
+	 * @param isbn13 Le numéro isbn13.
+	 * @param titreLivre Le titre du livre.
+	 * @param format Le format.
+	 * @param lienImage Le lien vers l'image du livre.
+	 * @param nombrePages Le nombre de pages.
+	 * @param dateDepotLegal La date du dépot légal du livre.
+	 * @param genres La liste des genres du livre.
+	 * @param auteurs La liste des auteurs du livre.
+	 * @param editeur L'éditeur du livre.
+	 * @param quantiteStock La quantité en stock.
+	 * @param dateFinTirage La date de fin du dernier tirage.
+	 * @param dateReimpression La date du début de la dernière réimpression.
+	 * @param poids Le poids du livre.
+	 * @param unitePoids L'unité de poids du livre.
+	 * @param longueur La longueur du livre.
+	 * @param largeur La largeur du livre.
+	 * @param epaisseur L'épaisseur du livre.
+	 * @param uniteLongueur L'unité de longueur du livre.
+	 * 
+	 * @since 1.0
 	 */
 	public LivreImprime(long id, @NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
 			List<Consultation> consultations, List<LigneCommande> lignesCommande, @NonNull String isbn13,
@@ -161,151 +172,245 @@ public class LivreImprime extends Livre {
 	}
 
 	/**
+	 * Retournela quantité en stock.
 	 * 
-	 * @return
+	 * @return quantiteStock La quantité en stock.
+	 * 
+	 * @see LivreImprime#setQuantiteStock(int)
+	 * 
+	 * @since 1.0
 	 */
 	public int getQuantiteStock() {
 		return quantiteStock;
 	}
 
 	/**
+	 * Modifie la quantité en stock.
 	 * 
-	 * @param quantiteStock
+	 * @param quantiteStock La nouvelle quantité en stock.
+	 * 
+	 * @see LivreImprime#getQuantiteStock()
+	 * 
+	 * @since 1.0
 	 */
 	public void setQuantiteStock(int quantiteStock) {
 		this.quantiteStock = quantiteStock;
 	}
 
 	/**
+	 * Retourne la date de fin du dernier tirage.
 	 * 
-	 * @return
+	 * @return dateFinTirage La date de fin du dernier tirage.
+	 * 
+	 * @see LivreImprime#setDateFinTirage(LocalDate)
+	 * 
+	 * @since 1.0
 	 */
 	public LocalDate getDateFinTirage() {
 		return dateFinTirage;
 	}
 
 	/**
+	 * Modifie la date de fin du dernier tirage.
 	 * 
-	 * @param dateFinTirage
+	 * @param dateFinTirage La nouvelle date de fin du dernier tirage.
+	 * 
+	 * @see LivreImprime#getDateFinTirage()
+	 * 
+	 * @since 1.0
 	 */
 	public void setDateFinTirage(LocalDate dateFinTirage) {
 		this.dateFinTirage = dateFinTirage;
 	}
 
 	/**
+	 * Retourne la date du début de la dernière réimpression.
 	 * 
-	 * @return
+	 * @return dateReimpression La date du début de la dernière réimpression.
+	 * 
+	 * @see LivreImprime#setDateReimpression(LocalDate)
+	 * 
+	 * @since 1.0
 	 */
 	public LocalDate getDateReimpression() {
 		return dateReimpression;
 	}
 
 	/**
+	 * Modifie la date du début de la dernière réimpression.
 	 * 
-	 * @param dateReimpression
+	 * @param dateReimpression La nouvelle date du début de la dernière réimpression.
+	 * 
+	 * @see LivreImprime#getDateReimpression()
+	 * 
+	 * @since 1.0
 	 */
 	public void setDateReimpression(LocalDate dateReimpression) {
 		this.dateReimpression = dateReimpression;
 	}
 
 	/**
+	 * Retourne le poids du livre.
 	 * 
-	 * @return
+	 * @return poids Le poids du livre.
+	 *  
+	 * @see LivreImprime#setPoids(double)
+	 * 
+	 * @since 1.0
 	 */
 	public double getPoids() {
 		return poids;
 	}
 
 	/**
+	 * Modifie le poids du livre.
 	 * 
-	 * @param poids
+	 * @param poids Le nouveau poids du livre.
+	 * 
+	 * @see LivreImprime#getPoids()
+	 * 
+	 * @since 1.0
 	 */
 	public void setPoids(double poids) {
 		this.poids = poids;
 	}
 
 	/**
+	 * Retourne l'unité de poids du livre.
 	 * 
-	 * @return
+	 * @return unitePoids L'unité de poids du livre.
+	 * 
+	 * @see LivreImprime#setUnitePoids(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getUnitePoids() {
 		return unitePoids;
 	}
 
 	/**
+	 * Modifie l'unité de poids du livre.
 	 * 
-	 * @param unitePoids
+	 * @param unitePoids La nouvelle unité de poids du livre.
+	 * 
+	 * @see LivreImprime#getUnitePoids()
+	 * 
+	 * @since 1.0
 	 */
 	public void setUnitePoids(String unitePoids) {
 		this.unitePoids = unitePoids;
 	}
 
 	/**
+	 * Retourne la longueur du livre.
 	 * 
-	 * @return
+	 * @return longueur La longueur du livre.
+	 * 
+	 * @see LivreImprime#setLongueur(double)
+	 * 
+	 * @since 1.0
 	 */
 	public double getLongueur() {
 		return longueur;
 	}
 
 	/**
+	 * Modifie la longueur du livre.
 	 * 
-	 * @param longueur
+	 * @param longueur La nouvelle longueur du livre.
+	 * 
+	 * @see LivreImprime#getLongueur()
+	 * 
+	 * @since 1.0
 	 */
 	public void setLongueur(double longueur) {
 		this.longueur = longueur;
 	}
 
 	/**
+	 * Retourne la largeur du livre.
 	 * 
-	 * @return
+	 * @return largeur La largeur du livre.
+	 * 
+	 * @see LivreImprime#setLargeur(double)
+	 * 
+	 * @since 1.0
 	 */
 	public double getLargeur() {
 		return largeur;
 	}
 
 	/**
+	 * Modifie la largeur du livre.
 	 * 
-	 * @param largeur
+	 * @param largeur La nouvelle largeur du livre.
+	 * 
+	 * @see LivreImprime#getLargeur()
+	 * 
+	 * @since 1.0
 	 */
 	public void setLargeur(double largeur) {
 		this.largeur = largeur;
 	}
 
 	/**
+	 * Retourne l'épaisseur du livre.
 	 * 
-	 * @return
+	 * @return epaisseur L'épaisseur du livre.
+	 * 
+	 * @see LivreImprime#setEpaisseur(double)
+	 * 
+	 * @since 1.0
 	 */
 	public double getEpaisseur() {
 		return epaisseur;
 	}
 
 	/**
+	 * Modifie l'épaisseur du livre.
 	 * 
-	 * @param epaisseur
+	 * @param epaisseur La nouvelle épaisseur du livre.
+	 * 
+	 * @see LivreImprime#getEpaisseur()
+	 * 
+	 * @since 1.0
 	 */
 	public void setEpaisseur(double epaisseur) {
 		this.epaisseur = epaisseur;
 	}
 
 	/**
+	 * Retourne l'unité de longueur du livre.
 	 * 
-	 * @return
+	 * @return uniteLongueur L'unité de longueur du livre.
+	 * 
+	 * @see LivreImprime#setUniteLongueur(String)
+	 * 
+	 * @since 1.0
 	 */
 	public String getUniteLongueur() {
 		return uniteLongueur;
 	}
 
 	/**
+	 * Modifie l'unité de longueur du livre.
 	 * 
-	 * @param uniteLongueur
+	 * @param uniteLongueur La nouvelle unité de longueur du livre.
+	 * 
+	 * @see LivreImprime#getUniteLongueur()
+	 * 
+	 * @since 1.0
 	 */
 	public void setUniteLongueur(String uniteLongueur) {
 		this.uniteLongueur = uniteLongueur;
 	}
 
 	/**
+	 * Calcule le code hash.
 	 * 
+	 * @return result Le code hash.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public int hashCode() {
@@ -329,7 +434,13 @@ public class LivreImprime extends Livre {
 	}
 
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à ce livre imprimé.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -374,7 +485,10 @@ public class LivreImprime extends Livre {
 	}
 
 	/**
+	 * Produit la chaîne de caractères réprésentant le livre imprimé.
+	 * On n'y intègre pas l'éditeur, les consultations, les lignes de commandes, les genres et les auteurs associés.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public String toString() {

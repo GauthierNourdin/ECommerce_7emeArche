@@ -24,16 +24,21 @@ public class CommandeAvecIdClient {
 	Long idClient;
 	
 	/**
+	 * Constructeur permettant de construire un objet vide.
 	 * 
+	 * @since 1.0
 	 */
 	public CommandeAvecIdClient() {
 		super();
 	}
 
 	/**
+	 * Constructeur permettant de construire un objet complet.
 	 * 
-	 * @param commande
-	 * @param idClient
+	 * @param commande La commande à enregistrer.
+	 * @param idClient L'identifiant du client passant la commande.
+	 * 
+	 * @since 1.0
 	 */
 	public CommandeAvecIdClient(@NonNull Commande commande, @NonNull Long idClient) {
 		super();
@@ -42,39 +47,63 @@ public class CommandeAvecIdClient {
 	}
 
 	/**
+	 * Retourne la commande à enregistrer.
 	 * 
-	 * @return
+	 * @return commande La commande à enregistrer.
+	 * 
+	 * @see CommandeAvecIdClient#setCommande(Commande)
+	 * 
+	 * @since 1.0
 	 */
 	public Commande getCommande() {
 		return commande;
 	}
 
 	/**
+	 * Modifie la commande à enregistrer.
 	 * 
-	 * @param commande
+	 * @param commande La nouvelle commande à enregistrer.
+	 * 
+	 * @see CommandeAvecIdClient#getCommande()
+	 * 
+	 * @since 1.0
 	 */
 	public void setCommande(Commande commande) {
 		this.commande = commande;
 	}
 
 	/**
+	 * Retourne l'identifiant du client passant la commande.
 	 * 
-	 * @return
+	 * @return idClient L'identifiant du client passant la commande.
+	 * 
+	 * @see CommandeAvecIdClient#setIdClient(Long)
+	 * 
+	 * @since 1.0
 	 */
 	public Long getIdClient() {
 		return idClient;
 	}
 
 	/**
+	 * Modifie l'identifiant du client passant la commande.
 	 * 
-	 * @param idClient
+	 * @param idClient Le nouvel identifiant du client passant la commande.
+	 * 
+	 * @see CommandeAvecIdClient#getIdClient()
+	 * 
+	 * @since 1.0
 	 */
 	public void setIdClient(Long idClient) {
 		this.idClient = idClient;
 	}
 
 	/**
+	 * Calcule le code hash.
 	 * 
+	 * @return result Le code hash.
+	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public int hashCode() {
@@ -86,7 +115,13 @@ public class CommandeAvecIdClient {
 	}
 
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à celui-ci.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -111,7 +146,9 @@ public class CommandeAvecIdClient {
 	}
 
 	/**
+     * Produit la chaîne de caractères réprésentant cet objet.
 	 * 
+	 * @since 1.0
 	 */
 	@Override
 	public String toString() {

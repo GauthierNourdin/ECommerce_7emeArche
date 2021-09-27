@@ -31,6 +31,8 @@ public abstract class Personne {
 	String prenom;
 
 	/**
+	 * Constructeur permettant de construire une personne vide.
+	 * 
 	 * @since 1.0
 	 */
 	public Personne() {
@@ -38,8 +40,9 @@ public abstract class Personne {
 	}
 
 	/**
+	 * Constructeur permettant de construire une personne avec toutes les informations obligatoires.
 	 * 
-	 * @param nom
+	 * @param nom Le nom.
 	 * 
 	 * @since 1.0
 	 */
@@ -49,11 +52,11 @@ public abstract class Personne {
 	}
 
 	/** 
-	 * Constructeur complet mis à part l'ID.
+	 * Constructeur permettant permet de construire une personne complète mais sans identifiant.
 	 * 
-	 * @param civilite
-	 * @param nom
-	 * @param prenom
+	 * @param civilite La civilité.
+	 * @param nom Le nom.
+	 * @param prenom Le ou les prénoms.
 	 * 
 	 * @since 1.0
 	 */
@@ -65,6 +68,7 @@ public abstract class Personne {
 	}
 	
 	/**
+	 * Constructeur permettant permet de construire une personne complète.
 	 * 
 	 * @param id L'identifiant.
 	 * @param civilite La civilité.
@@ -82,8 +86,9 @@ public abstract class Personne {
 	}
 
 	/**
+	 * Retourne l'identifiant.
 	 * 
-	 * @return id
+	 * @return id L'identifiant.
 	 * 
 	 * @see Personne#setId(long)
 	 * 
@@ -94,8 +99,9 @@ public abstract class Personne {
 	}
 
 	/**
+	 * Modifie l'identifiant.
 	 * 
-	 * @param id
+	 * @param id Le nouvel identifiant.
 	 * 
 	 * @see Personne#getId()
 	 * 
@@ -106,8 +112,9 @@ public abstract class Personne {
 	}
 
 	/**
+	 * Retourne la civilité.
 	 * 
-	 * @return civilite
+	 * @return civilite La civilité.
 	 * 
 	 * @see Personne#setCivilite(String)
 	 * 
@@ -118,8 +125,9 @@ public abstract class Personne {
 	}
 
 	/**
+	 * Modifie la civilité.
 	 * 
-	 * @param civilite
+	 * @param civilite La nouvelle civilité.
 	 * 
 	 * @see Personne#getCivilite()
 	 * 
@@ -130,8 +138,9 @@ public abstract class Personne {
 	}
 
 	/**
+	 * Retourne le nom.
 	 * 
-	 * @return nom
+	 * @return nom Le nom.
 	 * 
 	 * @see Personne#setNom(String)
 	 * 
@@ -142,8 +151,9 @@ public abstract class Personne {
 	}
 
 	/**
+	 * Modifie le nom.
 	 * 
-	 * @param nom
+	 * @param nom Le nouveau nom.
 	 * 
 	 * @see Personne#getNom()
 	 * 
@@ -154,8 +164,9 @@ public abstract class Personne {
 	}
 
 	/**
+	 * Retourne le ou les prénoms.
 	 * 
-	 * @return prenom
+	 * @return prenom Le ou les prénoms.
 	 * 
 	 * @see Personne#setPrenom(String)
 	 * 
@@ -166,7 +177,9 @@ public abstract class Personne {
 	}
 
 	/**
-	 * @param prenom
+	 * Modifie le ou les prénoms.
+	 * 
+	 * @param prenom Le nouveau ou les nouveaux prénoms.
 	 * 
 	 * @see Personne#getPrenom()
 	 * 
@@ -177,6 +190,10 @@ public abstract class Personne {
 	}
 
 	/**
+	 * Calcule le code hash.
+	 * 
+	 * @return result Le code hash.
+	 * 
 	 * @since 1.0
 	 */
 	@Override
@@ -191,6 +208,12 @@ public abstract class Personne {
 	}
 
 	/**
+	 * Définit les conditions dans lesquelles un autre objet est égal à cette personne.
+	 *
+	 * @param obj L'objet auquel on veut comparer.
+	 *
+	 * @return true Si les deux objets sont identiques, false sinon.
+	 * 
 	 * @since 1.0
 	 */
 	@Override
@@ -223,6 +246,9 @@ public abstract class Personne {
 	}
 
 	/**
+	 * Produit la chaîne de caractères réprésentant la personne.
+	 * On n'y intègre pas l'éditeur, les consultations, les lignes de commandes, les genres et les auteurs associés.
+	 * 
 	 * @since 1.0
 	 */
 	@Override

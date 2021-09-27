@@ -6,9 +6,8 @@ import fr.pythie.webservice.exception.EcritureBaseDonneesException;
 import fr.pythie.webservice.exception.LectureBaseDonneesException;
 
 /**
- * Interface pour définir les méthodes attendues pour le controller REST
- * traîtant les requêtes concernant les paiements, provenant de l'interface
- * utilisateur web.
+ * Interface pour définir les méthodes traîtant les requêtes concernant les paiements.
+ * Les requêtes proviennent des controllers REST répondant au site web.
  * 
  * @author Gauthier Nourdin
  * 
@@ -19,12 +18,20 @@ import fr.pythie.webservice.exception.LectureBaseDonneesException;
 public interface PaiementService {
 
 	/**
+	 * Enregistre les informations de la carte bancaire du client. L'entrée et la 
+	 * sortie sont de type InformationsPaiement.
 	 * 
-	 * @param informationsPaiement
-	 * @return
-	 * @throws LectureBaseDonneesException
-	 * @throws EcritureBaseDonneesException
-	 * @throws ClientInconnuException
+	 * @param informationsPaiement Informations bancaires et identifiant client.
+	 * 
+	 * @return informationsPaiement Informations bancaires enregistrées.
+	 * 
+	 * @throws LectureBaseDonneesException Si la lecture de la base de données échoue.
+	 * @throws EcritureBaseDonneesException Si l'écriture dans la base de données échoue.
+	 * @throws ClientInconnuException Si l'identifiant client est invalide.
+	 * 
+	 * @see fr.pythie.webservice.communication.InformationsPaiement
+	 * 
+	 * @since 1.0
 	 */
 	InformationsPaiement informationsBancaires(InformationsPaiement informationsPaiement)
 			throws LectureBaseDonneesException, EcritureBaseDonneesException, ClientInconnuException;
