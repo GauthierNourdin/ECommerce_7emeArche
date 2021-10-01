@@ -1,1 +1,12 @@
+fr.pythie.webservice
+fr.pythie.webservice.communication
+fr.pythie.webservice.configuration
+fr.pythie.webservice.controller.userinterface
+fr.pythie.webservice.dao
+fr.pythie.webservice.exception
+fr.pythie.webservice.interfaces.service.userinterface
 fr.pythie.webservice.model
+fr.pythie.webservice.service.financier
+fr.pythie.webservice.service.userinterface
+fr.pythie.webservice.tests.dao
+fr.pythie.webservice.tests.service.userinterface

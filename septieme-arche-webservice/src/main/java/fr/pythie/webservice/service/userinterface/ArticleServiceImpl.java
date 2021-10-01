@@ -109,16 +109,14 @@ public class ArticleServiceImpl implements ArticleService {
 		 * résultat.
 		 */
 
-		// Boucle sur les commandes
 		for (Commande comm : commandesPertinantes) {
 
-			// Boucle sur les lignes de commandes d'une commande
 			for (LigneCommande ligneComm : comm.getLignesCommande()) {
 
 				// Indicateur de correspondance
 				boolean correspondance = false;
 
-				// Boucle sur les lignes de commandes de la liste résultat
+				// Pour les lignes de commandes de la liste résultat
 				for (LigneCommande ligneCommRes : lignesCommandesResultat) {
 
 					// Vérification de la correspondance sur un article entre les deux lignes (selon
@@ -340,9 +338,9 @@ public class ArticleServiceImpl implements ArticleService {
 		 * faut établir une correspondance avec au moins un auteur.
 		 */
 
-		// Boucle sur les livres enregistrés
 		for (Livre livre : livresEnregistrees) {
 
+			// Indicateur de correspondance
 			boolean correspondance = false;
 
 			// Test sur le titre du livre
@@ -350,7 +348,6 @@ public class ArticleServiceImpl implements ArticleService {
 				correspondance = true;
 			}
 
-			// Boucle sur les auteurs du livre
 			for (Auteur auteur : livre.getAuteurs()) {
 
 				// Test sur le prénom de l'auteur

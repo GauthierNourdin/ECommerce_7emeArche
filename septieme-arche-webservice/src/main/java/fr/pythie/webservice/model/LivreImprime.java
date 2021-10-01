@@ -172,7 +172,7 @@ public class LivreImprime extends Livre {
 	}
 
 	/**
-	 * Retournela quantité en stock.
+	 * Retourne la quantité en stock.
 	 * 
 	 * @return quantiteStock La quantité en stock.
 	 * 
