@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * Teste l'ensemble des services traîtant des commandes.
  */
 @SpringBootTest
-public class TestCommandeServiceImpl {
+public class CommandeServiceImplTest {
 
 	// Test de la méthode enregistrementCommande dans le cas standard.
 	@Test 

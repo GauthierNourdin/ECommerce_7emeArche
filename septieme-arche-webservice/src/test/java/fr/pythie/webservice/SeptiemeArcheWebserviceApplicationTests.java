@@ -359,7 +359,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
 
 		// Test sur le code status.
-		Assertions.assertEquals(204, result.getStatusCodeValue());
+		Assertions.assertEquals(200, result.getStatusCodeValue());
 	}
 
 	//@Test

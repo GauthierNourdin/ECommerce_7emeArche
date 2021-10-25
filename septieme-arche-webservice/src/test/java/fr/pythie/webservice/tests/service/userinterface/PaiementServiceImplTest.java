@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * Teste l'ensemble des services traîtant des paiements.
  */
 @SpringBootTest
-public class TestPaiementServiceImpl {
+public class PaiementServiceImplTest {
 
 	// Test de la méthode informationsBancaires dans le cas standard.
 	@Test 

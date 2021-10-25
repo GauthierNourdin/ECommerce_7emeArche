@@ -5,8 +5,14 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -45,15 +51,21 @@ public abstract class Livre extends Article {
 	LocalDate dateDepotLegal = LocalDate.now();
 	@NonNull
 	@JsonIgnoreProperties( "livres" )
+	@Fetch(value = FetchMode.SUBSELECT)
+	//@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	List<Genre> genres;
 	@NonNull
 	@JsonIgnoreProperties( "livres" )
+	@Fetch(value = FetchMode.SUBSELECT)
+	//@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	List<Auteur> auteurs;
 	@NonNull
 	@JsonIgnoreProperties( "livres" )
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	//@Fetch(value = FetchMode.SUBSELECT)
+	//@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Editeur editeur = new Editeur();
 
 	/**

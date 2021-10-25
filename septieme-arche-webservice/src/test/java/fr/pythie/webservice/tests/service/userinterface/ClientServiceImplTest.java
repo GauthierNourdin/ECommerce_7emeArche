@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * Teste l'ensemble des services traîtant des clients.
  */
 @SpringBootTest
-public class TestClientServiceImpl {
+public class ClientServiceImplTest {
 
 	// Test de la méthode creationCompteClient dans le cas standard.
 	@Test

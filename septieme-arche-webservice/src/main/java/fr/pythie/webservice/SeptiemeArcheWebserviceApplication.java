@@ -115,7 +115,7 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 		if (adresses == null || adresses.isEmpty()) {
 			
 			// Alors on enregistre les données initiales.
-			// Adresses initiales
+			// Adresses initiales.
 			Adresse adresse1 = new Adresse("24 bis", "Rue D'Indochine", "35200", "Rennes", "France", "");
 			Adresse adresse2 = new Adresse("18", "Avenue des Frères Lumière", "69003", "Lyon", "France", "");
 			Adresse adresse3 = new Adresse("374", "Rue du Maréchal Foch", "59160", "Lille", "France", "3e étage");
@@ -125,19 +125,19 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			Adresse adresse7 = new Adresse("280", "Grand place", "1050", "Bruxelles", "Belgique", "");
 			Adresse adresse8 = new Adresse("68", "Avenue du Général de Gaulle", "67000", "Strasbourg", "France", "");
 			
-			// Editeurs sans les livres
+			// Editeurs sans les livres.
 			Editeur editeur1 = new Editeur("Editions 7ème Art", adresse1, new ArrayList<Livre>());
 			Editeur editeur2 = new Editeur("Editions Philosophie et Arts", adresse2, new ArrayList<Livre>());
 			Editeur editeur3 = new Editeur("Groupe Argonaute", adresse2, new ArrayList<Livre>());
 			Editeur editeur4 = new Editeur("Historicae", adresse3, new ArrayList<Livre>());
 			
-			// Clients sans les consultations ni les commandes
+			// Clients sans les consultations ni les commandes.
 			Client client1 = new Client("M", "Finan","Didier","didier.finan@gmail.com","SpyFilmsAreTheBest","1565-4961-1787-1857","08/22","975", adresse4,adresse4, new ArrayList<Consultation>(), new ArrayList<Commande>());
 			Client client2 = new Client("M", "Hillfort","William E.","william.hillfort@protonmail.com","AlainDelon","1765-8273-2745-5818","04/23","170",adresse1,adresse5, new ArrayList<Consultation>(), new ArrayList<Commande>());
 			Client client3 = new Client("Mme", "Lamour","Mathilde","mathile@lamour.com","LeCinemaCestLaVie","","","",adresse6,adresse6, new ArrayList<Consultation>(), new ArrayList<Commande>());
 			Client client4 = new Client("Mme", "Renard","Marguerite","marg.renard@gmail.com","ViveLe7eArt","4354-1961-9711-0489","01/21","178",adresse8,adresse7, new ArrayList<Consultation>(), new ArrayList<Commande>());
 			
-			// Auteurs sans les livres
+			// Auteurs sans les livres.
 			Auteur auteur1 = new Auteur("M", "Picard", "Bernard", new ArrayList<Livre>());
 			Auteur auteur2 = new Auteur("M", "Shoeffer", "Edouard", new ArrayList<Livre>());
 			Auteur auteur3 = new Auteur("M", "Kurkov", "Alexey", new ArrayList<Livre>());
@@ -145,7 +145,7 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			Auteur auteur5 = new Auteur("M", "Labbe", "Antoine", new ArrayList<Livre>());
 			Auteur auteur6 = new Auteur("Mme", "Sancta", "Maria", new ArrayList<Livre>());
 			
-			// Genres sans les livres
+			// Genres sans les livres.
 			Genre genre1 = new Genre("Cinéma américain", new ArrayList<Livre>());
 			Genre genre2 = new Genre("Biographie", new ArrayList<Livre>());
 			Genre genre3 = new Genre("Livre d'exposition", new ArrayList<Livre>());
@@ -154,7 +154,7 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			Genre genre6 = new Genre("Analyse", new ArrayList<Livre>());
 			Genre genre7 = new Genre("Documentaire", new ArrayList<Livre>());
 			
-			// Livres numériques sans les consultations ni les lignes de commandes
+			// Livres numériques sans les consultations ni les lignes de commandes.
 			ArrayList<Genre> genresLivreNum1 = new ArrayList<Genre>();
 			ArrayList<Genre> genresLivreNum2 = new ArrayList<Genre>();
 			ArrayList<Genre> genresLivreNum3 = new ArrayList<Genre>();
@@ -184,7 +184,7 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			LivreNumerique livreNumerique3 = new LivreNumerique("Bollywood, simple copie de l'Occident ? Avec préface de l'auteur", "Analyse complète du cinéma bollywoodien contemporain et comparaison avec le cinéma américain et européen.", 2179, 2299, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-17172-074-0", "Bollywood, simple copie de l'Occident ?", ".pdf", "Bollywood_simple_copie_de_l_Occident_EdPhiloEtArt.png", 388, LocalDate.parse("2019-06-04"), genresLivreNum3, auteursLivreNum3, editeur2, 44.2, "Mo");
 			LivreNumerique livreNumerique4 = new LivreNumerique("Archives publiques, 1914-1918 : reportages de guerre", "Recueil d'extraits de pellicules tournés sur les théâtres d'opérations de la première guerre modiale avec notes associées et commentaires.", 2843, 2999, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-32724-014-8", "1914-1918 : reportages de guerre", ".pdf", "1914_1918_reportages_de_guerre_Historicae.png", 254, LocalDate.parse("2008-11-11"), genresLivreNum4, auteursLivreNum4, editeur4, 872.5, "Mo");
 			
-			// Livres imprimés sans les consultations ni les lignes de commandes
+			// Livres imprimés sans les consultations ni les lignes de commandes.
 			ArrayList<Genre> genresLivreImp1 = new ArrayList<Genre>();
 			ArrayList<Genre> genresLivreImp2 = new ArrayList<Genre>();
 			ArrayList<Genre> genresLivreImp3 = new ArrayList<Genre>();
@@ -217,7 +217,7 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			LivreImprime livreImprime3 = new LivreImprime("1944-2019 : soixante-quinze ans de films de super-héros, 1ère édition", "Analyse de l'évolution des films de super-héros depuis 1944. Résumés et illustrations d'une cinquante de films représentatifs.", 3032, 3199, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-27508-207-3", "1944-2019 : soixante-quinze ans de films de super-héros", "A5 à couverture rigide", "1944_2019_soixante_quinze_ans_de_films_de_super_heros_GpArgo.png", 314, LocalDate.parse("2020-04-17"), genresLivreImp3, auteursLivreImp3, editeur3, 3, LocalDate.parse("2020-03-17"), null, 422.7, "g", 21.0, 14.8, 2.72, "cm");
 			LivreImprime livreImprime4 = new LivreImprime("Films de guerre : raconter l'histoire des soldats, 4e édition", "Analyse de films de guerre de différentes époques et pays avec un regard particulier sur les personnages de soldat.", 2369, 2499, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-32724-089-9", "Films de guerre : raconter l'histoire des soldats", "Poche à dos carré collé", "Films_de_guerre_raconter_l_histoire_des_soldats_Historicae.png", 360, LocalDate.parse("2017-06-18"), genresLivreImp4, auteursLivreImp4, editeur4, 5, LocalDate.parse("2017-06-15"), LocalDate.parse("2019-02-14"), 290.8, "g", 17.0, 11.0, 3.11, "cm");
 			
-			// Ajout des livres numériques et imprimés aux éditeurs 
+			// Ajout des livres numériques et imprimés aux éditeurs.
 			ArrayList<Livre> livresEditeur1 = new ArrayList<Livre>();
 			ArrayList<Livre> livresEditeur2 = new ArrayList<Livre>();
 			ArrayList<Livre> livresEditeur3 = new ArrayList<Livre>();
@@ -237,7 +237,7 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			editeur3.setLivres(livresEditeur3);
 			editeur4.setLivres(livresEditeur4);
 			
-			// Ajout des livres numériques et imprimés aux auteurs
+			// Ajout des livres numériques et imprimés aux auteurs.
 			ArrayList<Livre> livresAuteur1 = new ArrayList<Livre>();
 			ArrayList<Livre> livresAuteur2 = new ArrayList<Livre>();
 			ArrayList<Livre> livresAuteur3 = new ArrayList<Livre>();
@@ -264,7 +264,7 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			auteur5.setLivres(livresAuteur5);
 			auteur6.setLivres(livresAuteur6);
 			
-			// Ajout des livres numériques et imprimés aux genres
+			// Ajout des livres numériques et imprimés aux genres.
 			ArrayList<Livre> livresGenre1 = new ArrayList<Livre>();
 			ArrayList<Livre> livresGenre2 = new ArrayList<Livre>();
 			ArrayList<Livre> livresGenre3 = new ArrayList<Livre>();
@@ -298,7 +298,7 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			genre6.setLivres(livresGenre6);
 			genre7.setLivres(livresGenre7);
 			
-			// Consultations
+			// Consultations.
 			Consultation consultation1 = new Consultation(LocalDateTime.of(2021, 7, 22, 17, 24, 5), client1, livreNumerique1);
 			Consultation consultation2 = new Consultation(LocalDateTime.of(2021, 7, 22, 17, 26, 41), client1, livreNumerique3);
 			Consultation consultation3 = new Consultation(LocalDateTime.of(2021, 7, 22, 17, 29, 4), client1, livreImprime2);
@@ -312,7 +312,7 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			Consultation consultation11 = new Consultation(LocalDateTime.of(2021, 8, 10, 5, 18, 56), null, livreImprime1);
 			Consultation consultation12 = new Consultation(LocalDateTime.of(2021, 8, 10, 12, 24, 14), null, livreImprime2);
 			
-			// Ajout des consultations aux clients
+			// Ajout des consultations aux clients.
 			ArrayList<Consultation> consultationsClient1 = new ArrayList<Consultation>();
 			ArrayList<Consultation> consultationsClient2 = new ArrayList<Consultation>();
 			ArrayList<Consultation> consultationsClient3 = new ArrayList<Consultation>();
@@ -332,7 +332,7 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			client1.setConsultations(consultationsClient2);
 			client1.setConsultations(consultationsClient3);
 			
-			// Ajout des consultations aux livres numériques et imprimés
+			// Ajout des consultations aux livres numériques et imprimés.
 			ArrayList<Consultation> consultationsLivreNum1 = new ArrayList<Consultation>();
 			ArrayList<Consultation> consultationsLivreNum2 = new ArrayList<Consultation>();
 			ArrayList<Consultation> consultationsLivreNum3 = new ArrayList<Consultation>();
@@ -364,13 +364,13 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			livreImprime1.setConsultations(consultationsLivreImp3);
 			livreImprime1.setConsultations(consultationsLivreImp4);
 			
-			// Commandes sans lignes de commande ni factures
+			// Commandes sans lignes de commande ni factures.
 			Commande commande1 = new Commande("210722173401-00000001", "Expédiée", LocalDateTime.of(2021, 7, 22, 17, 34, 1), new ArrayList<LigneCommande>(), client1, new ArrayList<Facture>());
 			Commande commande2 = new Commande("210802071157-00000001", "Expédiée", LocalDateTime.of(2021, 8, 2, 7, 11, 57), new ArrayList<LigneCommande>(), client1, new ArrayList<Facture>());
 			Commande commande3 = new Commande("210805140247-00000002", "Expédiée", LocalDateTime.of(2021, 8, 5, 14, 2, 47), new ArrayList<LigneCommande>(), client2, new ArrayList<Facture>());
 			Commande commande4 = new Commande("210809222724-00000003", "Payée", LocalDateTime.of(2021, 8, 9, 22, 27, 24), new ArrayList<LigneCommande>(), client3, new ArrayList<Facture>());
 			
-			// Ajout des commandes aux clients
+			// Ajout des commandes aux clients.
 			ArrayList<Commande> commandesClient1 = new ArrayList<Commande>();
 			ArrayList<Commande> commandesClient2 = new ArrayList<Commande>();
 			ArrayList<Commande> commandesClient3 = new ArrayList<Commande>();
@@ -384,7 +384,7 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			client2.setCommandes(commandesClient2);
 			client3.setCommandes(commandesClient3);
 			
-			// Lignes de commandes
+			// Lignes de commandes.
 			LigneCommande ligneCommande1 = new LigneCommande(1, 1895, 1999, livreNumerique1, commande1);
 			LigneCommande ligneCommande2 = new LigneCommande(2, 3222, 3399, livreImprime1, commande1);
 			LigneCommande ligneCommande3 = new LigneCommande(3, 3791, 3999, livreImprime2, commande1);
@@ -394,7 +394,7 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			LigneCommande ligneCommande7 = new LigneCommande(2, 3032, 3199, livreImprime3, commande3);
 			LigneCommande ligneCommande8 = new LigneCommande(1, 3222, 3399, livreImprime1, commande4);
 			
-			// Ajout des lignes de commandes aux commandes
+			// Ajout des lignes de commandes aux commandes.
 			ArrayList<LigneCommande> lignesCommandeCommande1 = new ArrayList<LigneCommande>();
 			ArrayList<LigneCommande> lignesCommandeCommande2 = new ArrayList<LigneCommande>();
 			ArrayList<LigneCommande> lignesCommandeCommande3 = new ArrayList<LigneCommande>();
@@ -414,7 +414,7 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			commande3.setLignesCommande(lignesCommandeCommande3);
 			commande4.setLignesCommande(lignesCommandeCommande4);
 			
-			// Ajout des lignes de commandes aux livres numériques et imprimés
+			// Ajout des lignes de commandes aux livres numériques et imprimés.
 			ArrayList<LigneCommande> lignesCommandeLivreNum1 = new ArrayList<LigneCommande>();
 			ArrayList<LigneCommande> lignesCommandeLivreNum2 = new ArrayList<LigneCommande>();
 			ArrayList<LigneCommande> lignesCommandeLivreNum3 = new ArrayList<LigneCommande>();
@@ -438,13 +438,13 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			livreImprime2.setLignesCommande(lignesCommandeLivreImp2);
 			livreImprime3.setLignesCommande(lignesCommandeLivreImp3);
 			
-			// Factures
+			// Factures.
 			Facture facture1 = new Facture("210722173401-00000001-01", "Payée", commande1);
 			Facture facture2 = new Facture("210802071157-00000001-01", "Payée", commande2);
 			Facture facture3 = new Facture("210805140247-00000002-01", "Payée", commande3);
 			Facture facture4 = new Facture("210809222724-00000003-01", "Payée", commande4);
 			
-			// Ajout des factures aux commandes
+			// Ajout des factures aux commandes.
 			ArrayList<Facture> facturesCommande1 = new ArrayList<Facture>();
 			ArrayList<Facture> facturesCommande2 = new ArrayList<Facture>();
 			ArrayList<Facture> facturesCommande3 = new ArrayList<Facture>();
@@ -460,39 +460,39 @@ public class SeptiemeArcheWebserviceApplication implements ApplicationRunner{
 			commande3.setFactures(facturesCommande3);
 			commande4.setFactures(facturesCommande4);
 			
-			// INJECTION DES DONNEES INITIALES DANS LA BASE DE DONNEES
+			// INJECTION DES DONNEES INITIALES DANS LA BASE DE DONNEES.
 			
-			// Sauvegarde des adresses
+			// Sauvegarde des adresses.
 			adresseRepository.saveAll(Arrays.asList(adresse1, adresse2, adresse3, adresse4, adresse5, adresse6, adresse7, adresse8)); 
 			
-			// Sauvegarde des éditeurs
+			// Sauvegarde des éditeurs.
 			editeurRepository.saveAll(Arrays.asList(editeur1, editeur2, editeur3, editeur4)); 
 			
-			// Sauvegarde des clients
+			// Sauvegarde des clients.
 			clientRepository.saveAll(Arrays.asList(client1, client2, client3, client4));
 			
-			// Sauvegarde des auteurs
+			// Sauvegarde des auteurs.
 			auteurRepository.saveAll(Arrays.asList(auteur1, auteur2, auteur3, auteur4, auteur5, auteur6)); 
 			
-			// Sauvegarde des genres
+			// Sauvegarde des genres.
 			genreRepository.saveAll(Arrays.asList(genre1, genre2, genre3, genre4, genre5, genre6, genre7));  
 			
-			// Sauvegarde des livres numériques
+			// Sauvegarde des livres numériques.
 			livreNumeriqueRepository.saveAll(Arrays.asList(livreNumerique1, livreNumerique2, livreNumerique3, livreNumerique4));
 			
-			// Sauvegarde des livres imprimés
+			// Sauvegarde des livres imprimés.
 			livreImprimeRepository.saveAll(Arrays.asList(livreImprime1, livreImprime2, livreImprime3, livreImprime4));
 			
-			// Sauvegarde des consultations
+			// Sauvegarde des consultations.
 			consultationRepository.saveAll(Arrays.asList(consultation1, consultation2, consultation3, consultation4, consultation5, consultation6, consultation7, consultation8, consultation9, consultation10, consultation11, consultation12));
 			
-			// Sauvegarde des commandes
+			// Sauvegarde des commandes.
 			commandeRepository.saveAll(Arrays.asList(commande1, commande2, commande3, commande4));
 			
-			// Sauvegarde des lignes de commande
+			// Sauvegarde des lignes de commande.
 			ligneCommandeRepository.saveAll(Arrays.asList(ligneCommande1, ligneCommande2, ligneCommande3, ligneCommande4, ligneCommande5, ligneCommande6, ligneCommande7, ligneCommande8));
 			
-			// Sauvegarde des factures
+			// Sauvegarde des factures.
 			factureRepository.saveAll(Arrays.asList(facture1, facture2, facture3, facture4));
 			
 		}

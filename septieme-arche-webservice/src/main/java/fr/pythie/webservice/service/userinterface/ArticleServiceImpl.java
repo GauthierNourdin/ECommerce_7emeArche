@@ -227,6 +227,8 @@ public class ArticleServiceImpl implements ArticleService {
 			if (livreImprime == null) {
 				throw new IdInvalideException();
 			}
+			
+			livresImprimes.add(livreImprime);
 
 		}
 
@@ -275,10 +277,12 @@ public class ArticleServiceImpl implements ArticleService {
 				throw new LectureBaseDonneesException();
 			}
 
-			// Si l'identifiant est invalide est doit lever une exception.
+			// Si l'identifiant est invalide on doit lever une exception.
 			if (livreNumerique == null) {
 				throw new IdInvalideException();
 			}
+			
+			livresNumeriques.add(livreNumerique);
 
 		}
 
@@ -309,10 +313,18 @@ public class ArticleServiceImpl implements ArticleService {
 		// On prépare la liste de résultats
 		ArrayList<IdentifiantEtTypeArticle> livresCorrespondants = new ArrayList<IdentifiantEtTypeArticle>();
 
+		// On vérifie d'abord que la chaîne de caractère en entrée ne soit pas vide. Sinon on lève une exception.
+		if (auteurOuTitre.isEmpty() || auteurOuTitre.isBlank()) {
+			throw new MauvaisStringException();
+		}
+		
+		// On supprime les espaces au début et la fin de la chaîne
+		auteurOuTitre = auteurOuTitre.trim();
+		
 		/*
 		 * On recherche les livres pour lesquels le prénom de l'auteur, ou son nom, ou
 		 * son prenom + nom, ou le titre contient la chaîne de caractère souhaitée On ne
-		 * peut pas faire de requête SQL directe (trop compliqué et peu fiable). On doit
+		 * peut pas faire de requête SQL directe (trop compliqué et peu fiable avec Hibernate !). On doit
 		 * à la place extraire l'ensemble des livres et faire une recherche en Java.
 		 */
 

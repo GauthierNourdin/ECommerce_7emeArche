@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
@@ -36,7 +39,7 @@ public class Editeur {
 	@NonNull
 	String nom;
 	@NonNull
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Adresse adresse = new Adresse();
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "editeur")

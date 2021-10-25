@@ -6,12 +6,16 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -41,13 +45,17 @@ public class Commande {
 	String status;
 	LocalDateTime date = LocalDateTime.now();
 	@JsonIgnoreProperties( "commande" )
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commande")
+	@Fetch(value = FetchMode.SUBSELECT)
+	//@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "commande")
 	List<LigneCommande> lignesCommande;
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Client client = new Client();
 	@JsonIgnoreProperties( "commande" )
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commande")
+	@Fetch(value = FetchMode.SUBSELECT)
+	//@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "commande")
 	List<Facture> factures;
 
 	/**

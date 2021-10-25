@@ -8,6 +8,11 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+//import org.hibernate.annotations.LazyCollection;
+//import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AccessLevel;
@@ -35,16 +40,24 @@ public class Client extends Personne {
 	String dateDeValidite;
 	String cvc;
 	@NonNull
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	//@Fetch(value = FetchMode.SUBSELECT)
+	//@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Adresse adresseFacturation = new Adresse();
 	@NonNull
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	//@Fetch(value = FetchMode.SUBSELECT)
+	//@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Adresse adresseLivraison = new Adresse();
 	@JsonIgnoreProperties( "client" )
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+	@Fetch(value = FetchMode.SUBSELECT)
+	//@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "client")
 	List<Consultation> consultations;
 	@JsonIgnoreProperties( "client" )
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+	@Fetch(value = FetchMode.SUBSELECT)
+	//@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "client")
 	List<Commande> commandes;
 
 	/**
