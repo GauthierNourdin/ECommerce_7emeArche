@@ -24,7 +24,7 @@ public class Adresse {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@NonNull
 	String numeroRue;
 	@NonNull
@@ -100,7 +100,7 @@ public class Adresse {
 	 * 
 	 * @since 1.0
 	 */
-	public Adresse(long id, @NonNull String numeroRue, @NonNull String nomRue, @NonNull String codePostal,
+	public Adresse(Long id, @NonNull String numeroRue, @NonNull String nomRue, @NonNull String codePostal,
 			@NonNull String ville, String pays, String complement) {
 		super();
 		this.id = id;
@@ -121,7 +121,7 @@ public class Adresse {
 	 * 
 	 * @since 1.0
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -134,7 +134,7 @@ public class Adresse {
 	 * 
 	 * @since 1.0
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

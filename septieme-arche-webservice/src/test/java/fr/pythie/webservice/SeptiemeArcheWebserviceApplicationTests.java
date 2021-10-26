@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
-//import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
@@ -58,7 +58,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 	@Autowired
 	ConsultationRepository consultationRepository;
 	
-	//@Test
+	@Test
 	void testListeParDefautArticles() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -74,7 +74,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(200, result.getStatusCodeValue());
 	}
 
-	//@Test
+	@Test
 	void testLivresImprimes() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -88,8 +88,8 @@ class SeptiemeArcheWebserviceApplicationTests {
 
 		// Préparation de l'objet à envoyer
 		List<Long> listeIdLivresImprimes = new ArrayList<Long>();
-		listeIdLivresImprimes.add((long) 5);
-		listeIdLivresImprimes.add((long) 7);
+		listeIdLivresImprimes.add(Long.valueOf(5L));
+		listeIdLivresImprimes.add(Long.valueOf(7L));
 
 		// Préparation du corps de la requête.
 		HttpEntity<List<Long>> request = new HttpEntity<>(listeIdLivresImprimes, headers);
@@ -101,7 +101,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(200, result.getStatusCodeValue());
 	}
 
-	//@Test
+	@Test
 	void testLivresNumeriques() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -115,8 +115,8 @@ class SeptiemeArcheWebserviceApplicationTests {
 
 		// Préparation de l'objet à envoyer
 		List<Long> listeIdLivresNumeriques = new ArrayList<Long>();
-		listeIdLivresNumeriques.add((long) 2);
-		listeIdLivresNumeriques.add((long) 3);
+		listeIdLivresNumeriques.add(Long.valueOf(2L));
+		listeIdLivresNumeriques.add(Long.valueOf(3L));
 
 		// Préparation du corps de la requête.
 		HttpEntity<List<Long>> request = new HttpEntity<>(listeIdLivresNumeriques, headers);
@@ -128,7 +128,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(200, result.getStatusCodeValue());
 	}
 
-	//@Test
+	@Test
 	void testListeLivresParAuteurOuTitre() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -153,7 +153,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(200, result.getStatusCodeValue());
 	}
 
-	//@Test
+	@Test
 	void testListeLivresParAuteurOuTitreResultatVide() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -178,7 +178,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(204, result.getStatusCodeValue());
 	}
 
-	//@Test
+	@Test
 	void testAjoutConsultationAnonyme() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -191,7 +191,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		HttpHeaders headers = new HttpHeaders();
 
 		// Préparation de l'objet à envoyer
-		Article articleConsulte = articleRepository.getById((long) 3);
+		Article articleConsulte = articleRepository.getById(Long.valueOf(3L));
 		Consultation consultationAnonyme = new Consultation(LocalDateTime.now(), null, articleConsulte);
 
 		// Préparation du corps de la requête.
@@ -204,7 +204,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(201, result.getStatusCodeValue());
 	}
 
-	//@Test
+	@Test
 	void testAjoutConsultationClient() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -217,9 +217,9 @@ class SeptiemeArcheWebserviceApplicationTests {
 		HttpHeaders headers = new HttpHeaders();
 
 		// Préparation de l'objet à envoyer
-		Article articleConsulte = articleRepository.getById((long) 5);
+		Article articleConsulte = articleRepository.getById(Long.valueOf(5L));
 		Consultation consultation = new Consultation(LocalDateTime.now(), null, articleConsulte);
-		ConsultationAvecIdClient consultationClient = new ConsultationAvecIdClient(consultation, (long) 3);
+		ConsultationAvecIdClient consultationClient = new ConsultationAvecIdClient(consultation, Long.valueOf(3L));
 
 		// Préparation du corps de la requête.
 		HttpEntity<ConsultationAvecIdClient> request = new HttpEntity<>(consultationClient, headers);
@@ -231,7 +231,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(201, result.getStatusCodeValue());
 	}
 
-	//@Test
+	@Test
 	void testAjoutClientAConsultation() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -244,8 +244,8 @@ class SeptiemeArcheWebserviceApplicationTests {
 		HttpHeaders headers = new HttpHeaders();
 
 		// Préparation de l'objet à envoyer
-		Consultation consultation = consultationRepository.getById((long) 12);
-		ConsultationAvecIdClient consultationAvecClient = new ConsultationAvecIdClient(consultation, (long) 4);
+		Consultation consultation = consultationRepository.getById(Long.valueOf(12L));
+		ConsultationAvecIdClient consultationAvecClient = new ConsultationAvecIdClient(consultation, Long.valueOf(4L));
 		
 		// Préparation du corps de la requête.
 		HttpEntity<ConsultationAvecIdClient> request = new HttpEntity<>(consultationAvecClient, headers);
@@ -257,7 +257,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(200, result.getStatusCodeValue());
 	}
 
-	//@Test
+	@Test
 	void testConsulterDisponibiliteLivresImprimes() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -271,9 +271,9 @@ class SeptiemeArcheWebserviceApplicationTests {
 
 		// Préparation de l'objet à envoyer
 		List<Long> listeIdLivresImprimes = new ArrayList<Long>();
-		listeIdLivresImprimes.add((long) 8);
-		listeIdLivresImprimes.add((long) 5);
-		listeIdLivresImprimes.add((long) 6);
+		listeIdLivresImprimes.add(Long.valueOf(8L));
+		listeIdLivresImprimes.add(Long.valueOf(5L));
+		listeIdLivresImprimes.add(Long.valueOf(6L));
 
 		// Préparation du corps de la requête.
 		HttpEntity<List<Long>> request = new HttpEntity<>(listeIdLivresImprimes, headers);
@@ -285,7 +285,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(200, result.getStatusCodeValue());
 	}
 
-	//@Test
+	@Test
 	void testCreationCompteClient() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -312,7 +312,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(201, result.getStatusCodeValue());
 	}
 
-	//@Test
+	@Test
 	void testAuthentificationClient() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -337,7 +337,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(200, result.getStatusCodeValue());
 	}
 	
-	//@Test
+	@Test
 	void testAuthentificationClientEchec() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -362,7 +362,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(200, result.getStatusCodeValue());
 	}
 
-	//@Test
+	@Test
 	void testModificationCompteClient() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -377,10 +377,10 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation de l'objet à envoyer
 		ArrayList<Consultation> consultations = new ArrayList<Consultation>();
 		ArrayList<Commande> commandes = new ArrayList<Commande>();
-		Adresse adresseFacturation = adresseRepository.findById((long) 8).orElse(null);
-		Adresse adresseLivraison = adresseRepository.findById((long) 7).orElse(null);
+		Adresse adresseFacturation = adresseRepository.findById(Long.valueOf(8L)).orElse(null);
+		Adresse adresseLivraison = adresseRepository.findById(Long.valueOf(7L)).orElse(null);
 		
-		Client clientModifie = new Client(4, "Mme", "Renard", "Marguerite", "marguerite.renard@protonmail.com", "ViveLe7eArt", "4354-1961-9711-0489", "01/21", "178", adresseFacturation, adresseLivraison, consultations, commandes);
+		Client clientModifie = new Client(Long.valueOf(4), "Mme", "Renard", "Marguerite", "marguerite.renard@protonmail.com", "ViveLe7eArt", "4354-1961-9711-0489", "01/21", "178", adresseFacturation, adresseLivraison, consultations, commandes);
 
 		// Préparation du corps de la requête.
 		HttpEntity<Client> request = new HttpEntity<>(clientModifie, headers);
@@ -392,7 +392,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(200, result.getStatusCodeValue());
 	}
 
-	//@Test
+	@Test
 	void testEnregistrementCommande() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -408,9 +408,9 @@ class SeptiemeArcheWebserviceApplicationTests {
 		List<LigneCommande> lignesCommande = new ArrayList<LigneCommande>();
 		
 		// Obtention des articles.
-		Article article1 = articleRepository.getById((long) 3);
-		Article article2 = articleRepository.getById((long) 6);
-		Article article3 = articleRepository.getById((long) 8);
+		Article article1 = articleRepository.getById(Long.valueOf(3L));
+		Article article2 = articleRepository.getById(Long.valueOf(6L));
+		Article article3 = articleRepository.getById(Long.valueOf(8L));
 		
 		// Fabrication des lignes de commande.
 		LigneCommande ligneCommande1 = new LigneCommande(1, 1895, 1999, article1, null);
@@ -425,7 +425,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation de la commande.
 		Commande commande = new Commande(null, "En attente de paiement", LocalDateTime.now(), lignesCommande, null, null);
 		
-		CommandeAvecIdClient commandeAEnregistrer = new CommandeAvecIdClient(commande, (long) 1);
+		CommandeAvecIdClient commandeAEnregistrer = new CommandeAvecIdClient(commande, Long.valueOf(1L));
 
 		// Préparation du corps de la requête.
 		HttpEntity<CommandeAvecIdClient> request = new HttpEntity<>(commandeAEnregistrer, headers);
@@ -437,7 +437,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		Assertions.assertEquals(201, result.getStatusCodeValue());
 	}
 
-	//@Test
+	@Test
 	void testEnregistrementInformationsBancaires() throws URISyntaxException {
 
 		// Préparation de la requête et de son URL.
@@ -450,7 +450,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 		HttpHeaders headers = new HttpHeaders();
 
 		// Préparation de l'objet à envoyer
-		InformationsPaiement informationsPaiement = new InformationsPaiement("7510-4167-6722-0236", "03/22", "570", (long) 3);
+		InformationsPaiement informationsPaiement = new InformationsPaiement("7510-4167-6722-0236", "03/22", "570", Long.valueOf(3L));
 
 		// Préparation du corps de la requête.
 		HttpEntity<InformationsPaiement> request = new HttpEntity<>(informationsPaiement, headers);

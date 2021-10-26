@@ -24,7 +24,7 @@ public abstract class Personne {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	Long id;
 	String civilite;
 	@NonNull
 	String nom;
@@ -77,7 +77,7 @@ public abstract class Personne {
 	 * 
 	 * @since 1.0
 	 */
-	public Personne(long id, String civilite, @NonNull String nom, String prenom) {
+	public Personne(Long id, String civilite, @NonNull String nom, String prenom) {
 		super();
 		this.id = id;
 		this.civilite = civilite;
@@ -94,7 +94,7 @@ public abstract class Personne {
 	 * 
 	 * @since 1.0
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -107,7 +107,7 @@ public abstract class Personne {
 	 * 
 	 * @since 1.0
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

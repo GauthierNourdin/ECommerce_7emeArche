@@ -76,7 +76,7 @@ public class Auteur extends Personne {
 	 * @since 1.0
 	 */
 	// Constructeur complet
-	public Auteur(long id, String civilite, @NonNull String nom, String prenom, List<Livre> livres) {
+	public Auteur(Long id, String civilite, @NonNull String nom, String prenom, List<Livre> livres) {
 		super(id, civilite, nom, prenom);
 		this.livres = livres;
 	}

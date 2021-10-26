@@ -39,7 +39,7 @@ public class Commande {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	Long id;
 	String numero;
 	@NonNull
 	String status;
@@ -115,7 +115,7 @@ public class Commande {
 	 * 
 	 * @since 1.0
 	 */
-	public Commande(long id, String numero, @NonNull String status, LocalDateTime date,
+	public Commande(Long id, String numero, @NonNull String status, LocalDateTime date,
 			List<LigneCommande> lignesCommande, Client client, List<Facture> factures) {
 		super();
 		this.id = id;
@@ -136,7 +136,7 @@ public class Commande {
 	 * 
 	 * @since 1.0
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -149,7 +149,7 @@ public class Commande {
 	 * 
 	 * @since 1.0
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -33,7 +33,7 @@ public class LigneCommande {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	Long id;
 	int quantiteCommandee;
 	int prixHT;
 	int prixTTC;
@@ -99,7 +99,7 @@ public class LigneCommande {
 	 * 
 	 * @since 1.0
 	 */
-	public LigneCommande(long id, int quantiteCommandee, int prixHT, int prixTTC, @NonNull Article article,
+	public LigneCommande(Long id, int quantiteCommandee, int prixHT, int prixTTC, @NonNull Article article,
 			Commande commande) {
 		super();
 		this.id = id;
@@ -119,7 +119,7 @@ public class LigneCommande {
 	 * 
 	 * @since 1.0
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -132,7 +132,7 @@ public class LigneCommande {
 	 * 
 	 * @since 1.0
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

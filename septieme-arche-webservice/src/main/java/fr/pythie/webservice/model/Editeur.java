@@ -35,7 +35,7 @@ public class Editeur {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	Long id;
 	@NonNull
 	String nom;
 	@NonNull
@@ -94,7 +94,7 @@ public class Editeur {
 	 * 
 	 * @since 1.0
 	 */
-	public Editeur(long id, @NonNull String nom, @NonNull Adresse adresse, List<Livre> livres) {
+	public Editeur(Long id, @NonNull String nom, @NonNull Adresse adresse, List<Livre> livres) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -111,7 +111,7 @@ public class Editeur {
 	 * 
 	 * @since 1.0
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -124,7 +124,7 @@ public class Editeur {
 	 * 
 	 * @since 1.0
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

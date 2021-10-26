@@ -201,7 +201,7 @@ public class ClientServiceImpl implements ClientService {
 
 		// On doit lever une exception si on a retourné un client et que son identifiant est différent
 		// de celui qu'on souhaite modifier.
-		if (!(clientAvecLesMemesIdentifiants == null || clientAvecLesMemesIdentifiants.getId() == clientAModifier.getId())) {
+		if (!(clientAvecLesMemesIdentifiants == null || clientAvecLesMemesIdentifiants.getId().equals(clientAModifier.getId()))) {
 			throw new IdentifiantsUtilisesException();
 		}
 		

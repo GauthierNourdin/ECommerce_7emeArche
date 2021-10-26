@@ -34,7 +34,7 @@ public abstract class Article {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	Long id;
 	@NonNull
 	String titre;
 	@NonNull
@@ -107,7 +107,7 @@ public abstract class Article {
 	 * 
 	 * @since 1.0
 	 */
-	public Article(long id, @NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
+	public Article(Long id, @NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
 			List<Consultation> consultations, List<LigneCommande> lignesCommande) {
 		super();
 		this.id = id;
@@ -128,7 +128,7 @@ public abstract class Article {
 	 * 
 	 * @since 1.0
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -141,7 +141,7 @@ public abstract class Article {
 	 * 
 	 * @since 1.0
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

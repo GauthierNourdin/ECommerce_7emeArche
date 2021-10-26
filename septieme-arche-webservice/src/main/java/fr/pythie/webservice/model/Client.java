@@ -142,7 +142,7 @@ public class Client extends Personne {
 	 * 
 	 * @since 1.0
 	 */
-	public Client(long id, String civilite, @NonNull String nom, String prenom, @NonNull String email,
+	public Client(Long id, String civilite, @NonNull String nom, String prenom, @NonNull String email,
 			@NonNull String motDePasse, String numeroCarte, String dateDeValidite, String cvc,
 			@NonNull Adresse adresseFacturation, @NonNull Adresse adresseLivraison, List<Consultation> consultations,
 			List<Commande> commandes) {

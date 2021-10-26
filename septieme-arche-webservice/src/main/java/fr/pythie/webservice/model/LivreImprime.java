@@ -151,7 +151,7 @@ public class LivreImprime extends Livre {
 	 * 
 	 * @since 1.0
 	 */
-	public LivreImprime(long id, @NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
+	public LivreImprime(Long id, @NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
 			List<Consultation> consultations, List<LigneCommande> lignesCommande, @NonNull String isbn13,
 			@NonNull String titreLivre, @NonNull String format, @NonNull String lienImage, int nombrePages,
 			LocalDate dateDepotLegal, @NonNull List<Genre> genres, @NonNull List<Auteur> auteurs,

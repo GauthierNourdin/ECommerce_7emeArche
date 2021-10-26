@@ -28,7 +28,7 @@ public class Facture {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	Long id;
 	String numero;
 	@NonNull
 	String status;
@@ -86,7 +86,7 @@ public class Facture {
 	 * 
 	 * @since 1.0
 	 */
-	public Facture(long id, String numero, @NonNull String status, @NonNull Commande commande) {
+	public Facture(Long id, String numero, @NonNull String status, @NonNull Commande commande) {
 		super();
 		this.id = id;
 		this.numero = numero;
@@ -103,7 +103,7 @@ public class Facture {
 	 * 
 	 * @since 1.0
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -116,7 +116,7 @@ public class Facture {
 	 * 
 	 * @since 1.0
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -30,7 +30,7 @@ public class Genre {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	Long id;
 	@NonNull
 	String nom;
 	@JsonIgnore
@@ -81,7 +81,7 @@ public class Genre {
 	 * 
 	 * @since 1.0
 	 */
-	public Genre(long id, @NonNull String nom, List<Livre> livres) {
+	public Genre(Long id, @NonNull String nom, List<Livre> livres) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -97,7 +97,7 @@ public class Genre {
 	 * 
 	 * @since 1.0
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -110,7 +110,7 @@ public class Genre {
 	 * 
 	 * @since 1.0
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

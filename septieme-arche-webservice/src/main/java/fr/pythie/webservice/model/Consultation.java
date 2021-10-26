@@ -35,7 +35,7 @@ public class Consultation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	Long id;
 	LocalDateTime dateEnregistrement = LocalDateTime.now();
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
@@ -92,7 +92,7 @@ public class Consultation {
 	 * 
 	 * @since 1.0
 	 */
-	public Consultation(long id, LocalDateTime dateEnregistrement, Client client, @NonNull Article article) {
+	public Consultation(Long id, LocalDateTime dateEnregistrement, Client client, @NonNull Article article) {
 		super();
 		this.id = id;
 		this.dateEnregistrement = dateEnregistrement;
@@ -109,7 +109,7 @@ public class Consultation {
 	 * 
 	 * @since 1.0
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -122,7 +122,7 @@ public class Consultation {
 	 * 
 	 * @since 1.0
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -306,14 +306,14 @@ public class ArticleController {
 	 */
 	@PostMapping("/ajoutClientAConsultation")
 	@ResponseStatus(HttpStatus.OK)
-	public ConsultationAvecIdClient ajoutClientAConsultation(@RequestBody ConsultationAvecIdClient consultationAvecClient) {
+	public ConsultationAvecIdClient ajoutClientAConsultation(@RequestBody ConsultationAvecIdClient consultationAvecIdClient) {
 
 		ConsultationAvecIdClient consultation = new ConsultationAvecIdClient();
 
 		// On essaie d'exécuter le service pour ajouter un client à une consultation
 		// anonyme
 		try {
-			consultation = articleService.ajoutClientAConsultation(consultationAvecClient);
+			consultation = articleService.ajoutClientAConsultation(consultationAvecIdClient);
 		} catch (LectureBaseDonneesException exception) {
 			// En cas d'erreur lors de la lecture en base de données (pour vérifier
 			// présence de la consultation anonyme et du client) on envoie un status HTTP

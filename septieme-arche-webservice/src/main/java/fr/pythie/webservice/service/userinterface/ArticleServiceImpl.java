@@ -212,7 +212,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 		// Ensuite on doit pour chaque identifiant obtenir le livre imprimé
 		// correspondant;
-		for (long idLivreImprime : listeIdLivresImprimes) {
+		for (Long idLivreImprime : listeIdLivresImprimes) {
 
 			LivreImprime livreImprime;
 
@@ -266,7 +266,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 		// Ensuite on doit pour chaque identifiant obtenir le livre imprimé
 		// correspondant;
-		for (long idLivreNumerique : listeIdLivresNumeriques) {
+		for (Long idLivreNumerique : listeIdLivresNumeriques) {
 
 			LivreNumerique livreNumerique;
 

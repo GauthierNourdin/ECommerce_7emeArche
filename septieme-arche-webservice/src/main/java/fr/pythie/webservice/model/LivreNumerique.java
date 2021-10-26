@@ -118,7 +118,7 @@ public class LivreNumerique extends Livre {
 	 * 
 	 * @since 1.0
 	 */
-	public LivreNumerique(long id, @NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
+	public LivreNumerique(Long id, @NonNull String titre, @NonNull String resume, int prixHT, int prixTTC,
 			List<Consultation> consultations, List<LigneCommande> lignesCommande, @NonNull String isbn13,
 			@NonNull String titreLivre, @NonNull String format, @NonNull String lienImage, int nombrePages,
 			@NonNull LocalDate dateDepotLegal, @NonNull List<Genre> genres, @NonNull List<Auteur> auteurs,
