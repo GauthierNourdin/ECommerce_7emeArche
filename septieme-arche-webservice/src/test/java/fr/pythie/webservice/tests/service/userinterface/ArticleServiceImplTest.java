@@ -16,6 +16,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import fr.pythie.webservice.communication.ConsultationAvecIdClient;
 import fr.pythie.webservice.communication.IdentifiantEtTypeArticle;
 import fr.pythie.webservice.dao.AdresseRepository;
 import fr.pythie.webservice.dao.ArticleRepository;
@@ -31,6 +32,7 @@ import fr.pythie.webservice.dao.LivreImprimeRepository;
 import fr.pythie.webservice.dao.LivreNumeriqueRepository;
 import fr.pythie.webservice.dao.LivreRepository;
 import fr.pythie.webservice.dao.PersonneRepository;
+import fr.pythie.webservice.exception.ClientInconnuException;
 import fr.pythie.webservice.exception.ConsultationNonAnonymeException;
 import fr.pythie.webservice.exception.EcritureBaseDonneesException;
 import fr.pythie.webservice.exception.IdInvalideException;
@@ -866,18 +868,18 @@ public class ArticleServiceImplTest {
 		
 		// Consultation anonyme.
 		// Adresses initiales.
-		Adresse adresse1 = new Adresse("24 bis", "Rue D'Indochine", "35200", "Rennes", "France", "");
+		Adresse adresse1 = new Adresse(1L, "24 bis", "Rue D'Indochine", "35200", "Rennes", "France", "");
 					
 		// Editeurs sans les livres.
-		Editeur editeur1 = new Editeur("Editions 7ème Art", adresse1, new ArrayList<Livre>());
+		Editeur editeur1 = new Editeur(1L, "Editions 7ème Art", adresse1, new ArrayList<Livre>());
 		
 		// Auteurs sans les livres.
-		Auteur auteur1 = new Auteur("M", "Picard", "Bernard", new ArrayList<Livre>());
-		Auteur auteur6 = new Auteur("Mme", "Sancta", "Maria", new ArrayList<Livre>());
+		Auteur auteur1 = new Auteur(5L, "M", "Picard", "Bernard", new ArrayList<Livre>());
+		Auteur auteur6 = new Auteur(10L, "Mme", "Sancta", "Maria", new ArrayList<Livre>());
 		
 		// Genres sans les livres.
-		Genre genre1 = new Genre("Cinéma américain", new ArrayList<Livre>());
-		Genre genre7 = new Genre("Documentaire", new ArrayList<Livre>());
+		Genre genre1 = new Genre(1L, "Cinéma américain", new ArrayList<Livre>());
+		Genre genre7 = new Genre(7L, "Documentaire", new ArrayList<Livre>());
 		
 		// Livres imprimés sans les consultations ni les lignes de commandes.
 		ArrayList<Genre> genresLivreImp1 = new ArrayList<Genre>();
@@ -890,7 +892,7 @@ public class ArticleServiceImplTest {
 		auteursLivreImp1.add(auteur1);
 		auteursLivreImp1.add(auteur6);
 		
-		LivreImprime livreImprime1 = new LivreImprime("Dans les coulises du tournage de Mission Impossible, 2e édition", "Recueil de photographies et de témoignages autour des différents tournages de la série de films Mission Impossible.", 3222, 3399, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-15857-954-7", "Dans les coulises du tournage de Mission Impossible", "Grand carré à couverture rigide", "Dans_les_coulises_du_tournage_de_Mission Impossible_Ed7emeArt.png", 186, LocalDate.parse("2020-08-05"), genresLivreImp1, auteursLivreImp1, editeur1, 4, LocalDate.parse("2020-08-02"), LocalDate.parse("2020-12-28"), 359.4, "g", 21.0, 21.0, 1.63, "cm");
+		LivreImprime livreImprime1 = new LivreImprime(5L, "Dans les coulises du tournage de Mission Impossible, 2e édition", "Recueil de photographies et de témoignages autour des différents tournages de la série de films Mission Impossible.", 3222, 3399, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-15857-954-7", "Dans les coulises du tournage de Mission Impossible", "Grand carré à couverture rigide", "Dans_les_coulises_du_tournage_de_Mission Impossible_Ed7emeArt.png", 186, LocalDate.parse("2020-08-05"), genresLivreImp1, auteursLivreImp1, editeur1, 4, LocalDate.parse("2020-08-02"), LocalDate.parse("2020-12-28"), 359.4, "g", 21.0, 21.0, 1.63, "cm");
 		
 		Consultation consultationAnonyme = new Consultation(LocalDateTime.of(2021, 10, 25, 16, 35, 14, 38570036), null, livreImprime1); 
 		
@@ -908,12 +910,110 @@ public class ArticleServiceImplTest {
 	@Test
 	void testAjoutConsultationAnonymeExceptionConsultationNonAnonyme() {
 		
+		// Consultation non anonyme.
+		// Adresses initiales.
+		Adresse adresse1 = new Adresse(1L, "24 bis", "Rue D'Indochine", "35200", "Rennes", "France", "");
+		Adresse adresse4 = new Adresse(4L, "14", "Stirling Street", "EH10", "Edinburgh", "Ecosse", "");
+					
+		// Editeurs sans les livres.
+		Editeur editeur1 = new Editeur(1L, "Editions 7ème Art", adresse1, new ArrayList<Livre>());
+		
+		// Auteurs sans les livres.
+		Auteur auteur1 = new Auteur(5L, "M", "Picard", "Bernard", new ArrayList<Livre>());
+		Auteur auteur6 = new Auteur(10L, "Mme", "Sancta", "Maria", new ArrayList<Livre>());
+		
+		// Clients sans les consultations ni les commandes.
+		Client client1 = new Client(1L, "M", "Finan","Didier","didier.finan@gmail.com","SpyFilmsAreTheBest","1565-4961-1787-1857","08/22","975", adresse4,adresse4, new ArrayList<Consultation>(), new ArrayList<Commande>());
+		
+		// Genres sans les livres.
+		Genre genre1 = new Genre(1L, "Cinéma américain", new ArrayList<Livre>());
+		Genre genre7 = new Genre(7L, "Documentaire", new ArrayList<Livre>());
+		
+		// Livres imprimés sans les consultations ni les lignes de commandes.
+		ArrayList<Genre> genresLivreImp1 = new ArrayList<Genre>();
+		
+		genresLivreImp1.add(genre1);
+		genresLivreImp1.add(genre7);
+		
+		ArrayList<Auteur> auteursLivreImp1 = new ArrayList<Auteur>();
+		
+		auteursLivreImp1.add(auteur1);
+		auteursLivreImp1.add(auteur6);
+		
+		LivreImprime livreImprime1 = new LivreImprime(5L, "Dans les coulises du tournage de Mission Impossible, 2e édition", "Recueil de photographies et de témoignages autour des différents tournages de la série de films Mission Impossible.", 3222, 3399, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-15857-954-7", "Dans les coulises du tournage de Mission Impossible", "Grand carré à couverture rigide", "Dans_les_coulises_du_tournage_de_Mission Impossible_Ed7emeArt.png", 186, LocalDate.parse("2020-08-05"), genresLivreImp1, auteursLivreImp1, editeur1, 4, LocalDate.parse("2020-08-02"), LocalDate.parse("2020-12-28"), 359.4, "g", 21.0, 21.0, 1.63, "cm");
+		
+		List<Consultation> consultationsClient1 = new ArrayList<Consultation>();
+		
+		Consultation consultationAnonyme = new Consultation(LocalDateTime.of(2021, 10, 25, 16, 35, 14, 38570036), client1, livreImprime1); 
+
+		consultationsClient1.add(consultationAnonyme);
+		
+		client1.setConsultations(consultationsClient1);
+		
+		// Mock de l'appel à la DB pour enregistrer la consultation anonyme.
+		Consultation nouvelleConsultation = new Consultation(9L, consultationAnonyme.getDateEnregistrement(), consultationAnonyme.getClient(), consultationAnonyme.getArticle());
+		
+		when(consultationRepository.save(consultationAnonyme)).thenReturn(nouvelleConsultation);
+		
+		// Test.
+		assertThrows(ConsultationNonAnonymeException.class, () -> { articleServiceImpl.ajoutConsultationAnonyme(consultationAnonyme); });
 	}
 	
 	// Test de la méthode ajoutConsultationClient dans le cas standard.
 	@Test
-	void testAjoutConsultationClient() {
+	void testAjoutConsultationClient() throws LectureBaseDonneesException, EcritureBaseDonneesException, ClientInconnuException {
 		
+		// Consultation avec id client.
+		// Adresses initiales.
+		Adresse adresse1 = new Adresse(1L, "24 bis", "Rue D'Indochine", "35200", "Rennes", "France", "");
+		Adresse adresse4 = new Adresse(4L, "14", "Stirling Street", "EH10", "Edinburgh", "Ecosse", "");
+					
+		// Editeurs sans les livres.
+		Editeur editeur1 = new Editeur(1L, "Editions 7ème Art", adresse1, new ArrayList<Livre>());
+		
+		// Auteurs sans les livres.
+		Auteur auteur1 = new Auteur(5L, "M", "Picard", "Bernard", new ArrayList<Livre>());
+		Auteur auteur6 = new Auteur(10L, "Mme", "Sancta", "Maria", new ArrayList<Livre>());
+		
+		// Clients sans les consultations ni les commandes.
+		Client client1 = new Client(1L, "M", "Finan","Didier","didier.finan@gmail.com","SpyFilmsAreTheBest","1565-4961-1787-1857","08/22","975", adresse4,adresse4, new ArrayList<Consultation>(), new ArrayList<Commande>());
+		
+		// Genres sans les livres.
+		Genre genre1 = new Genre(1L, "Cinéma américain", new ArrayList<Livre>());
+		Genre genre7 = new Genre(7L, "Documentaire", new ArrayList<Livre>());
+		
+		// Livres imprimés sans les consultations ni les lignes de commandes.
+		ArrayList<Genre> genresLivreImp1 = new ArrayList<Genre>();
+		
+		genresLivreImp1.add(genre1);
+		genresLivreImp1.add(genre7);
+		
+		ArrayList<Auteur> auteursLivreImp1 = new ArrayList<Auteur>();
+		
+		auteursLivreImp1.add(auteur1);
+		auteursLivreImp1.add(auteur6);
+		
+		LivreImprime livreImprime1 = new LivreImprime(5L, "Dans les coulises du tournage de Mission Impossible, 2e édition", "Recueil de photographies et de témoignages autour des différents tournages de la série de films Mission Impossible.", 3222, 3399, new ArrayList<Consultation>(), new ArrayList<LigneCommande>(), "978-2-15857-954-7", "Dans les coulises du tournage de Mission Impossible", "Grand carré à couverture rigide", "Dans_les_coulises_du_tournage_de_Mission Impossible_Ed7emeArt.png", 186, LocalDate.parse("2020-08-05"), genresLivreImp1, auteursLivreImp1, editeur1, 4, LocalDate.parse("2020-08-02"), LocalDate.parse("2020-12-28"), 359.4, "g", 21.0, 21.0, 1.63, "cm");
+		
+		List<Consultation> consultationsClient1 = new ArrayList<Consultation>();
+		
+		Consultation consultationClient = new Consultation(LocalDateTime.of(2021, 10, 25, 16, 35, 14, 38570036), client1, livreImprime1); 
+
+		consultationsClient1.add(consultationClient);
+		
+		client1.setConsultations(consultationsClient1);
+		
+		ConsultationAvecIdClient consultationAvecIdClient = new ConsultationAvecIdClient(consultationClient, 1L);
+		
+		// Résultat attendu.
+		Consultation nouvelleConsultation = new Consultation(9L, consultationClient.getDateEnregistrement(), consultationClient.getClient(), consultationClient.getArticle());
+		ConsultationAvecIdClient nouvelleConsultationAvecIdClient = new ConsultationAvecIdClient(nouvelleConsultation, 1L);
+		
+		// Mock de l'appel à la DB pour enregistrer la consultation anonyme.
+		when(consultationRepository.save(consultationClient)).thenReturn(nouvelleConsultation);
+
+		// Test.
+		assertEquals(nouvelleConsultationAvecIdClient, articleServiceImpl.ajoutConsultationClient(consultationAvecIdClient));
 	}
 	
 	// Test de la méthode ajoutConsultationClient avec un identifiant client inconnu.
