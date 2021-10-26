@@ -321,6 +321,8 @@ public class ArticleServiceImpl implements ArticleService {
 		// On supprime les espaces au début et la fin de la chaîne
 		auteurOuTitre = auteurOuTitre.trim();
 		
+		System.out.println("auteurOuTitre :" + auteurOuTitre);
+		
 		/*
 		 * On recherche les livres pour lesquels le prénom de l'auteur, ou son nom, ou
 		 * son prenom + nom, ou le titre contient la chaîne de caractère souhaitée On ne
@@ -352,6 +354,8 @@ public class ArticleServiceImpl implements ArticleService {
 
 		for (Livre livre : livresEnregistrees) {
 
+			System.out.println(livre);
+			
 			// Indicateur de correspondance
 			boolean correspondance = false;
 
@@ -386,6 +390,8 @@ public class ArticleServiceImpl implements ArticleService {
 
 			}
 
+			System.out.println(correspondance);
+			
 			// Si l'un des tests est positif on ajoute le livre testé à la liste des
 			// résultats
 			if (correspondance) {
@@ -402,6 +408,8 @@ public class ArticleServiceImpl implements ArticleService {
 
 		}
 
+		System.out.println(livresCorrespondants);
+		
 		// Avant de retourner le résultat, on vérifie que la liste n'est pas vide sinon
 		// on lève une exception
 		if (livresCorrespondants.isEmpty()) {

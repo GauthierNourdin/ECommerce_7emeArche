@@ -1,19 +1,23 @@
 package fr.pythie.webservice;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.pythie.webservice.communication.CommandeAvecIdClient;
 import fr.pythie.webservice.communication.ConsultationAvecIdClient;
@@ -31,6 +35,7 @@ import fr.pythie.webservice.model.Consultation;
 import fr.pythie.webservice.model.LigneCommande;
 
 @SpringBootTest
+@AutoConfigureMockMvc
 class SeptiemeArcheWebserviceApplicationTests {
 	/*
 	 * Classe de test permettant de vérifier l'intégralité de l'application. Comme
@@ -43,8 +48,8 @@ class SeptiemeArcheWebserviceApplicationTests {
 	 * cas que le système doit rejeter.
 	 */
 
-	// Port Serveur
-	int portServeur = 8090;
+	@Autowired
+	private MockMvc mockMvc;
 
 	@Autowired
 	AdresseRepository adresseRepository;
@@ -59,358 +64,245 @@ class SeptiemeArcheWebserviceApplicationTests {
 	ConsultationRepository consultationRepository;
 	
 	@Test
-	void testListeParDefautArticles() throws URISyntaxException {
+	void testListeParDefautArticles() throws Exception {
 
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/article/listeArticlesParDefaut";
-		URI uri = new URI(baseUrl);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(200, result.getStatusCodeValue());
+		this.mockMvc
+		.perform(get("/userinterface/article/listeArticlesParDefaut"))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON));
 	}
 
 	@Test
-	void testLivresImprimes() throws URISyntaxException {
-
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/article/livresImprimes";
-		URI uri = new URI(baseUrl);
-
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
+	void testLivresImprimes() throws Exception {
 
 		// Préparation de l'objet à envoyer
 		List<Long> listeIdLivresImprimes = new ArrayList<Long>();
-		listeIdLivresImprimes.add(Long.valueOf(5L));
-		listeIdLivresImprimes.add(Long.valueOf(7L));
-
-		// Préparation du corps de la requête.
-		HttpEntity<List<Long>> request = new HttpEntity<>(listeIdLivresImprimes, headers);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(200, result.getStatusCodeValue());
+		listeIdLivresImprimes.add(5L);
+		listeIdLivresImprimes.add(7L);
+		
+		this.mockMvc
+		.perform(post("/userinterface/article/livresImprimes")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(listeIdLivresImprimes))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		
 	}
 
 	@Test
-	void testLivresNumeriques() throws URISyntaxException {
-
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/article/livresNumeriques";
-		URI uri = new URI(baseUrl);
-
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
+	void testLivresNumeriques() throws Exception {
 
 		// Préparation de l'objet à envoyer
 		List<Long> listeIdLivresNumeriques = new ArrayList<Long>();
 		listeIdLivresNumeriques.add(Long.valueOf(2L));
 		listeIdLivresNumeriques.add(Long.valueOf(3L));
-
-		// Préparation du corps de la requête.
-		HttpEntity<List<Long>> request = new HttpEntity<>(listeIdLivresNumeriques, headers);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(200, result.getStatusCodeValue());
+		
+		this.mockMvc
+		.perform(post("/userinterface/article/livresNumeriques")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(listeIdLivresNumeriques))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		
 	}
 
 	@Test
-	void testListeLivresParAuteurOuTitre() throws URISyntaxException {
-
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/article/listeLivresParAuteurOuTitre";
-		URI uri = new URI(baseUrl);
-
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
+	void testListeLivresParAuteurOuTitre() throws Exception {
 
 		// Préparation de l'objet à envoyer
-		String auteurOuTitre = "Bollywood";
+		String auteurOuTitre = "Charlie Chaplin";
+		
+		this.mockMvc
+		.perform(post("/userinterface/article/listeLivresParAuteurOuTitre")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(auteurOuTitre))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON));
 
-		// Préparation du corps de la requête.
-		HttpEntity<String> request = new HttpEntity<>(auteurOuTitre, headers);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(200, result.getStatusCodeValue());
 	}
 
 	@Test
-	void testListeLivresParAuteurOuTitreResultatVide() throws URISyntaxException {
-
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/article/listeLivresParAuteurOuTitre";
-		URI uri = new URI(baseUrl);
-
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
+	void testListeLivresParAuteurOuTitreResultatVide() throws Exception {
 
 		// Préparation de l'objet à envoyer
 		String auteurOuTitre = "Cette requête est tellement longue qu'il est impossible qu'un livre ou auteur corresponde";
-
-		// Préparation du corps de la requête.
-		HttpEntity<String> request = new HttpEntity<>(auteurOuTitre, headers);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(204, result.getStatusCodeValue());
-	}
-
-	@Test
-	void testAjoutConsultationAnonyme() throws URISyntaxException {
-
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/article/ajoutConsultationAnonyme";
-		URI uri = new URI(baseUrl);
-
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
-
-		// Préparation de l'objet à envoyer
-		Article articleConsulte = articleRepository.getById(Long.valueOf(3L));
-		Consultation consultationAnonyme = new Consultation(LocalDateTime.now(), null, articleConsulte);
-
-		// Préparation du corps de la requête.
-		HttpEntity<Consultation> request = new HttpEntity<>(consultationAnonyme, headers);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(201, result.getStatusCodeValue());
-	}
-
-	@Test
-	void testAjoutConsultationClient() throws URISyntaxException {
-
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/article/ajoutConsultationClient";
-		URI uri = new URI(baseUrl);
-
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
-
-		// Préparation de l'objet à envoyer
-		Article articleConsulte = articleRepository.getById(Long.valueOf(5L));
-		Consultation consultation = new Consultation(LocalDateTime.now(), null, articleConsulte);
-		ConsultationAvecIdClient consultationClient = new ConsultationAvecIdClient(consultation, Long.valueOf(3L));
-
-		// Préparation du corps de la requête.
-		HttpEntity<ConsultationAvecIdClient> request = new HttpEntity<>(consultationClient, headers);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(201, result.getStatusCodeValue());
-	}
-
-	@Test
-	void testAjoutClientAConsultation() throws URISyntaxException {
-
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/article/ajoutClientAConsultation";
-		URI uri = new URI(baseUrl);
-
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
-
-		// Préparation de l'objet à envoyer
-		Consultation consultation = consultationRepository.getById(Long.valueOf(12L));
-		ConsultationAvecIdClient consultationAvecClient = new ConsultationAvecIdClient(consultation, Long.valueOf(4L));
 		
-		// Préparation du corps de la requête.
-		HttpEntity<ConsultationAvecIdClient> request = new HttpEntity<>(consultationAvecClient, headers);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(200, result.getStatusCodeValue());
+		this.mockMvc
+		.perform(post("/userinterface/article/listeLivresParAuteurOuTitre")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(auteurOuTitre))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isNoContent());
+		
 	}
 
 	@Test
-	void testConsulterDisponibiliteLivresImprimes() throws URISyntaxException {
+	void testAjoutConsultationAnonyme() throws Exception {
 
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/article/consulterDisponibiliteLivresImprimes";
-		URI uri = new URI(baseUrl);
+		// Préparation de l'objet à envoyer
+		Article articleConsulte = articleRepository.getById(3L);
+		Consultation consultationAnonyme = new Consultation(LocalDateTime.now(), null, articleConsulte);
+		
+		this.mockMvc
+		.perform(post("/userinterface/article/ajoutConsultationAnonyme")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(consultationAnonyme))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isCreated())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		
+	}
 
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
+	@Test
+	void testAjoutConsultationClient() throws Exception {
+
+		// Préparation de l'objet à envoyer
+		Article articleConsulte = articleRepository.getById(5L);
+		Consultation consultation = new Consultation(LocalDateTime.now(), null, articleConsulte);
+		ConsultationAvecIdClient consultationClient = new ConsultationAvecIdClient(consultation, 3L);
+		
+		this.mockMvc
+		.perform(post("/userinterface/article/ajoutConsultationClient")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(consultationClient))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isCreated())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		
+	}
+
+	@Test
+	void testAjoutClientAConsultation() throws Exception {
+
+		// Préparation de l'objet à envoyer
+		Consultation consultation = consultationRepository.getById(12L);
+		ConsultationAvecIdClient consultationAvecClient = new ConsultationAvecIdClient(consultation, 4L);
+
+		this.mockMvc
+		.perform(post("/userinterface/article/ajoutClientAConsultation")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(consultationAvecClient))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		
+	}
+
+	@Test
+	void testConsulterDisponibiliteLivresImprimes() throws Exception {
 
 		// Préparation de l'objet à envoyer
 		List<Long> listeIdLivresImprimes = new ArrayList<Long>();
-		listeIdLivresImprimes.add(Long.valueOf(8L));
-		listeIdLivresImprimes.add(Long.valueOf(5L));
-		listeIdLivresImprimes.add(Long.valueOf(6L));
-
-		// Préparation du corps de la requête.
-		HttpEntity<List<Long>> request = new HttpEntity<>(listeIdLivresImprimes, headers);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(200, result.getStatusCodeValue());
+		listeIdLivresImprimes.add(8L);
+		listeIdLivresImprimes.add(5L);
+		listeIdLivresImprimes.add(6L);
+		
+		this.mockMvc
+		.perform(post("/userinterface/article/consulterDisponibiliteLivresImprimes")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(listeIdLivresImprimes))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		
 	}
 
 	@Test
-	void testCreationCompteClient() throws URISyntaxException {
-
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/client/creationCompteClient";
-		URI uri = new URI(baseUrl);
-
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
+	void testCreationCompteClient() throws Exception {
 
 		// Préparation de l'objet à envoyer
 		Adresse adresseLivraison = new Adresse("12", "Rue de Nanterre", "75019", "Paris", "France", "");
 		Adresse adresseFacturation = new Adresse("12", "Rue de Nanterre", "75019", "Paris", "France", "");
 		Client nouveauClient = new Client("Mme", "Kolos", "Anna", "akolos@orange.fr", "LukeBesson", null, null, null, adresseFacturation, adresseLivraison, null, null);
 		
-		// Préparation du corps de la requête.
-		HttpEntity<Client> request = new HttpEntity<>(nouveauClient, headers);
+		this.mockMvc
+		.perform(post("/userinterface/client/creationCompteClient")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(nouveauClient))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isCreated())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON));
 
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(201, result.getStatusCodeValue());
 	}
 
 	@Test
-	void testAuthentificationClient() throws URISyntaxException {
-
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/client/authentificationClient";
-		URI uri = new URI(baseUrl);
-
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
+	void testAuthentificationClient() throws Exception {
 
 		// Préparation de l'objet à envoyer
 		DemandeAuthentification demandeAuthentification = new DemandeAuthentification("mathile@lamour.com", "LeCinemaCestLaVie");
-
-		// Préparation du corps de la requête.
-		HttpEntity<DemandeAuthentification> request = new HttpEntity<>(demandeAuthentification, headers);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(200, result.getStatusCodeValue());
+		
+		this.mockMvc
+		.perform(post("/userinterface/client/authentificationClient")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(demandeAuthentification))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		
 	}
 	
 	@Test
-	void testAuthentificationClientEchec() throws URISyntaxException {
-
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/client/authentificationClient";
-		URI uri = new URI(baseUrl);
-
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
+	void testAuthentificationClientEchec() throws Exception {
 
 		// Préparation de l'objet à envoyer
 		DemandeAuthentification demandeAuthentification = new DemandeAuthentification("mathile@lamour.com", "NImporteQuoi");
+		
+		this.mockMvc
+		.perform(post("/userinterface/client/authentificationClient")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(demandeAuthentification))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isUnauthorized());
 
-		// Préparation du corps de la requête.
-		HttpEntity<DemandeAuthentification> request = new HttpEntity<>(demandeAuthentification, headers);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(200, result.getStatusCodeValue());
 	}
 
 	@Test
-	void testModificationCompteClient() throws URISyntaxException {
-
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/client/modificationCompteClient";
-		URI uri = new URI(baseUrl);
-
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
+	void testModificationCompteClient() throws Exception {
 
 		// Préparation de l'objet à envoyer
 		ArrayList<Consultation> consultations = new ArrayList<Consultation>();
 		ArrayList<Commande> commandes = new ArrayList<Commande>();
-		Adresse adresseFacturation = adresseRepository.findById(Long.valueOf(8L)).orElse(null);
-		Adresse adresseLivraison = adresseRepository.findById(Long.valueOf(7L)).orElse(null);
+		Adresse adresseFacturation = adresseRepository.findById(8L).orElse(null);
+		Adresse adresseLivraison = adresseRepository.findById(7L).orElse(null);
 		
-		Client clientModifie = new Client(Long.valueOf(4), "Mme", "Renard", "Marguerite", "marguerite.renard@protonmail.com", "ViveLe7eArt", "4354-1961-9711-0489", "01/21", "178", adresseFacturation, adresseLivraison, consultations, commandes);
+		Client clientModifie = new Client(4L, "Mme", "Renard", "Marguerite", "marguerite.renard@protonmail.com", "ViveLe7eArt", "4354-1961-9711-0489", "01/21", "178", adresseFacturation, adresseLivraison, consultations, commandes);
+		
+		this.mockMvc
+		.perform(post("/userinterface/client/modificationCompteClient")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(clientModifie))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON));
 
-		// Préparation du corps de la requête.
-		HttpEntity<Client> request = new HttpEntity<>(clientModifie, headers);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(200, result.getStatusCodeValue());
 	}
 
 	@Test
-	void testEnregistrementCommande() throws URISyntaxException {
-
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/commande/enregistrementCommande";
-		URI uri = new URI(baseUrl);
-
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
+	void testEnregistrementCommande() throws Exception {
 
 		// Prépartion de l'objet à envoyer.
 		List<LigneCommande> lignesCommande = new ArrayList<LigneCommande>();
 		
 		// Obtention des articles.
-		Article article1 = articleRepository.getById(Long.valueOf(3L));
-		Article article2 = articleRepository.getById(Long.valueOf(6L));
-		Article article3 = articleRepository.getById(Long.valueOf(8L));
+		Article article1 = articleRepository.getById(3L);
+		Article article2 = articleRepository.getById(6L);
+		Article article3 = articleRepository.getById(8L);
 		
 		// Fabrication des lignes de commande.
 		LigneCommande ligneCommande1 = new LigneCommande(1, 1895, 1999, article1, null);
@@ -425,41 +317,42 @@ class SeptiemeArcheWebserviceApplicationTests {
 		// Préparation de la commande.
 		Commande commande = new Commande(null, "En attente de paiement", LocalDateTime.now(), lignesCommande, null, null);
 		
-		CommandeAvecIdClient commandeAEnregistrer = new CommandeAvecIdClient(commande, Long.valueOf(1L));
-
-		// Préparation du corps de la requête.
-		HttpEntity<CommandeAvecIdClient> request = new HttpEntity<>(commandeAEnregistrer, headers);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(201, result.getStatusCodeValue());
+		CommandeAvecIdClient commandeAEnregistrer = new CommandeAvecIdClient(commande, 1L);
+		
+		this.mockMvc
+		.perform(post("/userinterface/commande/enregistrementCommande")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(commandeAEnregistrer))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isCreated())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		
 	}
 
 	@Test
-	void testEnregistrementInformationsBancaires() throws URISyntaxException {
-
-		// Préparation de la requête et de son URL.
-		RestTemplate restTemplate = new RestTemplate();
-		final String baseUrl = "http://localhost:" + portServeur
-				+ "/SeptiemeArche.webservice.fr/userinterface/paiement/enregistrementInformationsBancaires";
-		URI uri = new URI(baseUrl);
-
-		// Préparation du header.
-		HttpHeaders headers = new HttpHeaders();
+	void testEnregistrementInformationsBancaires() throws Exception {
 
 		// Préparation de l'objet à envoyer
 		InformationsPaiement informationsPaiement = new InformationsPaiement("7510-4167-6722-0236", "03/22", "570", Long.valueOf(3L));
 
-		// Préparation du corps de la requête.
-		HttpEntity<InformationsPaiement> request = new HttpEntity<>(informationsPaiement, headers);
-
-		// Envoi de la requête et récupération du résultat.
-		ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
-
-		// Test sur le code status.
-		Assertions.assertEquals(200, result.getStatusCodeValue());
+		this.mockMvc
+		.perform(post("/userinterface/paiement/enregistrementInformationsBancaires")
+        .contentType(MediaType.APPLICATION_JSON)
+		.content(asJsonString(informationsPaiement))
+        .accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		
+	}
+	
+	public static String asJsonString(final Object obj) {
+	    try {
+	        return new ObjectMapper().writeValueAsString(obj);
+	    } catch (Exception e) {
+	        throw new RuntimeException(e);
+	    }
 	}
 
 }
