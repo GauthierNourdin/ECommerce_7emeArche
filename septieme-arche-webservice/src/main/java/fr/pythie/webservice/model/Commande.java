@@ -14,11 +14,14 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import lombok.AccessLevel;
 import lombok.NonNull;
@@ -43,6 +46,9 @@ public class Commande {
 	String numero;
 	@NonNull
 	String status;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	LocalDateTime date = LocalDateTime.now();
 	@JsonIgnoreProperties( "commande" )
 	@Fetch(value = FetchMode.SUBSELECT)
@@ -50,6 +56,7 @@ public class Commande {
 	@OneToMany(mappedBy = "commande")
 	List<LigneCommande> lignesCommande;
 	@JsonIgnore
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Client client = new Client();
 	@JsonIgnoreProperties( "commande" )

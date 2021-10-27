@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AccessLevel;
 import lombok.NonNull;
@@ -34,6 +35,7 @@ public class Facture {
 	String status;
 	@NonNull
 	@JsonIgnore
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Commande commande = new Commande();
 

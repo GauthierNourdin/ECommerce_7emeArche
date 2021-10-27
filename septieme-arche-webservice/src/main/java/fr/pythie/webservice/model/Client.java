@@ -43,11 +43,15 @@ public class Client extends Personne {
 	//@Fetch(value = FetchMode.SUBSELECT)
 	//@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	//@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Adresse adresseFacturation = new Adresse();
 	@NonNull
 	//@Fetch(value = FetchMode.SUBSELECT)
 	//@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	//@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	Adresse adresseLivraison = new Adresse();
 	@JsonIgnoreProperties( "client" )
 	@Fetch(value = FetchMode.SUBSELECT)

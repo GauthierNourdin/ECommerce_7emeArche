@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import fr.pythie.webservice.communication.ArticleDeserializer;
@@ -31,7 +32,6 @@ import lombok.experimental.FieldDefaults;
 @JsonDeserialize(using = ArticleDeserializer.class)
 public abstract class Article {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
@@ -42,9 +42,11 @@ public abstract class Article {
 	int prixHT;
 	int prixTTC;
 	@JsonIgnore
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
 	List<Consultation> consultations;
 	@JsonIgnore
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
 	List<LigneCommande> lignesCommande;
 

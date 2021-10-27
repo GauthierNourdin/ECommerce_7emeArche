@@ -11,11 +11,13 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import fr.pythie.webservice.communication.LivreDeserializer;
 import lombok.AccessLevel;
@@ -48,6 +50,9 @@ public abstract class Livre extends Article {
 	String lienImage;
 	int nombrePages;
 	@NonNull
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonSerialize(using = LocalDateSerializer.class)
+	@JsonDeserialize(using = LocalDateDeserializer.class)
 	LocalDate dateDepotLegal = LocalDate.now();
 	@NonNull
 	@JsonIgnoreProperties( "livres" )

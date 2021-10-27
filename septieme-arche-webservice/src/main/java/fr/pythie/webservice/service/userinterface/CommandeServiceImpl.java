@@ -79,7 +79,7 @@ public class CommandeServiceImpl implements CommandeService {
 
 		// On essaie d'accéder aux informations du client avec l'identifiant envoyé
 		try {
-			client = clientRepository.getById(commandeAvecIdClient.getIdClient());
+			client = clientRepository.findById(commandeAvecIdClient.getIdClient()).orElse(null);
 		} catch (Exception e) {
 			// En cas d'erreur lors de la lecture de la base de données, on lève une
 			// exception
@@ -252,7 +252,7 @@ public class CommandeServiceImpl implements CommandeService {
 			LivreImprime livreImprime;
 			
 			try {
-				livreImprime = livreImprimeRepository.getById(lignComm.getArticle().getId());
+				livreImprime = livreImprimeRepository.findById(lignComm.getArticle().getId()).orElse(null);
 			} catch (Exception exception) {
 				// En cas d'erreur on lève une exception
 				throw new LectureBaseDonneesException();

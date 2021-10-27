@@ -148,7 +148,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 	void testAjoutConsultationAnonyme() throws Exception {
 
 		// Préparation de l'objet à envoyer
-		Article articleConsulte = articleRepository.getById(3L);
+		Article articleConsulte = articleRepository.findById(3L).orElse(null);
 		Consultation consultationAnonyme = new Consultation(LocalDateTime.now(), null, articleConsulte);
 		
 		this.mockMvc
@@ -166,7 +166,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 	void testAjoutConsultationClient() throws Exception {
 
 		// Préparation de l'objet à envoyer
-		Article articleConsulte = articleRepository.getById(5L);
+		Article articleConsulte = articleRepository.findById(5L).orElse(null);
 		Consultation consultation = new Consultation(LocalDateTime.now(), null, articleConsulte);
 		ConsultationAvecIdClient consultationClient = new ConsultationAvecIdClient(consultation, 3L);
 		
@@ -185,7 +185,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 	void testAjoutClientAConsultation() throws Exception {
 
 		// Préparation de l'objet à envoyer
-		Consultation consultation = consultationRepository.getById(12L);
+		Consultation consultation = consultationRepository.findById(12L).orElse(null);
 		ConsultationAvecIdClient consultationAvecClient = new ConsultationAvecIdClient(consultation, 4L);
 
 		this.mockMvc
@@ -300,9 +300,9 @@ class SeptiemeArcheWebserviceApplicationTests {
 		List<LigneCommande> lignesCommande = new ArrayList<LigneCommande>();
 		
 		// Obtention des articles.
-		Article article1 = articleRepository.getById(3L);
-		Article article2 = articleRepository.getById(6L);
-		Article article3 = articleRepository.getById(8L);
+		Article article1 = articleRepository.findById(3L).orElse(null);
+		Article article2 = articleRepository.findById(6L).orElse(null);
+		Article article3 = articleRepository.findById(8L).orElse(null);
 		
 		// Fabrication des lignes de commande.
 		LigneCommande ligneCommande1 = new LigneCommande(1, 1895, 1999, article1, null);
@@ -334,7 +334,7 @@ class SeptiemeArcheWebserviceApplicationTests {
 	void testEnregistrementInformationsBancaires() throws Exception {
 
 		// Préparation de l'objet à envoyer
-		InformationsPaiement informationsPaiement = new InformationsPaiement("7510-4167-6722-0236", "03/22", "570", Long.valueOf(3L));
+		InformationsPaiement informationsPaiement = new InformationsPaiement("7510-4167-6722-0236", "03/22", "570", 3L);
 
 		this.mockMvc
 		.perform(post("/userinterface/paiement/enregistrementInformationsBancaires")
@@ -349,7 +349,9 @@ class SeptiemeArcheWebserviceApplicationTests {
 	
 	public static String asJsonString(final Object obj) {
 	    try {
-	        return new ObjectMapper().writeValueAsString(obj);
+	    	final ObjectMapper mapper = new ObjectMapper();
+	    	final String jsonContent = mapper.writeValueAsString(obj);
+	        return jsonContent;
 	    } catch (Exception e) {
 	        throw new RuntimeException(e);
 	    }
